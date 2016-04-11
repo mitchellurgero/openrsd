@@ -19,15 +19,15 @@ switch($_POST['type']){
 }
 
 function restart($service){
-	$result = shell_exec("sudo service $service restart");
+	$result = shell_exec("sudo service $service restart 2>&1");
 	echo $result;
 }
 function stop($service){
-	$result = shell_exec("sudo service $service stop");
+	$result = shell_exec("sudo service $service stop 2>&1");
 	echo $result;
 }
 function start($service){
-	$result = shell_exec("sudo service $service start");
+	$result = shell_exec("sudo service $service start 2>&1");
 	echo $result;
 }
 ?>

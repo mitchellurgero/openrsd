@@ -159,6 +159,25 @@ function apt_upgrade(){
 			load(false);		
 		});
 }
+function serviceAction(name, type){
+	load(true);
+	$.ajax({
+		method:'post',
+		url:'./app/services.php',
+		data:{
+			service:name,
+			type:type
+		},
+		success:function(result) {
+			genModal("Results:", result);
+			load(false);
+			pageLoad("services");
+		}
+		}).fail(function(e) {
+			genModal("Error", "Due to the timeout configured on the server, or your browser, this request timed out. The command is still running on the server though. SSH to check upgrade status is recommended.");
+			load(false);		
+		});
+}
 function power(type){
 	$.ajax({
 		method:'post',

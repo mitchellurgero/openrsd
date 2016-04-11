@@ -35,19 +35,23 @@ echo '';
 					$button;
 					if($pos_true === false){
 						$active = '<span style="color:red;">Stopped</span>';
-						$action = "start";
+						$action = "'start'";
+						$action2 = "start";
 					} else {
 						$active = '<span style="color:green;">Running</span>';
-						$action = "stop";
+						$action = "'stop'";
+						$action2 = "stop";
 					}
 					if($s != ""){
-						$action = "restart";
+						//$action = "restart";
 						if($s_name[5] == "apache2" || $s_name[5] == "ssh" || $s_name[5] == "xrdp" || $s_name[5] == "networking" || $s_name[5] == "nginx"){
 							$sname = $s_name[5];
 							$name = "'$sname'";
-							$button = '<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.','.$action.',);">'.ucfirst($action).'</button>';
+							$button = '<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.',\'restart\');">Restart</button>';
 						} else {
-							$button = "You must login to the console or SSH to start or stop this service.";
+							$sname = $s_name[5];
+							$name = "'$sname'";
+							$button = '<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.',\'restart\');">Restart</button>&nbsp;&nbsp;<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.','.$action.');">'.ucfirst($action2).'</button>';
 						}
 						echo '<tr><td>'.$s_name[5].'</td><td>'.$active.'</td><td>'.$button.'</td></tr>';
 					}
