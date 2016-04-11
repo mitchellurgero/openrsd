@@ -8,14 +8,27 @@ head();
 //Check for login or dashboard...
 if(isset($_POST['username']) && isset($_POST['password'])){
 	//Attempt to login...
-	$u = $_POST['username'];
-	$p = $_POST['password'];
-	if(auth($u, $p)){
-		$_SESSION['username'] = $u;
-		$_SESSION['q'] = $p;
+	if(file_exists("app/blocked_ip/".$_SERVER['REMOTE_ADDR'])){
+		$_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
 	} else {
-		$_SESSION['loginError'] = "Username or password is incorrect.";
+		$u = $_POST['username'];
+		$p = $_POST['password'];
+		if(auth($u, $p)){
+			$_SESSION['username'] = $u;
+			$_SESSION['q'] = $p;
+		} else {
+			if(!isset($_SESSION['attempts'])){
+				$_SESSION['attempts'] = 0;
+			} 
+			$_SESSION['attempts'] = $_SESSION['attempts']  + 1;
+			$_SESSION['loginError'] = "Username or password is incorrect.";
+			if($_SESSION['attempts'] >= 5){
+				file_put_contents("app/blocked_ip/".$_SERVER['REMOTE_ADDR'],"");
+				$_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
+			}
+		}	
 	}
+	
 }
 
 if(!isset($_SESSION['username'])){

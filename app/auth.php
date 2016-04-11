@@ -1,5 +1,8 @@
 <?php
 function auth($username, $password){
+	if(file_exists("app/blocked_ip/".$_SERVER['REMOTE_ADDR'])){
+		return false;
+	}
 	$password = escapeshellarg($password);
 	$result = exec("sudo ./app/bin/chkpasswd $username $password");
 	$users = shell_exec("sudo bash ./app/scripts/listusers.sh");
