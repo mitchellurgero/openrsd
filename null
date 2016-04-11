@@ -1,0 +1,15 @@
+Hit http://archive.raspberrypi.org jessie InRelease
+Hit http://mirrordirector.raspbian.org jessie InRelease
+Hit http://archive.raspberrypi.org jessie/main armhf Packages
+Hit http://mirrordirector.raspbian.org jessie/main armhf Packages
+Hit http://archive.raspberrypi.org jessie/ui armhf Packages
+Hit http://mirrordirector.raspbian.org jessie/contrib armhf Packages
+Hit http://mirrordirector.raspbian.org jessie/non-free armhf Packages
+Hit http://mirrordirector.raspbian.org jessie/rpi armhf Packages
+Ign http://archive.raspberrypi.org jessie/main Translation-en
+Ign http://archive.raspberrypi.org jessie/ui Translation-en
+Ign http://mirrordirector.raspbian.org jessie/contrib Translation-en
+Ign http://mirrordirector.raspbian.org jessie/main Translation-en
+Ign http://mirrordirector.raspbian.org jessie/non-free Translation-en
+Ign http://mirrordirector.raspbian.org jessie/rpi Translation-en
+Reading package lists...
