@@ -14,40 +14,108 @@ echo '';
     </div>
     <div class="row">
     	<div class="col-lg-12">
-    		<button class="btn btn-raised btn-info">Save Changes</button>
+    		<button class="btn btn-raised btn-info" data-toggle="modal" data-target="#cronModal">New Job</button>
     	</div>
     </div>
     <br />
     <div class="row">
-    	<div class="col-lg-12">
+    	<div class="col-lg-6">
     		<table class="table">
+    			<caption><h3>Daily Jobs</h3></caption>
     			<thead>
-    				<th>Job Command</th>
-    				<th>Job Timer</th>
+    				<th>Job Title</th>
+    				<th>Options</th>
     			</thead>
-    		<?php
-    			$crontab_file = shell_exec("sudo cat /etc/crontab 2>&1");
-    			$crontab = explode("\n",$crontab_file);
-    			foreach($crontab as $cronjob){
-    				$pos = strpos($cronjob, "#");
-    				if($cronjob != "" || $cronjob != " "){
-    					if($pos === false){
-    						$pos1 = strpos($cronjob, 'SHELL=/bin/sh');
-    						$pos2 = strpos($cronjob, 'PATH=');
-    						if($pos1 === false && $pos2 === false){
-    							$job = explode("\t", $cronjob);
-    							$command = $job[3];
-    							$time1 = $job[0];
-    							$time2 = $job[1];
-    							if($command != ""){
-    								echo "<tr><td>$command</td><td>$time1 $time2</td></tr>";
-    							}
-    						}
-    					}
+    			<?php
+    			$files1 = scandir("/etc/cron.daily");
+    			foreach($files1 as $file){
+    				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
+    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
-    				
     			}
-    		?>
+    			
+    			?>
     		</table>
+    		<table class="table">
+    			<caption><h3>Hourly Jobs</h3></caption>
+    			<thead>
+    				<th>Job Title</th>
+    				<th>Options</th>
+    			</thead>
+    			<?php
+    			$files1 = scandir("/etc/cron.hourly");
+    			foreach($files1 as $file){
+    				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "fake-hwclock"){
+    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    				}
+    			}
+    			
+    			?>
+    		</table>
+    		<table class="table">
+    			<caption><h3>Monthly Jobs</h3></caption>
+    			<thead>
+    				<th>Job Title</th>
+    				<th>Options</th>
+    			</thead>
+    			<?php
+    			$files1 = scandir("/etc/cron.monthly");
+    			foreach($files1 as $file){
+    				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
+    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    				}
+    			}
+    			
+    			?>
+    		</table>
+    		<table class="table">
+    			<caption><h3>Weekly Jobs</h3></caption>
+    			<thead>
+    				<th>Job Title</th>
+    				<th>Options</th>
+    			</thead>
+    			<?php
+    			$files1 = scandir("/etc/cron.weekly");
+    			foreach($files1 as $file){
+    				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "man-db"){
+    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    				}
+    			}
+    			
+    			?>
+    		</table>
+		<div class="modal" id="cronModal">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        			<h4 class="modal-title" id="cronHeader">New Cron Job</h4>
+      			</div>
+      			<div class="modal-body" id="cronBody">
+        			<p>
+        				<label for="cronNewName" class="sr-only">Job Name(No Spaces!)</label>
+        					<input type="text" id="cronNewName" name="cronNewName" class="form-control" placeholder="Job Name(No Spaces!)" required><br />
+        				<label for="cronType">Select list:</label>
+        					<select class="form-control" id="cronType">
+        						<option value="daily">Daily</option>
+        						<option value="hourly">Hourly</option>
+        						<option value="monthly">Monthly</option>
+        						<option value="weekly">Weekly</option>
+        					</select>
+        				
+        				<label for="cronContent">Script Content:</label>
+  							<textarea class="form-control" rows="5" id="cronContent">#!/bin/bash
+echo "Script Content goes here!"
+</textarea>
+        				
+        			</p>
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-raised btn-warning" data-dismiss="modal">Cancel</button>
+        			<button type="button" class="btn btn-raised btn-primary" onClick="cronSave()">Save</button>
+      			</div>
+    			</div>
+  			</div>
+		</div>
     	</div>
     </div>

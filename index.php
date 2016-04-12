@@ -28,7 +28,6 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 			}
 		}	
 	}
-	
 }
 
 if(!isset($_SESSION['username'])){
@@ -38,13 +37,7 @@ if(!isset($_SESSION['username'])){
 	body();
 }
 
-
-
 footer();
-
-
-
-
 
 //Functions for header...
 
@@ -194,7 +187,7 @@ function body(){
                         </li>
                         <li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
                         <li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
-                        <li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>
+                        <!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
                         <li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
                         <li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
                         <li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>

@@ -13,21 +13,19 @@ echo '';
         </div>
     </div>
     <div class="row">
-    	<div class="col-lg-12">
+    	<div class="col-lg-6">
     		<table class="table">
     			<thead>
     				<th>Adapter</th>
     				<th>IP Address</th>
-    				<th>Options</th>
     			</thead>
     			<?php
     			$adapters_com = shell_exec("sudo bash ./app/scripts/adapters.sh");
     			$adapters = explode("\n", $adapters_com);
     			foreach($adapters as $dev){
     				if($dev != ""){
-    					echo '<tr><td>'.$dev.'</td><td>'.getCurrentIP($dev).'</td><td>Options here at some point...</td></tr>';
+    					echo '<tr><td>'.$dev.'</td><td>'.getCurrentIP($dev).'</td>></tr>';
     				}
-    				
     			}
     			?>
     		</table>

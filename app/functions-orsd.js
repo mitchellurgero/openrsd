@@ -113,6 +113,30 @@ function changePasswd(){
 
 
 }
+function cronSave(){
+	var jobcontent = document.getElementById("cronContent").value;
+	var jobtype = document.getElementById("cronType").value;
+	var jobname = document.getElementById("cronNewName").value;
+		load(true);
+		$.ajax({
+			method:'post',
+			url:'./app/cron.php',
+			data:{
+				type:jobtype,
+				name:jobname,
+				content:jobcontent
+			},
+			success:function(result) {
+				$("#cronModal").modal('hide');
+				genModal("Results", "<pre>" + result + "</pre>");
+				load(false);
+				pageLoad('cron');
+			}
+			}).fail(function(e) {
+				genModal("Results", "<pre>" + e + "</pre>");
+				load(false);
+			});
+}
 function genModal(head, body){
 	document.getElementById("genModalHeader").innerHTML = head;
 	document.getElementById("genModalBody").innerHTML = body;
@@ -244,13 +268,36 @@ function load(type){
 		document.getElementById("loadAnim").style.display = 'none';
 	}
 }
+function cronDelete(name, type3){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/cron.php',
+		data:{
+			type:'delete',
+			type2:type3,
+			name2:name
+		},
+		success:function(result) {
+			load(false);
+			genModal("Results", "<pre>" + result + "</pre>");
+			pageLoad('cron');
+			
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+			pageLoad('cron');
+		});
+}
 function runScript(filename){
 	load(true)
 	$.ajax({
 		method:'post',
 		url:'./app/apps.php',
 		data:{
-			script:filename
+			script:filename,
+			type:'run'
 		},
 		success:function(result) {
 			load(false);
@@ -263,4 +310,24 @@ function runScript(filename){
 		});
 	
 	
+}
+function delScript(filename){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/apps.php',
+		data:{
+			script:filename,
+			type:'delete'
+		},
+		success:function(result) {
+			load(false);
+			genModal("Results", "<pre>" + result + "</pre>");
+			pageLoad('apps')
+			
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+		});
 }
