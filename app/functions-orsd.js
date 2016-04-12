@@ -178,6 +178,24 @@ function serviceAction(name, type){
 			load(false);		
 		});
 }
+function configSave(){
+	load(true);
+	$.ajax({
+		method:'post',
+		url:'./app/rpiconfig.php',
+		data:{
+			content:document.getElementById("rpiConfigFile").value
+		},
+		success:function(result) {
+			genModal("Results:", result);
+			load(false);
+			pageLoad("rpiconfig");
+		}
+		}).fail(function(e) {
+			genModal("Error?", "Seems I cannot contact the RPi - It may be shutdown, rebooting, or halted.");
+			load(false);
+		});
+}
 function power(type){
 	$.ajax({
 		method:'post',

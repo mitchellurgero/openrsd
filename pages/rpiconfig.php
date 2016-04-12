@@ -15,13 +15,13 @@ echo '';
     </div>
     <div class="row">
     	<div class="col-lg-12">
-    		<button class="btn btn-raised btn-info">Save Changes</button>
+    		<button class="btn btn-raised btn-info" onClick="configSave()">Save Changes</button>
     	</div>
     </div>
     <br />
     <div class="row">
     	<div class="col-lg-12">
-    		<textarea rows="20" cols="100"><?php
+    		<textarea rows="20" cols="100" id="rpiConfigFile"><?php
     				echo shell_exec("sudo cat /boot/config.txt 2>&1");
     			?>
     		</textarea>
