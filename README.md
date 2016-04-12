@@ -1,4 +1,4 @@
-# OpenRSD - WIP - Not for production use.
+# OpenRSD - Beta - State: Usable
 
 ### What is OpenRSD
 OpenRSD or ORSD is a set of PHP scripts, JS, HTML, and BootStrap CSS to create a beautiful, easy to use, responsive Dashboard to manage Raspbian based distros for the RPi2-3.
