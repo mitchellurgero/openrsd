@@ -36,6 +36,7 @@ function adduser($u, $p){
 function deluser($u){
 	if($u == "pi"){
 		die("You cannot delete this user, apache runs as this user.");
+		return;
 	}
 	$result = shell_exec("sudo deluser --remove-home $u 2>&1");
 	echo $result;
