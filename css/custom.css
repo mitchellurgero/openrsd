@@ -174,15 +174,15 @@ border-right: 1px solid #FFF;
   }
 }
 div#frame {
-    position: fixed;
-    width: 90%;
-    height: 90%;
+	position:absolute;
+    width: 100%;
+    height: 100%;
 }
 
 /* iframe itself */
 div#frame > iframe {
     display: block;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 500px;
     border: none;
 }

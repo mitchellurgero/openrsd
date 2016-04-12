@@ -21,7 +21,7 @@ echo '';
     <br />
     <div class="row">
     	<div class="col-lg-12">
-    		<textarea rows="20" cols="100" id="rpiConfigFile"><?php
+    		<textarea rows="20" class="form-control" id="rpiConfigFile"><?php
     				echo shell_exec("sudo cat /boot/config.txt 2>&1");
     			?>
     		</textarea>

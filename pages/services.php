@@ -13,10 +13,10 @@ echo '';
         </div>
     </div>
     <div class="row">
-    	<div class="col-lg-12">
+    	<div class="col-lg-12 text-center">
     		<p>Not all services can be interacted with from this interface, for most things, you will need to login via console, or SSH to interact with these services.</p>
     	</div>
-    	<div class="col-lg-6">
+    	<div class="col-lg-8 col-lg-offset-2">
     		<table class="table">
     			<thead>
     				<th>Service Name</th>

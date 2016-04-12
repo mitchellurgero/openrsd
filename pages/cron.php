@@ -19,7 +19,7 @@ echo '';
     </div>
     <br />
     <div class="row">
-    	<div class="col-lg-6">
+    	<div class="col-lg-12">
     		<table class="table">
     			<caption><h3>Daily Jobs</h3></caption>
     			<thead>

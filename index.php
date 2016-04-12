@@ -143,80 +143,76 @@ function body(){
 	?>
 	
 	<script>window.onload = function () { pageLoad("dashboard"); }</script>
-	<div id="wrapper" id="sideNavBar">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="./"><?php echo exec("hostname"); ?> Admin Panel</a>
-            </div>
-            <br />
-            <div class="navbar-default sidebar" role="navigation" >
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                    	<li class="dropdown">
-                    		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        		<i class="fa fa-user fa-fw"></i>Logged in as: <?php echo $_SESSION['username']; ?><span class="fa arrow"></span>
-                    		</a>
-                    		<ul class="nav nav-second-level">
-                        		<li class="divider"></li>
-                        		<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout <?php echo $_SESSION['username']; ?></a>
-                        		</li>
-                    		</ul>
-                    		<!-- /.dropdown-user -->
-                		</li>
-
-                        <li>
-                            <a href="#" onclick="pageLoad('dashboard');"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                         <!--   <a href="#"><i class="fa fa-shield fa-fw" ></i> Firewall<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#" onclick="pageLoad('nat');">&nbsp;&nbsp;&nbsp;Access Rules</a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="pageLoad('block');">&nbsp;&nbsp;&nbsp;Block Rules</a>
-                                </li>
-                            </ul>
-                            -->
-                        </li>
-                        <li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
-                        <li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
-                        <!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
-                        <li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
-                        <li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
-                        <li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
-                        <li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
-                        <li><a href="#" onclick="pageLoad('webconsole');"><i class="fa fa-keyboard-o fa-fw"></i> Web Console</a></li>
-                		<li>
-        					<a href="#"><i class="fa fa-power-off fa-fw"></i> Power Options <span class="fa arrow"></span></a>
-        					<ul class="nav nav-second-level">
-          						<li><a href="#" onclick="power('reboot');">Reboot</a></li>
-          						<li><a href="#" onclick="power('shutdown');">Shutdown</a></li>
-          						<li><a href="#" onclick="power('halt');">Halt</a></li>
-        					</ul>
-      					</li>
-                		<li><a href="#" id="uptime"></a></li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-        
-        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
+		<nav class="navbar navbar-default navbar-fixed-top">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="./"><?php echo exec("hostname"); ?> Admin Panel</a>
+      				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span> 
+      				</button>
+    			</div>
+    			<div class="collapse navbar-collapse" id="myNavbar">
+    			<ul class="nav navbar-nav">
+      				<li>&nbsp;</li>
+      				<li>&nbsp;</li>
+      				<li><a href="#" onclick="pageLoad('dashboard');"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+      				<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Basic Configuration</a>
+        				<ul class="dropdown-menu">
+          					
+      						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
+                        	<li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
+                        	<!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
+                        	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
+                        	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
+        				</ul>
+      				</li>
+      				<li>&nbsp;</li>
+      				<li>&nbsp;</li>
+      				<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Advanced Configuration</a>
+        				<ul class="dropdown-menu">
+          					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
+          					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
+          					<li><a href="#" onclick="pageLoad('webconsole');"><i class="fa fa-keyboard-o fa-fw"></i> Web Console</a></li>
+        				</ul>
+      				</li>
+                    <li>&nbsp;</li>
+      				<li>&nbsp;</li>
+                    <li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-power-off fa-fw"></i> Power Options</a>
+        				<ul class="dropdown-menu">
+          					<li><a href="#" onclick="power('reboot');">Reboot</a></li>
+          					<li><a href="#" onclick="power('shutdown');">Shutdown</a></li>
+          					<li><a href="#" onclick="power('halt');">Halt</a></li>
+        				</ul>
+      				</li>
+    			</ul>
+    			<ul class="nav navbar-nav navbar-right">
+                   	<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user fa-fw"></i>&nbsp;Logged in as: <?php echo $_SESSION['username']; ?></a>
+        				<ul class="dropdown-menu">
+          					<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout <?php echo $_SESSION['username']; ?></a></li>
+        				</ul>
+      				</li>
+                </ul>
+                &nbsp;&nbsp;&nbsp;
+    			<ul class="nav navbar-nav navbar-right">
+                   	<li><a href="#" id="uptime"></a></li>
+                </ul>
+    			</div>
+  			</div>
+		</nav>
+		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./">Powered by OpenRSD</a>
             </div>
         </nav>
-	</div>
-		
-		<div id="page-wrapper">
+		<div class="container">
+			<br />
+			<br />
 			<div id="pageContent"  role="main">
 				Please select an item from the menu.
 			
