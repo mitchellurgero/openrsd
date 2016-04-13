@@ -33,34 +33,38 @@ function delUser(username){
     			$("#delUserModal").modal('show');
 }
 function addUser(){
-	load(true);
+	
 	var username = document.getElementById("newUser1").value;
 	var password = document.getElementById("newPasswd1").value;
 	var password2 = document.getElementById("newPasswd2").value;
-	if(password == password2){
-		$.ajax({
-			method:'post',
-			url:'./app/users.php',
-			data:{
-				type:'add',
-				username:username,
-				password:password
-			},
-			success:function(result) {
-				genModal("Results", "<pre>" + result + "</pre>");
-				load(false);
-				$("#newUserModal").modal('hide');
-				pageLoad('users');
-			}
-			}).fail(function(e) {
-				document.getElementById("pageContent").innerHTML = "Loading the page failed. Please try again.";
-				load(false);
-			});
+	if(username == ""){
+		genModal("Error!", "Username cannot be blank!")
 	} else {
-		genModal("Error", "Passwords do not match, try again!");
-		load(false);
+		load(true);
+		if(password == password2){
+			$.ajax({
+				method:'post',
+				url:'./app/users.php',
+				data:{
+					type:'add',
+					username:username,
+					password:password
+				},
+				success:function(result) {
+					genModal("Results", "<pre>" + result + "</pre>");
+					load(false);
+					$("#newUserModal").modal('hide');
+					pageLoad('users');
+				}
+				}).fail(function(e) {
+					document.getElementById("pageContent").innerHTML = "Loading the page failed. Please try again.";
+					load(false);
+				});
+		} else {
+			genModal("Error", "Passwords do not match, try again!");
+			load(false);
+		}
 	}
-	
 }
 function deleteUser(username){
 	$("#delUserModal").modal('hide');
