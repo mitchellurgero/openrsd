@@ -163,6 +163,7 @@ function body(){
         				<ul class="dropdown-menu">
           					
       						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
+      						<li><a href="#" onclick="pageLoad('block');"><i class="fa fa-cloud fa-fw"></i> Blocked IPs</a></li>
                         	<li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
                         	<!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>

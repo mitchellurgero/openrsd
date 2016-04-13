@@ -327,7 +327,7 @@ function delScript(filename){
 		success:function(result) {
 			load(false);
 			genModal("Results", "<pre>" + result + "</pre>");
-			pageLoad('apps')
+			pageLoad('apps');
 			
 		}
 		}).fail(function(e) {
@@ -335,3 +335,32 @@ function delScript(filename){
 			genModal("Error", e);
 		});
 }
+function unblock(ip){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/block.php',
+		data:{
+			ip:ip
+		},
+		success:function(result) {
+			load(false);
+			if(result == ""){
+				genModal("Results", "<pre>IP has been unblocked!</pre>");
+				pageLoad('block');
+			} else {
+				genModal("Results", "<pre>" + result + "</pre>");
+				pageLoad('block');
+			}
+			
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+		});
+}
+
+
+
+
+
