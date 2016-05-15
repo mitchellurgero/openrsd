@@ -47,6 +47,9 @@ if(isset($_POST['page'])){
 		case "webconsole":
 			webconsole();
 			break;
+		case "logs":
+			logs();
+			break;
 		default:
 			echo "404 - Page not found!";
 			break;
@@ -61,7 +64,9 @@ function webconsole(){
 function dashboard(){
 	include('pages/dashboard.php');
 }
-
+function logs(){
+	include('pages/logs.php');
+}
 function blocked(){
 	include('pages/block.php');
 }

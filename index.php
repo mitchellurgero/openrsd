@@ -175,6 +175,7 @@ function body(){
       				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Advanced Configuration</a>
         				<ul class="dropdown-menu">
+        					<li><a href="#" onclick="pageLoad('logs');"><i class="fa fa-paperclip fa-fw"></i> Logs</a></li>
           					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
           					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
           					<li><a href="#" onclick="pageLoad('webconsole');"><i class="fa fa-keyboard-o fa-fw"></i> Web Console</a></li>
