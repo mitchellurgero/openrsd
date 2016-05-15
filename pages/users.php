@@ -10,6 +10,8 @@ echo '';
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Users <small><a href="#"><div onClick="pageLoad('users');" class="fa fa-refresh rotate"></div></a>&nbsp;&nbsp;&nbsp;<button data-toggle="modal" data-target="#newUserModal" class="btn btn-raised btn-info">Add User</button></small></h1>
+        	<h4>Users made through this interface are added to the sudoers file so they can use sudo commands.</h4>
+        	<h4>If you do not want this, make the users through a console or SSH session.</h4>
         </div>
     </div>
     <div class="row">
