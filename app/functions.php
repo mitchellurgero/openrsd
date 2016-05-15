@@ -105,9 +105,15 @@ function getDirContents($dir, &$results = array()){
 
     foreach($files as $key => $value){
         $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
-        
+        $dno = false;
+        $ext = array(".gz", ".zip");
+        foreach($ext as $t){
+        	if(strpos($value, $t)){ $dno = true; }
+        }
         if(!is_dir($path)) {
-            $results[] = $path;
+        	if($dno != true){
+        		$results[] = $path;
+        	}
         } else if($value != "." && $value != "..") {
             getDirContents($path, $results);
             //$results[] = $path;
