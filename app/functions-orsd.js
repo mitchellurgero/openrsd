@@ -315,6 +315,26 @@ function runScript(filename){
 	
 	
 }
+function displayLog(filename){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/logs.php',
+		data:{
+			log:filename
+		},
+		success:function(result) {
+			load(false);
+			genModal("Log \"" + filename + "\" content:", "<pre class=\"ativa-scroll\">" + result + "</pre>");
+			
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+		});
+	
+	
+}
 function delScript(filename){
 	load(true)
 	$.ajax({

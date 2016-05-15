@@ -186,3 +186,8 @@ div#frame > iframe {
     height: 500px;
     border: none;
 }
+.ativa-scroll{
+	overflow-y:auto;
+	max-height:400px;
+}
+}

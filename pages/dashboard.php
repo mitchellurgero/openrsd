@@ -19,7 +19,7 @@ echo '';
                             CPU Usage
                         </div>
                         <div class="panel-body">
-                            <p><?php echo getCPU(); ?> % <br /><br /></p>
+                            <p>CPU Perf. = <?php echo getCPU(); ?>% <br />CPU Temp = <?php echo getCPUTemp();?><br /></p>
                         </div>
                         <div class="panel-footer">
                             &nbsp;

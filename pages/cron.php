@@ -10,6 +10,7 @@ echo '';
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Cron Configuration <small><a href="#"><div onClick="pageLoad('cron');" class="fa fa-refresh rotate"></div></a></small></h1>
+            <h4>Some of these cron jobs are system cron jobs, please be careful when deleting them!</h4>
         </div>
     </div>
     <div class="row">

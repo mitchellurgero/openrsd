@@ -225,7 +225,8 @@ function body(){
 			
 		</div>
 		<!-- General Modal for info's/warning's/error's -->
-		<div class="modal" id="genModal">
+		
+		<div class="modal " id="genModal">
   			<div class="modal-dialog">
     			<div class="modal-content">
       			<div class="modal-header">
@@ -268,7 +269,14 @@ function body(){
 function footer(){
 	echo '';
 	?>
-
+<script type="text/javascript">
+  			$(document).ready(ajustamodal);
+  			$(window).resize(ajustamodal);
+  			function ajustamodal() {
+    			var altura = $(window).height() - 160; //value corresponding to the modal heading + footer
+    			$(".ativa-scroll").css({"height":altura,"overflow-y":"auto"});
+  			}
+		</script>
 	</html>
 	<?php
 }
