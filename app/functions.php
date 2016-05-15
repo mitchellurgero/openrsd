@@ -108,7 +108,7 @@ function getDirContents($dir, &$results = array()){
         $dno = false;
         $ext = array(".gz", ".zip");
         foreach($ext as $t){
-        	if(strpos($value, $t)){ $dno = true; }
+        	if(substr($value, -3) == $t or substr($value, -4) == $t){ $dno = true; }
         }
         if(!is_dir($path)) {
         	if($dno != true){
