@@ -135,20 +135,14 @@ echo '';
                             		echo '<p>There are no users logged into console, rdp, or ssh.</p>';
                             	} else {
                             		echo '<table class="table">';
+                            		foreach(array_filter($result_who_new) as $per){
+                            			if(!$per == "" && !$per == null){
+	                            			$per_new = explode(" ", $per); //Maybe to clean up table, for now we will display all the information.
+                            				echo "<tr><td>".$per."</td></tr>";
+                            			}
+	                            	}
+	                            	echo '</table>';
                             	}
-                            	foreach($result_who_new as $per){
-                            		if(!$per == "" || !$per == null){
-                            			$per_new = explode("\n", $per);
-                            			echo "<td><tr>".$per_new[0]."</tr></td>";
-                            		}
-                            		
-                            	}
-                            	if(count($result_who_new) - 1 == 0){
-	                            	// Nothing to see here.
-                            	} else {
-                            		echo '</table>';
-                            	}
-                            	
                             	?>
                             	
                             </p>
