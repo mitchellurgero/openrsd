@@ -25,7 +25,7 @@ echo '';
     				<?php
     				$log_files = getDirContents('/home/pi/ovpns');
     				foreach($log_files as $log){
-    					echo'<tr><td><a href="#" onClick="displayProfile(\''.$log.'\')">'.$log.'</a></td></tr>';
+    					echo'<tr><td><a href="#" onClick="displayProfile(\''.$log.'\')">'.$log.'</a></td><td><button class="btn btn-sm btn-raised btn-warning" onclick="rProfile(\''.$log.'\')">Revoke Client</button></td></tr>';
     				}
     				?>
     			</tbody>
@@ -42,4 +42,15 @@ echo '';
 	echo "<pre>".$profile_stats."</pre>";
 	?>
 	</div>
+    </div>
+    <div class="row">
+	<div class="col-lg-12">
+		<table class="table">
+    			<thead>
+    				<th>OpenVPN Client List</th>
+    			</thead>
+		</table><br>
+		<pre><?php echo shell_exec("sudo cat /var/log/openvpn-status.log"); ?></pre>
+	</div>
+
     </div>

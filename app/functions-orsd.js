@@ -337,6 +337,27 @@ function oProfile(){
 	
 	
 }
+function rProfile(user){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/profile-revoke.php',
+		data:{
+			profile:user
+		},
+		success:function(result) {
+			load(false);
+			genModal("Profile revoke status (" + user + "):", '<pre style="overscroll-y:scroll; max-height:400px;">' + result + "</pre>");
+			pageLoad('openvpn');
+			
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+		});
+	
+	
+}
 function createProfile(){
 	profileForm = '<input class="form-control" type="text" placeholder="Profile Name" name="profile_name" id="profile_name">';
 	profileForm += '<br /><br /> <button class="btn btn-sm btn-raised btn-info pull-right" onclick="oProfile();">Create Profile</button><br /><br />';
