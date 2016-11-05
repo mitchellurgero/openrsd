@@ -168,6 +168,7 @@ function body(){
                         	<!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
+				<li><a href="#" onclick="pageLoad('openvpn');"><i class="fa fa-users fa-fw"></i> OpenVPN Profiles</a></li>
         				</ul>
       				</li>
       				<li>&nbsp;</li>

@@ -50,6 +50,9 @@ if(isset($_POST['page'])){
 		case "logs":
 			logs();
 			break;
+		case "openvpn":
+			openvpn();
+			break;
 		default:
 			echo "404 - Page not found!";
 			break;
@@ -103,5 +106,8 @@ function firewall(){
 }
 function users(){
 	include('pages/users.php');
+}
+function openvpn(){
+	include('pages/openvpn.php');
 }
 ?>
