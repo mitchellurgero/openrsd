@@ -34,12 +34,12 @@ echo '';
     							} else {
     								$u1 = "'".$user_ex[0]."'";
     								if($user_ex[0] == "pi"){
-    									echo '<tr><td>'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
+    									echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
     								} else {
     									if($user_ex[0] == $_SESSION['username']){
-    										echo '<tr><td>'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
+    										echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
     									} else {
-    										echo '<tr><td>'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
+    										echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
     									}
     								}
     								

@@ -31,7 +31,7 @@ echo '';
     			$files1 = scandir("/etc/cron.daily");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
-    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -47,7 +47,7 @@ echo '';
     			$files1 = scandir("/etc/cron.hourly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "fake-hwclock"){
-    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -63,7 +63,7 @@ echo '';
     			$files1 = scandir("/etc/cron.monthly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
-    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -79,7 +79,7 @@ echo '';
     			$files1 = scandir("/etc/cron.weekly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "man-db"){
-    					echo '<tr><td>'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			

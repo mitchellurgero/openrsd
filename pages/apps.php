@@ -44,7 +44,7 @@ echo '';
     			$files1 = scandir("./app/scr_up");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "."){
-    					echo '<tr><td><a onClick="runScript(\''.$file.'\');">'.$file.'</a></td><td><button onClick="delScript(\''.$file.'\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;"><a onClick="runScript(\''.$file.'\');">'.$file.'</a></td><td><button onClick="delScript(\''.$file.'\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     		?>

@@ -53,7 +53,7 @@ echo '';
 							$name = "'$sname'";
 							$button = '<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.',\'restart\');">Restart</button>&nbsp;&nbsp;<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.','.$action.');">'.ucfirst($action2).'</button>';
 						}
-						echo '<tr><td>'.$s_name[5].'</td><td>'.$active.'</td><td>'.$button.'</td></tr>';
+						echo '<tr><td style="vertical-align: middle;">'.$s_name[5].'</td><td style="vertical-align: middle;">'.$active.'</td><td>'.$button.'</td></tr>';
 					}
 				
 					

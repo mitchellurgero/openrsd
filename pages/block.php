@@ -30,7 +30,7 @@ echo '';
     					if(strpos($c[1], "IP Address not found")){
     						$country = "This might be a LAN ip address.";
     					}
-	    					echo '<tr><td>'.$file.'</td><td>'.$country.'</td><td><button class="btn btn-raised btn-default" onClick="unblock(\''.$file.'\')">Unblock</button></td></tr>';
+	    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td style="vertical-align: middle;">'.$country.'</td><td><button class="btn btn-raised btn-default" onClick="unblock(\''.$file.'\')">Unblock</button></td></tr>';
     				}
     				
     			}
