@@ -362,7 +362,7 @@ function createProfile(){
 	profileForm = '<input class="form-control" type="text" placeholder="Profile Name" name="profile_name" id="profile_name">';
 	profileForm += '<br /><br /> <button class="btn btn-sm btn-raised btn-info pull-right" onclick="oProfile();">Create Profile</button><br /><br />';
 
-	genModal("Create new OpenVPN Profile", profileForm);
+	genModal("Create new PiVPN Profile", profileForm);
 
 }
 function displayLog(filename){

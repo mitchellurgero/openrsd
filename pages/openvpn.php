@@ -9,7 +9,7 @@ echo '';
 ?>
 	<div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">PiVPN Profiles <small><a href="#"><div onClick="pageLoad('openvpn');" class="fa fa-refresh rotate"></div></a></small></h1>
+            <h1 class="page-header">PiVPN Profiles <small><a href="#"><div onClick="pageLoad('PiVPN');" class="fa fa-refresh rotate"></div></a></small></h1>
 	    <small>This page only works with <a href="http://pivpn.io" target="_blank">pivpn.io</a></small>
 		<br />
 		<button class="btn btn-sm btn-raised btn-info" onclick="createProfile()">Create VPN Profile</button>
@@ -23,9 +23,13 @@ echo '';
     			</thead>
     			<tbody>
     				<?php
-    				$log_files = getDirContents('/home/pi/ovpns');
+    				//Copied and modified from log.php :) why rewrite the wheel?? :D
+    				$iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
+    				$log_files = getDirContents('/home/'.$iuser.'/ovpns');
     				foreach($log_files as $log){
-    					echo'<tr><td><a href="#" onClick="displayProfile(\''.$log.'\')">'.$log.'</a></td><td><button class="btn btn-sm btn-raised btn-warning" onclick="rProfile(\''.$log.'\')">Revoke Client</button></td></tr>';
+    					$f = explode("/", $log);
+    					$file = end($f);
+    					echo'<tr><td><a href="#" onClick="displayProfile(\''.$log.'\')">'.$log.'</a></td><td><button class="btn btn-sm btn-raised btn-warning" onclick="rProfile(\''.$log.'\')">Revoke Client</button></td><td><a href="dlnd_profile.php?filename='.$file.'" class="btn btn-sm btn-raised btn-info">Download</a></td></tr>';
     				}
     				?>
     			</tbody>

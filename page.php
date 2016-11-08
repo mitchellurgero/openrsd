@@ -50,7 +50,7 @@ if(isset($_POST['page'])){
 		case "logs":
 			logs();
 			break;
-		case "openvpn":
+		case "PiVPN":
 			openvpn();
 			break;
 		default:
