@@ -6,6 +6,6 @@ if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
 }
 $file = $_POST['log'];
-$result = shell_exec("sudo cat $file");
+$result = htmlspecialchars(shell_exec("sudo cat $file"));
 echo $result;
 ?>
