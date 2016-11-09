@@ -161,15 +161,11 @@ function body(){
       				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Basic Configuration</a>
         				<ul class="dropdown-menu">
-          					
       						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
-      						<li><a href="#" onclick="pageLoad('block');"><i class="fa fa-cloud fa-fw"></i> Blocked IPs</a></li>
-                        	<li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
-                        	<!--<li><a href="#" onclick="pageLoad('network');"><i class="fa fa-location-arrow fa-fw"></i> Network</a></li>-->
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
+                        	<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
+                        	<li><a href="#" onclick="pageLoad('Samba');"><i class="fa fa-folder fa-fw"></i> Samba Shares</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
-							<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
-							<li><a href="#" onclick="pageLoad('Samba');"><i class="fa fa-folder fa-fw"></i> Samba Shares</a></li>
         				</ul>
       				</li>
       				<li>&nbsp;</li>
@@ -177,6 +173,8 @@ function body(){
       				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Advanced Configuration</a>
         				<ul class="dropdown-menu">
+        					<li><a href="#" onclick="pageLoad('block');"><i class="fa fa-cloud fa-fw"></i> Blocked IPs</a></li>
+                        	<li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> CRON</a></li>
         					<li><a href="#" onclick="pageLoad('logs');"><i class="fa fa-paperclip fa-fw"></i> Logs</a></li>
           					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
           					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>

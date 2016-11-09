@@ -21,6 +21,7 @@ echo '';
                         <div class="panel-body">
                             <p>CPU Perf. = <?php echo getCPU(); ?>% <br />CPU Temp = <?php echo getCPUTemp();?><br /></p>
                         </div>
+                        <br>
                         <div class="panel-footer">
                             &nbsp;
                         </div>
