@@ -126,7 +126,7 @@ echo '';
 					    		if (strpos($c, 'no changes added to commit') !== false) {
 					    			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
 								}elseif (strpos($c, 'behind') !== false) {
-					    			echo '<p>An update for OpenRSD available! Please click the button below to update!</p>';
+					    			echo '<p>An update for OpenRSD available!</p>';
 								} elseif (strpos($c, 'up-to-date') !== false) {
 									echo '<p>OpenRSD is completely up to date!</p>';
 								} else {
