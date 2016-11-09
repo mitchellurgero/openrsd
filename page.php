@@ -53,6 +53,9 @@ if(isset($_POST['page'])){
 		case "PiVPN":
 			openvpn();
 			break;
+		case "Samba":
+			samba();
+			break;
 		default:
 			echo "404 - Page not found!";
 			break;
@@ -109,5 +112,8 @@ function users(){
 }
 function openvpn(){
 	include('pages/openvpn.php');
+}
+function samba(){
+	include('pages/smb.php');
 }
 ?>

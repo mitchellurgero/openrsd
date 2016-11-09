@@ -224,6 +224,24 @@ function configSave(){
 			load(false);
 		});
 }
+function smbSave(){
+	load(true);
+	$.ajax({
+		method:'post',
+		url:'./app/smbconfig.php',
+		data:{
+			content:document.getElementById("rpiConfigFile").value
+		},
+		success:function(result) {
+			genModal("Results:", result);
+			load(false);
+			pageLoad("Samba");
+		}
+		}).fail(function(e) {
+			genModal("Error?", "Seems I cannot contact the RPi - It may be shutdown, rebooting, or halted.");
+			load(false);
+		});
+}
 function power(type){
 	$.ajax({
 		method:'post',

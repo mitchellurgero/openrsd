@@ -78,12 +78,22 @@ echo '';
                             			<th>Total(MB)</th>
                             		</thead>
                             	<?php
-                            	$dir = '/';
-								$free = disk_free_space($dir);
-								$total = disk_total_space($dir);
-								$free_to_mbs = $free / (1024*1024);
-								$total_to_mbs = $total / (1024*1024);
-								echo '<tr><td>SDCard:</td><td>'.round($free_to_mbs, 2).'</td><td>'.round($total_to_mbs, 2).'</td></tr>';
+                            	$com = shell_exec("df -h");
+                            	$dr = explode("\n", $com);
+                            	foreach($dr as $mount){
+                            		$mt = explode(" ", $mount);
+                            		$e = end($mt);
+                            		if($e == "on" || $e == ""){
+                            			continue;
+                            		}
+                            		$dir = $e;
+									$free = disk_free_space($dir);
+									$total = disk_total_space($dir);
+									$free_to_mbs = $free / (1024*1024);
+									$total_to_mbs = $total / (1024*1024);
+									echo '<tr><td>'.$e.'</td><td>'.round($free_to_mbs, 2).'</td><td>'.round($total_to_mbs, 2).'</td></tr>';
+                            	}
+                            	
                             	
                             	?>
                             	</table>
