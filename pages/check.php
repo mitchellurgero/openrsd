@@ -22,7 +22,7 @@ echo '';
 			}elseif (strpos($c, 'behind') !== false) {
     			echo '<p>An update is available! Please click the button below to update!</p>';
     			echo '<a href="./app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';
-    			echo '<br><br>';
+    			echo '<br><br><h3>ChangesL</h3>';
     			echo '<pre style="max-height:300px; overscroll-y:visible">'.$c.'</pre>';
 			} elseif (strpos($c, 'up-to-date') !== false) {
 				echo '<p>OpenRSD is completely up to date!</p>';
