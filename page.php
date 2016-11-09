@@ -56,6 +56,9 @@ if(isset($_POST['page'])){
 		case "Samba":
 			samba();
 			break;
+		case "check":
+			check();
+			break;
 		default:
 			echo "404 - Page not found!";
 			break;
@@ -115,5 +118,8 @@ function openvpn(){
 }
 function samba(){
 	include('pages/smb.php');
+}
+function check(){
+	include('pages/check.php');
 }
 ?>
