@@ -17,13 +17,14 @@ echo '';
     		<?php
     		//$c = shell_exec("git fetch && git status");
     		$c = htmlspecialchars(shell_exec("git fetch && git status"));
+    		$c2 = htmlspecialchars(shell_exec("git fetch && git show"));
     		if (strpos($c, 'no changes added to commit') !== false) {
     			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
 			}elseif (strpos($c, 'behind') !== false) {
     			echo '<p>An update is available! Please click the button below to update!</p>';
     			echo '<a href="./app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';
     			echo '<br><br><h3>ChangesL</h3>';
-    			echo '<pre style="max-height:300px; overscroll-y:visible">'.$c.'</pre>';
+    			echo '<pre style="max-height:300px; overscroll-y:visible">'.$c2.'</pre>';
 			} elseif (strpos($c, 'up-to-date') !== false) {
 				echo '<p>OpenRSD is completely up to date!</p>';
 			} else {
