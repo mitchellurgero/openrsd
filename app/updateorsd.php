@@ -23,4 +23,4 @@ if(!isset($_SESSION['username'])){
 </pre>
 <br>
 <br>
-<a href="../index.php">Back to Dashboard</a>
+<a href="../index.php">Back to Dashboard...</a>
