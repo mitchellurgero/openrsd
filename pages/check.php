@@ -20,7 +20,7 @@ echo '';
     			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
 			}elseif (strpos($c, 'behind') !== false) {
     			echo '<p>An update is available! Please click the button below to update!</p>';
-    			echo '<a href="/app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';
+    			echo '<a href="./app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';
 			} else {
 				echo '<p>OpenRSD is completely up to date!</p>';
 			}
