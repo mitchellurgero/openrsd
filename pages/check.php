@@ -17,7 +17,7 @@ echo '';
     		<?php
     		//$c = shell_exec("git fetch && git status");
     		$c = htmlspecialchars(shell_exec("git fetch && git status"));
-    		$c2 = htmlspecialchars(shell_exec("git fetch && git show"));
+    		$c2 = htmlspecialchars(shell_exec("git fetch && git diff origin/master"));
     		if (strpos($c, 'no changes added to commit') !== false) {
     			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
 			}elseif (strpos($c, 'behind') !== false) {
