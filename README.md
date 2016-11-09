@@ -7,7 +7,7 @@ After months of testing, OpenRSD seems to be stable. Please put issues on GitHub
 
 
 ### How to install
-Although not very usable, you can now install OpenRSD for your RPi2/3:
+You can now install OpenRSD for your RPi2/3:
 
 1. This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.
 2. Once Raspbian (Or Raspbian based OS) is installed, run:
