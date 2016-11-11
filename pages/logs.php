@@ -24,6 +24,10 @@ echo '';
     				foreach($log_files as $log){
     					echo'<tr><td><a href="#" onClick="displayLog(\''.$log.'\')">'.$log.'</a></td></tr>';
     				}
+    				$log_files = getDirContents('app/auth_log');
+    				foreach($log_files as $log){
+    					echo'<tr><td><a href="#" onClick="displayLog(\''.$log.'\')">'.$log.'</a></td></tr>';
+    				}
     				?>
     			</tbody>
     		</table>
