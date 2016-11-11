@@ -59,6 +59,9 @@ if(isset($_POST['page'])){
 		case "check":
 			check();
 			break;
+		case "webproxy":
+			webproxy();
+			break;
 		default:
 			echo "404 - Page not found!";
 			break;
@@ -121,5 +124,8 @@ function samba(){
 }
 function check(){
 	include('pages/check.php');
+}
+function webproxy(){
+	include('pages/webproxy.php');
 }
 ?>
