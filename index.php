@@ -166,7 +166,7 @@ function body(){
                         	<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
                         	<li><a href="#" onclick="pageLoad('Samba');"><i class="fa fa-folder fa-fw"></i> Samba Shares</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
-                        	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-dashboard fa-fw"></i> Web Proxy</a></li>
+                        	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-download fa-fw"></i> Web Proxy</a></li>
         				</ul>
       				</li>
       				<li>&nbsp;</li>
