@@ -12,7 +12,7 @@ echo '';
 ?>
 	<div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">SMB Shares & Configurations<small><a href="#"><div onClick="pageLoad('Samba');" class="fa fa-refresh rotate"></div></a> </small></h1>
+            <h1 class="page-header">SMB Shares & Configurations<small><a href="#"><div onClick="pageLoad('Samba');" class="fa fa-refresh rotate"></div></a> <br> This page is currently broken.</small></h1>
         </div>
     </div>
     <div class="row">
