@@ -178,7 +178,7 @@ function body(){
         					<li><a href="#" onclick="pageLoad('logs');"><i class="fa fa-paperclip fa-fw"></i> Logs</a></li>
           					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
           					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
-          					<li><a href="#" onclick="pageLoad('check');"><i class="fa fa-arrow-up fa-fw"></i> Check for Updates</a></li>
+          					<li><a href="#" onclick="pageLoad('check');"><i class="fa fa-arrow-up fa-fw"></i> Updates</a></li>
           					<li><a href="#" onclick="pageLoad('webconsole');"><i class="fa fa-keyboard-o fa-fw"></i> Web Console</a></li>
         				</ul>
       				</li>

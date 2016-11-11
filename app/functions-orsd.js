@@ -224,15 +224,22 @@ function configSave(){
 			load(false);
 		});
 }
-function smbSave(){
+function smbGet(option){
 	load(true);
+	var _table_ = document.createElement('table'),
+    _tr_ = document.createElement('tr'),
+    _th_ = document.createElement('th'),
+    _td_ = document.createElement('td');
 	$.ajax({
 		method:'post',
 		url:'./app/smbconfig.php',
 		data:{
-			content:document.getElementById("rpiConfigFile").value
+			func:"get",
+			share:option
 		},
 		success:function(result) {
+			//mydata = JSON.parse(result);
+			//var table = buildHtmlTable(mydata);
 			genModal("Results:", result);
 			load(false);
 			pageLoad("Samba");
@@ -467,8 +474,4 @@ function unblock(ip){
 			genModal("Error", e);
 		});
 }
-
-
-
-
-
+//Prototypes
