@@ -4,7 +4,6 @@ function auth($username, $password){
 		return false;
 	}
 	$password = escapeshellarg($password);
-	$result = exec("sudo ./app/bin/chkpasswd $username $password");
 	$users = shell_exec("sudo bash ./app/scripts/listusers.sh");
     $usersAr = explode("\n", $users);
     $usersAr2 = array_filter($usersAr);
@@ -16,6 +15,7 @@ function auth($username, $password){
     if (!in_array($username, $uAr1)) {
     		return false;
     }
+	$result = exec("sudo ./app/bin/chkpasswd $username $password");
 	if($result == "Not Authenticated"){
 		return false;
 	} elseif($result == "Authenticated"){
