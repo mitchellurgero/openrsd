@@ -226,28 +226,38 @@ function configSave(){
 }
 function smbGet(option){
 	load(true);
-	var _table_ = document.createElement('table'),
-    _tr_ = document.createElement('tr'),
-    _th_ = document.createElement('th'),
-    _td_ = document.createElement('td');
 	$.ajax({
 		method:'post',
 		url:'./app/smbconfig.php',
+		dataType: 'json',
 		data:{
 			func:"get",
 			share:option
 		},
 		success:function(result) {
 			//mydata = JSON.parse(result);
-			//var table = buildHtmlTable(mydata);
-			genModal("Results:", result);
+			//var arr = $.map(result, function(el) { return el; })
+			//genModal("Results:", arrayToTable(arr));
 			load(false);
-			pageLoad("Samba");
+			//pageLoad("Samba");
 		}
 		}).fail(function(e) {
 			genModal("Error?", "Seems I cannot contact the RPi - It may be shutdown, rebooting, or halted.");
 			load(false);
 		});
+}
+function arrayToTable(tableData) {
+    var table = $('<table class="table"></table>');
+    $(tableData).each(function (i, rowData) {
+        var row = $('<tr></tr>');
+        $(rowData).each(function (j, cellData) {
+            row.append($('<td>'+cellData+'</td>'));
+        });
+        table.append(row);
+    });
+    console.info(table);
+    console.log(table);
+    return table;
 }
 function power(type){
 	$.ajax({
