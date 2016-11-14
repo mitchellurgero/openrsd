@@ -235,9 +235,15 @@ function smbGet(option){
 			share:option
 		},
 		success:function(result) {
-			//mydata = JSON.parse(result);
-			//var arr = $.map(result, function(el) { return el; })
-			//genModal("Results:", arrayToTable(arr));
+			console.log(result);
+			//Generate table:
+			var table = '<table class="table" id="' + option + '" name="' + option + '">';
+			for(var e in result){
+				console.log(e);
+				table += "<tr><td><b>" + e + "</b></td>" + '<td><input type="text" class="form-control" id="' + e +'" name="' + e +'" value="' + result[e] + '"></td></tr>';
+			}
+			table += '</table>';
+			genModal("<b>" + option + "</b> Share Options:", table);
 			load(false);
 			//pageLoad("Samba");
 		}
@@ -247,6 +253,8 @@ function smbGet(option){
 		});
 }
 function arrayToTable(tableData) {
+	console.info(tableData);
+	
     var table = $('<table class="table"></table>');
     $(tableData).each(function (i, rowData) {
         var row = $('<tr></tr>');
@@ -485,3 +493,11 @@ function unblock(ip){
 		});
 }
 //Prototypes
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
