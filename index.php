@@ -143,7 +143,7 @@ function body(){
 	?>
 	
 	<script>window.onload = function () { pageLoad("dashboard"); }</script>
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default">
   			<div class="container-fluid">
     			<div class="navbar-header">
       				<a class="navbar-brand" href="./"><?php echo exec("hostname"); ?> Admin Panel</a>
@@ -163,7 +163,6 @@ function body(){
         				<ul class="dropdown-menu">
       						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
-                        	<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
                         	<li><a href="#" onclick="pageLoad('Samba');"><i class="fa fa-folder fa-fw"></i> Samba Shares</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
                         	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-download fa-fw"></i> Web Proxy</a></li>
@@ -184,6 +183,9 @@ function body(){
         				</ul>
       				</li>
                     <li>&nbsp;</li>
+      				<li>&nbsp;</li>
+      				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
+      				<li>&nbsp;</li>
       				<li>&nbsp;</li>
                     <li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-power-off fa-fw"></i> Power Options</a>
@@ -215,8 +217,6 @@ function body(){
             </div>
         </nav>
 		<div class="container">
-			<br />
-			<br />
 			<div id="pageContent"  role="main">
 				Please select an item from the menu.
 			
