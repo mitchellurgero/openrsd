@@ -337,6 +337,34 @@ function cronDelete(name, type3){
 			pageLoad('cron');
 		});
 }
+function cronEdit(name, type3){
+	load(true)
+	$.ajax({
+		method:'post',
+		url:'./app/cron.php',
+		data:{
+			type:'edit',
+			type2:type3,
+			name2:name
+		},
+		success:function(result) {
+			load(false);
+			document.getElementById("cronContent").value = result;
+			document.getElementById("cronType").value = type3;
+			document.getElementById("cronNewName").value = name;
+			$("#cronModal").modal('show');
+			//pageLoad('cron');
+		}
+		}).fail(function(e) {
+			load(false);
+			genModal("Error", e);
+			pageLoad('cron');
+		});
+}
+function clearCron(){
+	document.getElementById("cronContent").value = "";
+	document.getElementById("cronNewName").value = "";
+}
 function runScript(filename){
 	load(true)
 	$.ajax({

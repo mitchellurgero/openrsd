@@ -16,6 +16,18 @@ if($_POST['type'] == "delete"){
 	}
 	die();
 }
+if($_POST['type'] == "edit"){
+	$ac = $_POST['type2'];
+	$name1 = $_POST['name2'];
+	if(!file_exists("/etc/cron.$ac/$name1")){ die("Cron job no longer exists!"); }
+	$result = shell_exec("sudo cat /etc/cron.$ac/$name1");
+	if($result == "" || $result == "\n"){
+		echo "Cron Job does not exist!";
+	} else {
+		echo $result;
+	}
+	die();
+}
 $cron_content = $_POST['content'];
 $type = $_POST['type'];
 $name = $_POST['name'];

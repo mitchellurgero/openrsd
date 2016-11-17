@@ -15,7 +15,7 @@ echo '';
     </div>
     <div class="row">
     	<div class="col-lg-12">
-    		<button class="btn btn-raised btn-info" data-toggle="modal" data-target="#cronModal">New Job</button>
+    		<button class="btn btn-raised btn-info" data-toggle="modal" data-target="#cronModal" onclick="clearCron()">New Job</button>
     	</div>
     </div>
     <br />
@@ -31,7 +31,7 @@ echo '';
     			$files1 = scandir("/etc/cron.daily");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
-    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -47,7 +47,7 @@ echo '';
     			$files1 = scandir("/etc/cron.hourly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "fake-hwclock"){
-    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -63,7 +63,7 @@ echo '';
     			$files1 = scandir("/etc/cron.monthly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd"){
-    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
@@ -79,14 +79,14 @@ echo '';
     			$files1 = scandir("/etc/cron.weekly");
     			foreach($files1 as $file){
     				if($file != ".." && $file != "." && $file != ".placeholder" && $file != "man-db"){
-    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+    					echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
     				}
     			}
     			
     			?>
     		</table>
 		<div class="modal" id="cronModal">
-  			<div class="modal-dialog">
+  			<div class="modal-dialog modal-lg">
     			<div class="modal-content">
       			<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
