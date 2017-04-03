@@ -205,12 +205,10 @@ function body(){
       				</li>
                 </ul>
                 &nbsp;&nbsp;&nbsp;
-    			<ul class="nav navbar-nav navbar-right">
-                   	<li><a href="#" id="uptime"></a></li>
-                </ul>
     			</div>
   			</div>
 		</nav>
+		<br />
 		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./">Powered by OpenRSD</a>

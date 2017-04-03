@@ -36,7 +36,7 @@ function getUptime(){
         'minutes' => $data/60%60,
         'seconds' => $data%60
     );
-    return "Uptime: ".$uptime["days"]."D ".$uptime["hours"]."H ".$uptime["minutes"]."M";
+    return "<b>Uptime</b><br />".$uptime["days"]."D ".$uptime["hours"]."H ".$uptime["minutes"]."M";
 }
 function getCurrentIP($name){
 	return exec("/sbin/ifconfig $name | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'");
