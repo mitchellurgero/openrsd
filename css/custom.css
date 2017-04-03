@@ -16,7 +16,11 @@ margin: 0 9px;
 border-left: 1px solid #F2F2F2;
 border-right: 1px solid #FFF;
 }
-
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .sucess-msg {
 	text-align:left;
  	color:#34A853;

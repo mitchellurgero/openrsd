@@ -100,20 +100,25 @@ function bodyLogin(){
         </nav>
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./">Powered by OpenRSD</a>
+                <a class="navbar-brand" href="https://github.com/mitchellurgero/openrsd" target="_blank">Powered by OpenRSD</a>
             </div>
         </nav>
         <div class="container">
         	<div class="row">
-        		<form class="form-signin" method="POST" action="index.php">
-        		<h2 class="form-signin-heading text-center">Sign In to <?php echo exec("hostname"); ?></h2>
-        		<label for="password" class="sr-only">Username</label>
-        			<input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus><br />
-        		<label for="password" class="sr-only">Password</label>
-        			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required><br />
-        <button class="btn btn-lg btn-raised btn-primary btn-block" type="submit">Sign in</button><Br />
-        <p style="color:red"><?php if(isset($_SESSION['loginError'])){ echo $_SESSION['loginError']; $_SESSION['loginError'] = "";}?></p>
-      </form>
+        		<div class="col-lg-6">
+	        		<form class="form-signin" method="POST" action="index.php">
+	        			<h2 class="form-signin-heading text-center">Sign In to <?php echo exec("hostname"); ?></h2>
+	        			<label for="password" class="sr-only">Username</label>
+	        			<input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus><br />
+	        			<label for="password" class="sr-only">Password</label>
+	        			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required><br />
+	        			<button class="btn btn-lg btn-raised btn-primary btn-block" type="submit">Sign in</button><Br />
+	        			<p style="color:red"><?php if(isset($_SESSION['loginError'])){ echo $_SESSION['loginError']; $_SESSION['loginError'] = "";}?></p>
+	      			</form>
+	      		</div>
+	      		<div class="col-lg-4">
+        			<img class="img-responsive" src="img/serveimage.png"></img>
+        		</div>
         	</div>
         	
         </div>
@@ -218,7 +223,7 @@ function body(){
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./">Powered by OpenRSD</a>
+                <a class="navbar-brand" href="https://github.com/mitchellurgero/openrsd" target="_blank">Powered by OpenRSD</a>
             </div>
         </nav>
 		
