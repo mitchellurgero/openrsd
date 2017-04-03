@@ -163,7 +163,6 @@ function body(){
         				<ul class="dropdown-menu">
       						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
-                        	<li><a href="#" onclick="pageLoad('Samba');"><i class="fa fa-folder fa-fw"></i> Samba Shares</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
                         	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-download fa-fw"></i> Web Proxy</a></li>
         				</ul>
@@ -179,7 +178,6 @@ function body(){
           					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
           					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
           					<li><a href="#" onclick="pageLoad('check');"><i class="fa fa-arrow-up fa-fw"></i> Updates</a></li>
-          					<li><a href="#" onclick="pageLoad('webconsole');"><i class="fa fa-keyboard-o fa-fw"></i> Web Console</a></li>
         				</ul>
       				</li>
                     <li>&nbsp;</li>
@@ -208,12 +206,6 @@ function body(){
     			</div>
   			</div>
 		</nav>
-		<br />
-		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="./">Powered by OpenRSD</a>
-            </div>
-        </nav>
 		<div class="container">
 			<div id="pageContent"  role="main">
 				Please select an item from the menu.
@@ -224,6 +216,12 @@ function body(){
 			<br />
 			
 		</div>
+		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="./">Powered by OpenRSD</a>
+            </div>
+        </nav>
+		
 		<!-- General Modal for info's/warning's/error's -->
 		
 		<div class="modal" id="genModal">
