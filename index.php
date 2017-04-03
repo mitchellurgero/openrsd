@@ -105,7 +105,7 @@ function bodyLogin(){
         </nav>
         <div class="container">
         	<div class="row">
-        		<div class="col-lg-6">
+        		<div class="col-lg-6 col-lg-offset-1">
 	        		<form class="form-signin" method="POST" action="index.php">
 	        			<h2 class="form-signin-heading text-center">Sign In to <?php echo exec("hostname"); ?></h2>
 	        			<label for="password" class="sr-only">Username</label>
@@ -117,6 +117,7 @@ function bodyLogin(){
 	      			</form>
 	      		</div>
 	      		<div class="col-lg-4">
+	      			<br><br><br>
         			<img class="img-responsive" src="img/serveimage.png"></img>
         		</div>
         	</div>
