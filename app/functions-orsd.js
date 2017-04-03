@@ -398,7 +398,7 @@ function oProfile(){
 		success:function(result) {
 			load(false);
 			genModal("Profile creation status (" + user + "):", '<pre style="overscroll-y:scroll; max-height:400px;">' + result + "</pre>");
-			pageLoad('openvpn');
+			pageLoad('PiVPN');
 			
 		}
 		}).fail(function(e) {
@@ -419,7 +419,7 @@ function rProfile(user){
 		success:function(result) {
 			load(false);
 			genModal("Profile revoke status (" + user + "):", '<pre style="overscroll-y:scroll; max-height:400px;">' + result + "</pre>");
-			pageLoad('openvpn');
+			pageLoad('PiVPN');
 			
 		}
 		}).fail(function(e) {
