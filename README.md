@@ -35,4 +35,8 @@ Group pi
 <p>As long as you have not modified any of the files, updating is pretty simple: Just run <code>git pull</code> in the /var/www/html/openrsd directory.
 Or through the web interface: Advanced Configuration -&gt; Updates</p>
 
-Please visit [URGERO.ORG Installation guide](https://urgero.org/index.php?page=howto/linux/openrsd.md)
+## Screenshots
+
+![Screenshot - Dashboard](img/screen1.PNG)
+![Screenshot - Services](img/screen2.PNG)
+![Screenshot - User Accounts](img/screen3.PNG)
