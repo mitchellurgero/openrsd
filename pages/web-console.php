@@ -1,3 +1,4 @@
+<?php if(!defined("OPENRSD")){die();} ?>
 <?php
 // Web Console v0.9.5 (2014-02-18)
 // (c) 2007-2014 Coderico (http://www.coderico.com)

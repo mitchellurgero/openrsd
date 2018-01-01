@@ -2,6 +2,10 @@
 session_start();
 include("app/auth.php");
 //Always push out header...
+$ver = new QuickGit();
+define("OPENRSD", TRUE);
+define("VERSHORT", $ver->version()['short']);
+define("VERLONG", $ver->version()['full']);
 
 head();
 
@@ -226,6 +230,9 @@ function body(){
             <div class="navbar-header">
                 <a class="navbar-brand" href="https://github.com/mitchellurgero/openrsd" target="_blank">Powered by OpenRSD</a>
             </div>
+            <div class="navbar-header">
+                <span class="navbar-brand pull-right"><?php echo VERSHORT; ?></span>
+            </div>
         </nav>
 		
 		<!-- General Modal for info's/warning's/error's -->
@@ -284,4 +291,16 @@ function footer(){
 	</html>
 	<?php
 }
+//GitVersionCheckClass
+class QuickGit {
+  public static function version() {
+    exec('git describe --always',$version_mini_hash);
+    exec('git rev-list HEAD | wc -l',$version_number);
+    exec('git log -1',$line);
+    $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
+    $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ','',$line[0]).")";
+    return $version;
+  }
+}
+
 ?>

@@ -1,3 +1,4 @@
+<?php if(!defined("OPENRSD")){die();} ?>
 <?php
 //Check for valid session:
 session_start();
@@ -86,6 +87,7 @@ echo '';
 									} else {
 										echo '<p> There was an error checking for OepnRSD updates.<p>';
 									}
+									echo '<b>Installed Version: '.VERSHORT;
 	                            	?>
 	                            </p>
 	                        </div>

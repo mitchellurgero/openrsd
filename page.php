@@ -1,4 +1,8 @@
 <?php
+$ver = new QuickGit();
+define("OPENRSD", TRUE);
+define("VERSHORT", $ver->version()['short']);
+define("VERLONG", $ver->version()['full']);
 session_start();
 if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
@@ -127,5 +131,16 @@ function check(){
 }
 function webproxy(){
 	include('pages/webproxy.php');
+}
+//GitVersionCheckClass
+class QuickGit {
+  public static function version() {
+    exec('git describe --always',$version_mini_hash);
+    exec('git rev-list HEAD | wc -l',$version_number);
+    exec('git log -1',$line);
+    $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
+    $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ','',$line[0]).")";
+    return $version;
+  }
 }
 ?>
