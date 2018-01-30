@@ -12,7 +12,7 @@ After months of testing, OpenRSD seems to be stable. Please put issues on GitHub
 <li>This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.</li>
 <li>Once Raspbian (Or Raspbian based OS) is installed, run(Note: The following is just the BARE MINIMUM to get OpenRSD to run properly, PiVPN and Samba must be installed separately!):</li>
 </ol>
-<p><code>sudo apt-get update &amp;&amp; sudo apt-get install git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin</code></p>
+<p><code>sudo apt-get update &amp;&amp; sudo apt-get install git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin shellinabox</code></p>
 <ol>
 <li>
 <p><b>PLEASE KEEP IN MIND THAT ONCE APACHE IS RUNNING AS A USER WITH SUDO RIGHTS, IT SHOULD NOT BE ACCESSIBLE VIA THE INTERNET TO KEEP SECURITY AS BEST AS POSSIBLE. AND ALTHOUGH NOT AS BIG A DEAL AS BEING INTERNET ACCESSIBLE, PLEASE ALSO NOT THAT THIS CAN STILL CAUSE ISSUES ON LAN. (Say as an example an attacker got on your network, they could try and access the Pi.)</b></p>
@@ -24,6 +24,7 @@ Group pi
 ...Some Config stuff...
 </code></pre>
 </li>
+<li>Then run: <code>sudo sed -i -e "s/SHELLINABOX_ARGS=.*/SHELLINABOX_ARGS=\"--no-beep -t\"/g" /etc/default/shellinabox</code></li>
 <li>Then run: <code>sudo service apache2 restart</code></li>
 <li>Then run: <code>cd /var/www/html</code></li>
 <li>Then run: <code>rm -f index.html</code> *Optional!</li>

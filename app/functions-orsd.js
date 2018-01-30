@@ -529,3 +529,8 @@ function IsJsonString(str) {
     }
     return true;
 }
+
+function resize_frame(){
+    var window_height = ( $(document).height() * 7 / 10 );
+    $('#shellinaboxdiv').css('height',window_height+'px');
+}

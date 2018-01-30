@@ -6,7 +6,7 @@ function auth($username, $password){
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$cpu = php_uname("m");
 	$chkpasswd = "chkpasswd";
-	if(!file_exists("app/auth_log/$date2.log")){touch("./auth_log/$date2.log");}
+	if(!file_exists("app/auth_log/$date2.log")){touch("app/auth_log/$date2.log");}
 	if(file_exists("app/blocked_ip/".$ip)){
 		
 		file_put_contents("app/auth_log/$date2.log","$date [AUTH] - Authentication for $ip failed!($ip) \n", FILE_APPEND);
