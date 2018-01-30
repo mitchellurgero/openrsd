@@ -77,6 +77,7 @@ echo '';
 	    							} else {
 	    								echo "<p>$count package(s) are ready to be updated.</p>";
 	    							}
+	    							shell_exec("git branch --set-upstream-to=origin/master master");
 	                            	$c = htmlspecialchars(shell_exec("git fetch && git status"));
 						    		if (strpos($c, 'no changes added to commit') !== false) {
 						    			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';

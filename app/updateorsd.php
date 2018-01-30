@@ -5,6 +5,7 @@ include('app/functions.php');
 if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
 }
+shell_exec("git branch --set-upstream-to=origin/master master");
 $c = htmlspecialchars(shell_exec("git fetch && git status"));
 if (strpos($c, 'no changes added to commit') !== false) {
 	echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
