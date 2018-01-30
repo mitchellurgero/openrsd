@@ -1,3 +1,12 @@
+iframe#shellinaboxframe,
+div#shellinaboxdiv {
+  margin-top: 8px;
+  padding: 0px 0px 0px 0px; 
+  min-width: 100%;
+  min-height: 100%;
+}
+
+
 .rotate{
     -moz-transition: all 2s linear;
     -webkit-transition: all 2s linear;

@@ -1,5 +1,5 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { session_start(); };
 include("app/auth.php");
 //Always push out header...
 $ver = new QuickGit();
@@ -188,6 +188,7 @@ function body(){
           					<li><a href="#" onclick="pageLoad('rpiconfig');"><i class="fa fa-paperclip fa-fw"></i> Raspi-Config</a></li>
           					<li><a href="#" onclick="pageLoad('services');"><i class="fa fa-book fa-fw"></i> Services</a></li>
           					<li><a href="#" onclick="pageLoad('check');"><i class="fa fa-arrow-up fa-fw"></i> Updates</a></li>
+          					<li><a href="#" onclick="pageLoad('shellinabox');"><i class="fa fa-keyboard-o fa-fw"></i> Shell in a Box</a></li>
         				</ul>
       				</li>
                     <li>&nbsp;</li>

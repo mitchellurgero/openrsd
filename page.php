@@ -3,7 +3,7 @@ $ver = new QuickGit();
 define("OPENRSD", TRUE);
 define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
-session_start();
+if (!isset($_SESSION)) { session_start(); };
 if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
 }
@@ -35,6 +35,9 @@ if(isset($_POST['page'])){
 			break;
 		case "services":
 			services();
+			break;
+		case "shellinabox":
+			shellinabox();
 			break;
 		case "init":
 			init();
@@ -106,6 +109,9 @@ function rpiconfig(){
 }
 function services(){
 	include('pages/services.php');
+}
+function shellinabox(){
+	include('pages/shellinabox.php');
 }
 function updates(){
 	include('pages/updates.php');
