@@ -18,9 +18,13 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$u = $_POST['username'];
 		$p = $_POST['password'];
 		if(auth($u, $p)){
+                        // Always regenerate a session ID (SID) when elevating privileges
+                        session_regenerate_id(true);
 			$_SESSION['username'] = $u;
 			$_SESSION['q'] = $p;
 		} else {
+                        // Always regenerate a session ID (SID) when elevating privileges
+                        session_regenerate_id(true);
 			if(!isset($_SESSION['attempts'])){
 				$_SESSION['attempts'] = 0;
 			} 
@@ -35,6 +39,11 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 }
 
 if(!isset($_SESSION['username'])){
+        // If we have no username but somehow a session, its better to clean up before login
+        session_unset();
+        session_destroy();
+        session_start();
+        session_regenerate_id(true);
 	//Load login
 	bodyLogin();
 } else {
