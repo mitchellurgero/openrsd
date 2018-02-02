@@ -19,8 +19,6 @@
 			genModal("Error", "Loading the page failed. Please try again.");
 			load(false);
 		});
-		
-		status('uptime');
     }
 function changePwd(username){
 	document.getElementById("changeUserPasswd").innerHTML = username;
