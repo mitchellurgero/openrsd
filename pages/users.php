@@ -1,7 +1,7 @@
 <?php if(!defined("OPENRSD")){die();} ?>
 <?php
 //Check for valid session:
-session_start();
+if (!isset($_SESSION)) { session_start(); };
 include('app/functions.php');
 if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
@@ -152,7 +152,7 @@ echo '';
     			</thead>
     			<?php
     			$date2 = date('m-d-Y', time());
-    			if(!file_exists("app/auth_log/$date2.log")){touch("./auth_log/$date2.log");}
+    			if(!file_exists("app/auth_log/$date2.log")){touch("app/auth_log/$date2.log");}
     			$data = explode("\n", file_get_contents("app/auth_log/$date2.log"));
     			foreach($data as $line){
     				echo "<tr><td>$line</td></tr>";

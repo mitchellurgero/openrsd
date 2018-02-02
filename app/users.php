@@ -1,15 +1,20 @@
 <?php
 //Check for valid session:
-session_start();
-include('app/functions.php');
+if (!isset($_SESSION)) { session_start(); };
+if ( basename(dirname(__FILE__)) == 'app' ) { include('functions.php'); };
 if(!isset($_SESSION['username'])){
 	die("You must be logged in to view this page!");
 }
-$username = escapeshellarg($_POST['username']);
-$password;
+
+if  ( !isset($_POST['username'], $_POST['password'], $_POST['type']) )  {
+        die("Missing required parameters");
+}
+
+if(isset($_POST['username'])){
+        $username = escapeshellcmd(escapeshellarg($_POST['username']));
+}
 if(isset($_POST['password'])){
-	$password = escapeshellarg($_POST['password']);
-	$password = escapeshellcmd($_POST['password']);
+	$password = escapeshellcmd(escapeshellarg($_POST['password']));
 }
 $type = $_POST['type'];
 
