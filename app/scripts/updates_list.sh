@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo apt-get --just-print upgrade 2>&1 | perl -ne 'if (/Inst\s([\w,\-,\d,\.,~,:,\+]+)\s\[([\w,\-,\d,\.,~,:,\+]+)\]\s\(([\w,\-,\d,\.,~,:,\+]+)\)? /i) {print "$1 INSTALLED: $2 AVAILABLE: $3\n"}'
+sudo LC_ALL=C apt-get --just-print upgrade 2>&1 | awk '/^Inst /{ print $2" INSTALLED: "$3" AVAILABLE: "$4; }' | tr -d '[]('
