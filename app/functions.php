@@ -72,17 +72,6 @@ function generateString($length = 10) {
     }
     return $randomString;
 }
-function getUpdates(){
-	$isThere = shell_exec("./scripts/updates.sh");
-	$number = substr_count( $isThere, PHP_EOL );
-	$number = $number - 1;
-	if($number <= 0){
-		return "No updates found";
-	} else {
-		return $number.' <a href="#" data-toggle="modal" data-target="#checkUpdates">Updates available.</a>';
-	}
-
-}
 function writeFileA($file, $content){
 	$myfile = fopen($file, "a") or die("Unable to open file!");
 	fwrite($myfile, $content."\n");
