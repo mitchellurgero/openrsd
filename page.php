@@ -39,20 +39,11 @@ if(isset($_POST['page'])){
 		case "shellinabox":
 			shellinabox();
 			break;
-		case "init":
-			init();
-			break;
 		case "cron":
 			cron();
 			break;
 		case "users":
 			users();
-			break;
-		case "updates":
-			updates();
-			break;
-		case "webconsole":
-			webconsole();
 			break;
 		case "logs":
 			logs();
@@ -77,9 +68,6 @@ if(isset($_POST['page'])){
 }
 
 //Simple page functions..
-function webconsole(){
-	include('pages/webconsole.php');
-}
 function dashboard(){
 	include('pages/dashboard.php');
 }
@@ -91,9 +79,6 @@ function blocked(){
 }
 function cron(){
 	include('pages/cron.php');
-}
-function init(){
-	include('pages/init.php');
 }
 function nat(){
 	include('pages/nat.php');
@@ -112,9 +97,6 @@ function services(){
 }
 function shellinabox(){
 	include('pages/shellinabox.php');
-}
-function updates(){
-	include('pages/updates.php');
 }
 function apps(){
 	include('pages/apps.php');
