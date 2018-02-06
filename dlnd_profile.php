@@ -1,5 +1,5 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { session_start(); };
 if (isset($_SESSION['username']) && isset($_GET['filename'])) {
   $iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
   $file = '/home/'.$iuser.'/ovpns/'.$_GET['filename'];
