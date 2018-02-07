@@ -40,7 +40,7 @@ echo '';
                             			<th>Total(MB)</th>
                             		</thead>
                             	<?php
-                                $com = shell_exec("df -h  -h -t ext2 -t ext3 -t ext4 -t vfat -t xfs");
+                                $com = shell_exec("df -h -t ext2 -t ext3 -t ext4 -t vfat -t xfs");
                             	$dr = explode("\n", $com);
                             	foreach($dr as $mount){
                             		$mt = explode(" ", $mount);
