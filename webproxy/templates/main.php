@@ -27,9 +27,9 @@ html body {
 #frm {
 	padding:10px 15px;
 	background-color:#FFC8C8;
-	
+
 	border:1px solid #818181;
-	
+
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -45,14 +45,16 @@ html body {
 </head>
 <body>
 <div id="container">
-	<?php if(isset($error_msg)){ ?>
-	
+	<?php if (isset($error_msg)) {
+    ?>
+
 	<div id="error">
 		<p><?php echo $error_msg; ?></p>
 	</div>
-	
-	<?php } ?>
-	
+
+	<?php
+} ?>
+
 	<div id="frm">
 	<!-- I wouldn't touch this part -->
 		<form action="index.php" method="post" style="margin-bottom:0;">

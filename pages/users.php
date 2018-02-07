@@ -1,13 +1,17 @@
-<?php if(!defined("OPENRSD")){die();} ?>
-<?php
-//Check for valid session:
-if (!isset($_SESSION)) { session_start(); };
-include('app/functions.php');
-if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+<?php if (!defined("OPENRSD")) {
+    die();
 }
-echo '';
+
+//Check for valid session:
+if (!isset($_SESSION)) {
+    session_start();
+};
+include('app/functions.php');
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to view this page!");
+}
 ?>
+
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Users <small><a href="#"><div onClick="pageLoad('users');" class="fa fa-refresh rotate"></div></a>&nbsp;&nbsp;&nbsp;<button data-toggle="modal" data-target="#newUserModal" class="btn btn-raised btn-info">Add User</button></small></h1>
@@ -26,29 +30,29 @@ echo '';
     				<?php
                                 $users_list = getUsers();
 //                              echo "<!-- \n" .print_r($users_list,true). "\n -->\n";
-                                if( $users_list['user_count'] != 0){
-                                        foreach($users_list['users_array'] as $user){
-                                                if($user['u_name'] != ""){
-                                                        if($user['u_name'] == "root"){
-                                                                echo '<tr><td>'.$user['u_name'].'</td><td>You cannot modify the root account through this interface.</td></tr>';
-    							} else {
-                                                                $u1 = "'".$user['u_name']."'";
-                                                                if($user['u_name'] == "pi"){
-                                                                        echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
-    								} else {
-                                                                        if($user['u_name'] == $_SESSION['username']){
-                                                                                echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
-    									} else {
-                                                                                echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
-    									}
-    								}
-    							}
-    						}
-    					}
-    				} else {
-    					echo "<p>No users on the system?! That's not right! Seems there was an error! Check the apache logs for more information! </p>";
-    				}
-    				?>
+                                if ($users_list['user_count'] != 0) {
+                                    foreach ($users_list['users_array'] as $user) {
+                                        if ($user['u_name'] != "") {
+                                            if ($user['u_name'] == "root") {
+                                                echo '<tr><td>'.$user['u_name'].'</td><td>You cannot modify the root account through this interface.</td></tr>';
+                                            } else {
+                                                $u1 = "'".$user['u_name']."'";
+                                                if ($user['u_name'] == "pi") {
+                                                    echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
+                                                } else {
+                                                    if ($user['u_name'] == $_SESSION['username']) {
+                                                        echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
+                                                    } else {
+                                                        echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    echo "<p>No users on the system?! That's not right! Seems there was an error! Check the apache logs for more information! </p>";
+                                }
+                    ?>
     			</tbody>
     		</table>
     		<div class="modal" id="newUserModal">
@@ -144,13 +148,15 @@ echo '';
     				<th>Log item</th>
     			</thead>
     			<?php
-    			$date2 = date('m-d-Y', time());
-    			if(!file_exists("app/auth_log/$date2.log")){touch("app/auth_log/$date2.log");}
-    			$data = explode("\n", file_get_contents("app/auth_log/$date2.log"));
-    			foreach($data as $line){
-    				echo "<tr><td>$line</td></tr>";
-    			}
-    			?>
+                $date2 = date('m-d-Y', time());
+                if (!file_exists("app/auth_log/$date2.log")) {
+                    touch("app/auth_log/$date2.log");
+                }
+                $data = explode("\n", file_get_contents("app/auth_log/$date2.log"));
+                foreach ($data as $line) {
+                    echo "<tr><td>$line</td></tr>";
+                }
+                ?>
     		</table>
     	</div>
     </div>
