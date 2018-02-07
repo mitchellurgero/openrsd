@@ -1,13 +1,17 @@
-<?php if(!defined("OPENRSD")){die();} ?>
-<?php
-//Check for valid session:
-if (!isset($_SESSION)) { session_start(); };
-include('app/functions.php');
-if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+<?php if (!defined("OPENRSD")) {
+    die();
 }
-echo '';
+
+//Check for valid session:
+if (!isset($_SESSION)) {
+    session_start();
+};
+include('app/functions.php');
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to view this page!");
+}
 ?>
+
 <style>
 .frame {
   display: block;

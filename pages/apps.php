@@ -1,13 +1,17 @@
-<?php if(!defined("OPENRSD")){die();} ?>
-<?php
-//Check for valid session:
-if (!isset($_SESSION)) { session_start(); };
-include('app/functions.php');
-if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+<?php if (!defined("OPENRSD")) {
+    die();
 }
-echo '';
+
+//Check for valid session:
+if (!isset($_SESSION)) {
+    session_start();
+};
+include('app/functions.php');
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to view this page!");
+}
 ?>
+
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Applications & Scripts <small><a href="#"><div onClick="pageLoad('apps');" class="fa fa-refresh rotate"></div></a></small></h1>
@@ -35,20 +39,20 @@ echo '';
     		<h3>List of Scripts & Executables on the server:</h3>
     		<small>Please note: scripts that daemonize will not work properly here!</small>
     		<?php
-    			echo '<table class="table">';
-    			echo '
+                echo '<table class="table">';
+                echo '
     				<thead>
     					<th>File Name</th>
     					<th>Options</th>
     				</thead>
     			';
-    			$files1 = scandir("./app/scr_up");
-    			foreach($files1 as $file){
-    				if($file != ".." && $file != "."){
-    					echo '<tr><td style="vertical-align: middle;"><a onClick="runScript(\''.$file.'\');">'.$file.'</a></td><td><button onClick="delScript(\''.$file.'\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
-    				}
-    			}
-    		?>
-    		
+                $files1 = scandir("./app/scr_up");
+                foreach ($files1 as $file) {
+                    if ($file != ".." && $file != ".") {
+                        echo '<tr><td style="vertical-align: middle;"><a onClick="runScript(\''.$file.'\');">'.$file.'</a></td><td><button onClick="delScript(\''.$file.'\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
+                    }
+                }
+            ?>
+
     	</div>
     </div>

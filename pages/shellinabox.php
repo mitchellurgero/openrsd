@@ -1,13 +1,17 @@
-<?php if(!defined("OPENRSD")){die();} ?>
-<?php
-//Check for valid session:
-if (!isset($_SESSION)) { session_start(); };
-include('app/functions.php');
-if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+<?php if (!defined("OPENRSD")) {
+    die();
 }
-echo '';
+
+//Check for valid session:
+if (!isset($_SESSION)) {
+    session_start();
+};
+include('app/functions.php');
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to view this page!");
+}
 ?>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Shell in a Box <small><a href="#"><div onClick="pageLoad('shellinabox');" class="fa fa-refresh rotate"></div></a></small></h1>

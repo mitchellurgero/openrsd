@@ -1,13 +1,17 @@
-<?php if(!defined("OPENRSD")){die();} ?>
-<?php
-//Check for valid session:
-if (!isset($_SESSION)) { session_start(); };
-include('app/functions.php');
-if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+<?php if (!defined("OPENRSD")) {
+    die();
 }
-echo '';
+
+//Check for valid session:
+if (!isset($_SESSION)) {
+    session_start();
+};
+include('app/functions.php');
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to view this page!");
+}
 ?>
+
 	<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Raspi-Config Editor<small><a href="#"><div onClick="pageLoad('rpiconfig');" class="fa fa-refresh rotate"></div></a> </small></h1>
@@ -23,8 +27,8 @@ echo '';
     <div class="row">
     	<div class="col-lg-12">
     		<textarea rows="20" class="form-control" id="rpiConfigFile"><?php
-    				echo shell_exec("sudo cat /boot/config.txt 2>&1");
-    			?>
+                    echo shell_exec("sudo cat /boot/config.txt 2>&1");
+                ?>
     		</textarea>
     	</div>
     </div>

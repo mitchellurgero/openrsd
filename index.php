@@ -1,65 +1,69 @@
 <?php
-if (!isset($_SESSION)) { session_start(); };
+if (!isset($_SESSION)) {
+    session_start();
+};
 include("app/auth.php");
 //Always push out header...
 $ver = new QuickGit();
-define("OPENRSD", TRUE);
+define("OPENRSD", true);
 define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
 //Fix bug with openrsd installed in root dir of web server.
 define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
-if ( basename(dirname(__FILE__)) == 'openrsd' ) { define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/"); };
+if (basename(dirname(__FILE__)) == 'openrsd') {
+    define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
+};
 
 head();
 
 //Check for login or dashboard...
-if(isset($_POST['username']) && isset($_POST['password'])){
-	//Attempt to login...
-	if(file_exists("app/blocked_ip/".$_SERVER['REMOTE_ADDR'])){
-		$_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
-	} else {
-		$u = $_POST['username'];
-		$p = $_POST['password'];
-		if(auth($u, $p)){
-                        // Always regenerate a session ID (SID) when elevating privileges
-                        session_regenerate_id(true);
-			$_SESSION['username'] = $u;
-			$_SESSION['q'] = $p;
-		} else {
-                        // Always regenerate a session ID (SID) when elevating privileges
-                        session_regenerate_id(true);
-			if(!isset($_SESSION['attempts'])){
-				$_SESSION['attempts'] = 0;
-			} 
-			$_SESSION['attempts'] = $_SESSION['attempts']  + 1;
-			$_SESSION['loginError'] = "Username or password is incorrect.";
-			if($_SESSION['attempts'] >= 5){
-				file_put_contents("app/blocked_ip/".$_SERVER['REMOTE_ADDR'],"");
-				$_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
-			}
-		}	
-	}
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    //Attempt to login...
+    if (file_exists("app/blocked_ip/".$_SERVER['REMOTE_ADDR'])) {
+        $_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
+    } else {
+        $u = $_POST['username'];
+        $p = $_POST['password'];
+        if (auth($u, $p)) {
+            // Always regenerate a session ID (SID) when elevating privileges
+            session_regenerate_id(true);
+            $_SESSION['username'] = $u;
+            $_SESSION['q'] = $p;
+        } else {
+            // Always regenerate a session ID (SID) when elevating privileges
+            session_regenerate_id(true);
+            if (!isset($_SESSION['attempts'])) {
+                $_SESSION['attempts'] = 0;
+            }
+            $_SESSION['attempts'] = $_SESSION['attempts']  + 1;
+            $_SESSION['loginError'] = "Username or password is incorrect.";
+            if ($_SESSION['attempts'] >= 5) {
+                file_put_contents("app/blocked_ip/".$_SERVER['REMOTE_ADDR'], "");
+                $_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
+            }
+        }
+    }
 }
 
-if(!isset($_SESSION['username'])){
-        // If we have no username but somehow a session, its better to clean up before login
-        session_unset();
-        session_destroy();
-        session_start();
-        session_regenerate_id(true);
-	//Load login
-	bodyLogin();
+if (!isset($_SESSION['username'])) {
+    // If we have no username but somehow a session, its better to clean up before login
+    session_unset();
+    session_destroy();
+    session_start();
+    session_regenerate_id(true);
+    //Load login
+    bodyLogin();
 } else {
-	body();
+    body();
 }
 
 footer();
 
 //Functions for header...
 
-function head(){
-	echo '';
-	?>
+function head()
+{
+    ?>
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -72,10 +76,9 @@ function head(){
 	    <title><?php echo exec("hostname"); ?> Admin Panel</title>
 	    <!-- Bootstrap Core CSS -->
 	    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	    
 	    <link href="css/bootstrap-material-design.css" rel="stylesheet">
   		<link href="css/ripples.min.css" rel="stylesheet">
-  		
+
 	    <!-- MetisMenu CSS -->
 	    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 	    <!-- Timeline CSS -->
@@ -94,21 +97,21 @@ function head(){
         	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     	<![endif]-->
    		<?php
-   			if(!isset($_SESSION['username'])){ echo '<link href="./css/sign-in.css" rel="stylesheet" type="text/css">'; }
-   		?>
+            if (!isset($_SESSION['username'])) {
+                echo '<link href="./css/sign-in.css" rel="stylesheet" type="text/css">';
+            } ?>
    		<!-- ORSD JS Functions -->
    		<script src="app/functions-orsd.js"></script>
-   		
+
 	</head>
-	
+
 	<?php
-	
 }
-function bodyLogin(){
-	echo '<body>';
-	echo '';
-	//Javascript...
-	?>
+function bodyLogin()
+{
+    echo '<body>';
+    echo '';
+    //Javascript... ?>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./"><?php echo exec("hostname"); ?> Admin Panel</a>
@@ -129,7 +132,10 @@ function bodyLogin(){
 	        			<label for="password" class="sr-only">Password</label>
 	        			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required><br />
 	        			<button class="btn btn-lg btn-raised btn-primary btn-block" type="submit">Sign in</button><Br />
-	        			<p style="color:red"><?php if(isset($_SESSION['loginError'])){ echo $_SESSION['loginError']; $_SESSION['loginError'] = "";}?></p>
+	        			<p style="color:red"><?php if (isset($_SESSION['loginError'])) {
+        echo $_SESSION['loginError'];
+        $_SESSION['loginError'] = "";
+    } ?></p>
 	      			</form>
 	      		</div>
 	      		<div class="col-lg-4">
@@ -154,19 +160,18 @@ function bodyLogin(){
     	<!-- Custom Theme JavaScript -->
     	<script src="dist/js/sb-admin-2.js"></script>
 	<?php
-	echo '</body>';	
-	
+    echo '</body>';
 }
-function body(){
-        $have_pivpn = false;
-        if ( ( ! is_null(shell_exec("sudo which pivpn")) > 0 ) && ( ! is_null(shell_exec("sudo which openvpn")) > 0 ) ) { 
-                $have_pivpn = true;
-        };
-	echo '<body>';
-	echo '';
-	//Javascript...
-	?>
-	
+
+function body()
+{
+    $have_pivpn = false;
+    if ((! is_null(shell_exec("sudo which pivpn")) > 0) && (! is_null(shell_exec("sudo which openvpn")) > 0)) {
+        $have_pivpn = true;
+    };
+    echo '<body>';
+    //Javascript... ?>
+
 	<script>window.onload = function () { pageLoad("dashboard"); }</script>
 		<nav class="navbar navbar-default">
   			<div class="container-fluid">
@@ -209,9 +214,11 @@ function body(){
       				</li>
                     <li>&nbsp;</li>
       				<li>&nbsp;</li>
-                                <?php if ($have_pivpn === true ) { ?>
+                                <?php if ($have_pivpn === true) {
+        ?>
       				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
-                                <?php } ?>
+                                <?php
+    } ?>
       				<li>&nbsp;</li>
       				<li>&nbsp;</li>
                     <li class="dropdown">
@@ -238,12 +245,12 @@ function body(){
 		<div class="container">
 			<div id="pageContent"  role="main">
 				Please select an item from the menu.
-			
+
 			</div>
 			<br />
 			<br />
 			<br />
-			
+
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -253,9 +260,9 @@ function body(){
                 <span class="navbar-brand pull-right"><?php echo VERSHORT; ?> - BASEURI <?php echo BASEURI; ?></span>
             </div>
         </nav>
-		
+
 		<!-- General Modal for info's/warning's/error's -->
-		
+
 		<div class="modal" id="genModal">
   			<div class="modal-dialog modal-lg">
     			<div class="modal-content">
@@ -293,12 +300,13 @@ function body(){
     	<!-- Custom Theme JavaScript -->
     	<script src="./dist/js/sb-admin-2.js"></script>
 	<?php
-	echo '</body>';
+    echo '</body>';
 }
 
-function footer(){
-	echo '';
-	?>
+function footer()
+{
+    ?>
+
 <script type="text/javascript">
   			$(document).ready(ajustamodal);
   			$(window).resize(ajustamodal);
@@ -311,15 +319,17 @@ function footer(){
 	<?php
 }
 //GitVersionCheckClass
-class QuickGit {
-  public static function version() {
-    exec('git describe --always',$version_mini_hash);
-    exec('git rev-list HEAD | wc -l',$version_number);
-    exec('git log -1',$line);
-    $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
-    $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ','',$line[0]).")";
-    return $version;
-  }
+class QuickGit
+{
+    public static function version()
+    {
+        exec('git describe --always', $version_mini_hash);
+        exec('git rev-list HEAD | wc -l', $version_number);
+        exec('git log -1', $line);
+        $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
+        $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ', '', $line[0]).")";
+        return $version;
+    }
 }
 
 ?>
