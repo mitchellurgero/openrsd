@@ -28,7 +28,7 @@ echo '';
     			$services = shell_exec("sudo service --status-all");
 				$ser = explode("\n", $services);
 				foreach($ser as $s){
-					$s_name = explode(" ", $s);
+                                        if ( strlen($s) > 0 ) { $s_name = explode(" ", $s); } else { continue; }
 					$pos_true = strpos("+", $s_name[2]);
 					$pos_false = strpos("-", $s_name[2]);
 					$active;
@@ -45,7 +45,7 @@ echo '';
 					}
 					if($s != ""){
 						//$action = "restart";
-						if($s_name[5] == "apache2" || $s_name[5] == "ssh" || $s_name[5] == "xrdp" || $s_name[5] == "networking" || $s_name[5] == "nginx"){
+                                                if($s_name[5] == "apache2" || $s_name[5] == "ssh" || $s_name[5] == "xrdp" || $s_name[5] == "networking" || $s_name[5] == "nginx" || $s_name[5] == "lighttpd" || $s_name[5] == "php7.0-fpm" ){
 							$sname = $s_name[5];
 							$name = "'$sname'";
 							$button = '<button class="btn btn-sm btn-raised btn-warning" onClick="serviceAction('.$name.',\'restart\');">Restart</button>';

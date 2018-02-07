@@ -21,7 +21,7 @@ function update(){
 	set_time_limit(0); 
 
 	while (@ ob_end_flush()); // end all output buffers if any
-	$proc = popen("sudo bash ./scripts/updates_get.sh 2>&1", 'r');
+        $proc = popen("sudo LC_ALL=C apt-get update 2>&1", 'r');
 	
 	echo '<div class="row"><div class="col-lg-12"><pre>';
 	while (!feof($proc))
@@ -32,9 +32,7 @@ function update(){
 	}
 	echo '</pre></div></div>';
 	echo '';
-	?>
-	<button class="btn btn-raised btn-success" onClick="pageLoad('packages');">Back to Package Updates</button>
-	<?php
+        echo '<button class="btn btn-raised btn-success" onClick="pageLoad(\'packages\');">Back to Package Updates</button>';
 }
 
 function upgrade(){
@@ -42,7 +40,7 @@ function upgrade(){
 	set_time_limit(0); 
 
 	while (@ ob_end_flush()); // end all output buffers if any
-	$proc = popen("sudo apt-get upgrade -y 2>&1", 'r');
+        $proc = popen("sudo LC_ALL=C apt-get upgrade -y 2>&1", 'r');
 	
 	echo '<div class="row"><div class="col-lg-12"><pre>';
 	while (!feof($proc))
@@ -53,10 +51,6 @@ function upgrade(){
 	}
 	echo '</pre></div></div>';
 	echo '';
-	?>
-	<button class="btn btn-success" onClick="pageLoad('packages');">Back to Package Updates</button>
-	<?php
-	
-	
+        echo '<button class="btn btn-success" onClick="pageLoad(\'packages\');">Back to Package Updates</button>';
 }
 ?>

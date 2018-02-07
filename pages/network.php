@@ -21,11 +21,10 @@ echo '';
     				<th>IP Address</th>
     			</thead>
     			<?php
-    			$adapters_com = shell_exec("sudo bash ./app/scripts/adapters.sh");
-    			$adapters = explode("\n", $adapters_com);
-    			foreach($adapters as $dev){
-    				if($dev != ""){
-    					echo '<tr><td>'.$dev.'</td><td>'.getCurrentIP($dev).'</td>></tr>';
+                                $adapters = getNetworkInterfaces();
+                                foreach($adapters['if_array'] as $dev){
+                                        if($dev['ip_dev'] != ""){
+                                                echo "<tr><td>".$dev['ip_dev']."</td><td>".$dev['ip_addr']."</tr>\n";
     				}
     			}
     			?>

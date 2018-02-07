@@ -20,7 +20,12 @@ echo '';
     		$c = htmlspecialchars(shell_exec("git fetch && git status"));
     		$c2 = htmlspecialchars(shell_exec("git fetch && git diff origin/master"));
     		if (strpos($c, 'no changes added to commit') !== false) {
-    			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
+                        $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
+                        echo '<p>You modified '.$ccount.' OpenRSD files:</p><ul>';
+                        foreach( $cmatch as $cfile ){
+                             echo '<li>'.$cfile['c_src'].'</li>';
+                        }
+                        echo '</ul><p>We cannot update this. Please reinstall!</p>';
 			}elseif (strpos($c, 'behind') !== false) {
     			echo '<p>An update is available! Please click the button below to update!</p>';
     			echo '<a href="./app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';

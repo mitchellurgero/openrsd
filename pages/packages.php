@@ -10,10 +10,10 @@ if(!isset($_SESSION['username'])){
 $max_exec_time = ini_get('max_execution_time');
 $inipath = php_ini_loaded_file();
 
-$updates = shell_exec("sudo bash ./app/scripts/updates_list.sh");
-$updates_array = explode("\n", $updates);
-$updates_count = (count($updates_array) - 1);
-// echo "\n<!-- \n".$updates."\n -->\n"; /* uncomment to debug updates list response */
+$aptupdates = packageUpdates();
+$updates_count = $aptupdates['count'];
+$updates_array = $aptupdates['array'];
+ echo "\n<!-- \n".print_r($aptupdates,true)."\n -->\n"; /* uncomment to debug updates list response */
 ?>
 
 	<div class="row">
@@ -42,10 +42,9 @@ $updates_count = (count($updates_array) - 1);
     			</thead>
     			<?php
     			foreach($updates_array as $upd){
-    				$updAr = explode(" ", $upd);
-    				$u_name = $updAr[0];
-    				$u_installed = $updAr[2];
-    				$u_new = $updAr[4];
+                                $u_name = $upd['u_name'];
+                                $u_installed = $upd['u_installed'];
+                                $u_new = $upd['u_new'];
     				echo '<tr><td>'.$u_name.'</td><td>'.$u_installed.'</td><td>'.$u_new.'</td></tr>'."\n";
     			}
     			echo '</table>';
