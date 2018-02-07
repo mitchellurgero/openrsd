@@ -10,19 +10,19 @@ html body {
 	top:0;
 	left:0;
 	width: 100%;
-	
+
 	margin:0;
-	
+
 	z-index: 2100000000;
-	-moz-user-select: none; 
-	-khtml-user-select: none; 
-	-webkit-user-select: none; 
-	-o-user-select: none; 
-	
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+
 	border-bottom:1px solid #151515;
-	
+
     background:#FFC8C8;
-	
+
 	height:45px;
 	line-height:45px;
 }
