@@ -72,6 +72,37 @@ function generateString($length = 10) {
     }
     return $randomString;
 }
+
+function packageUpdates(){
+    $updates_result=array();
+    $updates_cmd = shell_exec("sudo LC_ALL=C apt-get --just-print upgrade 2>&1");
+    $updates_filter = '/Inst (?<u_name>[\w\-]+) \[(?<u_installed>[\.\d\w\-\~]+)\] \((?<u_new>[\.\d\w\-\~]+)/';
+    $updates_result['count'] = preg_match_all($updates_filter, $updates_cmd, $updates_result['array'], PREG_SET_ORDER);
+    return $updates_result;
+}
+
+function getNetworkInterfaces(){
+    $adapters_result=array();
+    $adapters_com = shell_exec("ip add show");
+    $adapters_filter = '/inet (?<ip_addr>[0-9\.]+)\/[0-9]+ .*scope (host|global) (?<ip_dev>[a-z0-9]+)$/im';
+    $adapters_reslut['if_count'] = preg_match_all($adapters_filter, $adapters_com, $adapters_result['if_array'],PREG_SET_ORDER);
+    return $adapters_result;
+}
+
+function getUsers(){
+    $valid_shells=array();
+    $shells_array = file('/etc/shells');
+    foreach($shells_array as $shell_entry) {
+        if ( substr($shell_entry,0,1) != "#" ) { $valid_shells[]=str_replace("\n",'',str_replace('/','\/',$shell_entry)); }
+    }
+    $shells_filter=implode("|",$valid_shells);
+    $users_result=array();
+    $users_com = shell_exec("getent passwd");
+    $users_filter = '/^(?<u_name>[a-z0-9\.]+):x:(?<u_uid>[0-9]+):(?<u_gid>[0-9]+):(?<u_gecos>[[:print:]]+):(?<u_home>[\/a-z0-9_]+):(?<ip_shell>'.$shells_filter.')$/im';
+    $users_result['user_count'] = preg_match_all($users_filter, $users_com, $users_result['users_array'],PREG_SET_ORDER);
+    return $users_result;
+}
+
 function writeFileA($file, $content){
 	$myfile = fopen($file, "a") or die("Unable to open file!");
 	fwrite($myfile, $content."\n");

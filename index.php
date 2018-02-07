@@ -6,6 +6,9 @@ $ver = new QuickGit();
 define("OPENRSD", TRUE);
 define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
+//Fix bug with openrsd installed in root dir of web server.
+define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
+if ( basename(dirname(__FILE__)) == 'openrsd' ) { define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/"); };
 
 head();
 
@@ -155,10 +158,13 @@ function bodyLogin(){
 	
 }
 function body(){
+        $have_pivpn = false;
+        if ( ( ! is_null(shell_exec("sudo which pivpn")) > 0 ) && ( ! is_null(shell_exec("sudo which openvpn")) > 0 ) ) { 
+                $have_pivpn = true;
+        };
 	echo '<body>';
 	echo '';
 	//Javascript...
-	
 	?>
 	
 	<script>window.onload = function () { pageLoad("dashboard"); }</script>
@@ -183,6 +189,7 @@ function body(){
       						<li><a href="#" onclick="pageLoad('apps');"><i class="fa fa-laptop fa-fw"></i> Applications & Scripts</a></li>
                         	<li><a href="#" onclick="pageLoad('packages');"><i class="fa fa-archive fa-fw"></i> Packages</a></li>
                         	<li><a href="#" onclick="pageLoad('users');"><i class="fa fa-users fa-fw"></i> Users</a></li>
+                                                <li><a href="#" onclick="pageLoad('network');"><i class="fa fa-sitemap fa-fw"></i> Network</a></li>
                         	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-download fa-fw"></i> Web Proxy</a></li>
         				</ul>
       				</li>
@@ -202,7 +209,9 @@ function body(){
       				</li>
                     <li>&nbsp;</li>
       				<li>&nbsp;</li>
+                                <?php if ($have_pivpn === true ) { ?>
       				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
+                                <?php } ?>
       				<li>&nbsp;</li>
       				<li>&nbsp;</li>
                     <li class="dropdown">
@@ -241,7 +250,7 @@ function body(){
                 <a class="navbar-brand" href="https://github.com/mitchellurgero/openrsd" target="_blank">Powered by OpenRSD</a>
             </div>
             <div class="navbar-header">
-                <span class="navbar-brand pull-right"><?php echo VERSHORT; ?></span>
+                <span class="navbar-brand pull-right"><?php echo VERSHORT; ?> - BASEURI <?php echo BASEURI; ?></span>
             </div>
         </nav>
 		

@@ -20,9 +20,17 @@ echo '';
                             Pi Stats
                         </div>
                         <div class="panel-body">
-                            <p><b>CPU</b><br />CPU Perf. = <?php echo getCPU(); ?>% <br />CPU Temp = <?php echo getCPUTemp();?><br /></p>
-                            <p><b>RAM</b><br /><?php echo getRAM(); ?></p>
                             <p><text style="font-size=12px" id="uptime"><?php echo getUptime(); ?></text></p>
+                            <table class="table table-bordered table-responsive table-hover">
+                                <thead>
+                                        <th><b>CPU</b></th>
+                                        <th><b>RAM</b></th>
+                                </thead>
+                            <tbody><tr>
+                            <td><br />CPU Perf. = <?php echo getCPU(); ?>% <br />CPU Temp = <?php echo getCPUTemp();?><br /></td>
+                            <td><br /><?php echo getRAM(); ?></td>
+                            </tr></tbody>
+                            </table>
                             <p>
                             	<b>Disk Usage</b><br />
                             	<table class="table table-bordered table-responsive table-hover">
@@ -32,7 +40,7 @@ echo '';
                             			<th>Total(MB)</th>
                             		</thead>
                             	<?php
-                            	$com = shell_exec("df -h");
+                                $com = shell_exec("df -h -t ext2 -t ext3 -t ext4 -t vfat -t xfs");
                             	$dr = explode("\n", $com);
                             	foreach($dr as $mount){
                             		$mt = explode(" ", $mount);
@@ -68,19 +76,22 @@ echo '';
 	                        <div class="panel-body">
 	                            <p>
 	                            	<?php
-	                            	$updates = shell_exec("sudo bash ./app/scripts/updates_list.sh");
-	    							//echo "<p>$updates</p>";
-	    							$updates_array = explode("\n", $updates);
-	    							$count = count($updates_array) - 1; // -1 for the extra space that is output at the end of the script that is ran above.
-	    							if($count == 0){
+                                                                $aptupdates = packageUpdates();
+                                                                $updates_count = $aptupdates['count'];
+                                                                if($updates_count == 0){
 	    								echo "<p>There are currently no packages that need updating.</p>";
 	    							} else {
-	    								echo "<p>$count package(s) are ready to be updated.</p>";
+                                                                        echo "<p>".$updates_count." package(s) are ready to be updated.</p>";
 	    							}
 	    							shell_exec("git branch --set-upstream-to=origin/master master");
 	                            	$c = htmlspecialchars(shell_exec("git fetch && git status"));
 						    		if (strpos($c, 'no changes added to commit') !== false) {
-						    			echo '<p>You modified OpenRSD files, we cannot update this. Please reinstall!</p>';
+                                                                        $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
+                                                                        echo '<p>You modified '.$ccount.' OpenRSD files:</p><ul>';
+                                                                        foreach( $cmatch as $cfile ){
+                                                                                echo '<li>'.$cfile['c_src'].'</li>';
+                                                                        }
+                                                                        echo '</ul><p>We cannot update this. Please reinstall!</p>';
 									}elseif (strpos($c, 'behind') !== false) {
 						    			echo '<p>An update for OpenRSD available!</p>';
 									} elseif (strpos($c, 'up-to-date') !== false) {
@@ -138,11 +149,10 @@ echo '';
                         <div class="panel-body">
                             <table class="table">
                             	<?php
-                            	$adapters_com = shell_exec("sudo bash ./app/scripts/adapters.sh");
-    							$adapters = explode("\n", $adapters_com);
-    							foreach($adapters as $dev){
-    								if($dev != ""){
-    									echo '<tr><td>'.$dev.'</td><td>'.getCurrentIP($dev).'</tr>';
+                                $adapters = getNetworkInterfaces();
+                                foreach($adapters['if_array'] as $dev){
+                                        if($dev['ip_dev'] != ""){
+                                                echo '<tr><td>'.$dev['ip_dev'].'</td><td>'.$dev['ip_addr'].'</tr>';
     								}
     							}
                             	?>

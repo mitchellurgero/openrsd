@@ -24,34 +24,30 @@ echo '';
     			</thead>
     			<tbody>
     				<?php
-    				$users = shell_exec("sudo bash ./app/scripts/listusers.sh");
-    				$usersAr = explode("\n", $users);
-    				if(count($usersAr) -1 != 0){
-    					foreach($usersAr as $user){
-    						$user_ex = explode(":", $user);
-    						if($user_ex[0] != ""){
-    							if($user_ex[0] == "root"){
-    								echo '<tr><td>'.$user_ex[0].'</td><td>You cannot modify the root account through this interface.</td></tr>';
+                                $users_list = getUsers();
+//                              echo "<!-- \n" .print_r($users_list,true). "\n -->\n";
+                                if( $users_list['user_count'] != 0){
+                                        foreach($users_list['users_array'] as $user){
+                                                if($user['u_name'] != ""){
+                                                        if($user['u_name'] == "root"){
+                                                                echo '<tr><td>'.$user['u_name'].'</td><td>You cannot modify the root account through this interface.</td></tr>';
     							} else {
-    								$u1 = "'".$user_ex[0]."'";
-    								if($user_ex[0] == "pi"){
-    									echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
+                                                                $u1 = "'".$user['u_name']."'";
+                                                                if($user['u_name'] == "pi"){
+                                                                        echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user \'pi\', apache is running as this user.</td></tr>';
     								} else {
-    									if($user_ex[0] == $_SESSION['username']){
-    										echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
+                                                                        if($user['u_name'] == $_SESSION['username']){
+                                                                                echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;You cannot delete the user you are logged in as.</td></tr>';
     									} else {
-    										echo '<tr><td style="vertical-align: middle;">'.$user_ex[0].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
+                                                                                echo '<tr><td style="vertical-align: middle;">'.$user['u_name'].'</td><td><button class="btn btn-raised btn-info" onClick="changePwd('.$u1.');">Change Password</button>&nbsp;&nbsp;<button class="btn btn-raised btn-warning" onClick="delUser('.$u1.');">Delete User</button></td></tr>';
     									}
     								}
-    								
     							}
     						}
-    						
     					}
     				} else {
     					echo "<p>No users on the system?! That's not right! Seems there was an error! Check the apache logs for more information! </p>";
     				}
-    				
     				?>
     			</tbody>
     		</table>
@@ -82,7 +78,6 @@ echo '';
           				</div>
 						<br />
     				</form>
-        				
         			</p>
       			</div>
       			<div class="modal-footer">
@@ -114,7 +109,6 @@ echo '';
           				</div>
 						<br />
     				</form>
-        				
         			</p>
       			</div>
       			<div class="modal-footer" id="changePwdModalFooter">
@@ -136,7 +130,6 @@ echo '';
         			</p>
       			</div>
       			<div class="modal-footer" id="delUserModalFooter">
-        			
       			</div>
     			</div>
   			</div>

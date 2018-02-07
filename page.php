@@ -3,9 +3,11 @@ $ver = new QuickGit();
 define("OPENRSD", TRUE);
 define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
+if ( basename(dirname(__FILE__)) == 'openrsd' ) { define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/"); };
+
 if (!isset($_SESSION)) { session_start(); };
 if(!isset($_SESSION['username'])){
-	die("You must be logged in to view this page!");
+        die('You must be logged in to view this page! <a href="'. BASEURI .'index.php">login</a>');
 }
 if(isset($_POST['page'])){
 	switch($_POST['page']){
@@ -101,7 +103,6 @@ function shellinabox(){
 function apps(){
 	include('pages/apps.php');
 }
-
 function firewall(){
 	include('pages/firewall.php');
 }
