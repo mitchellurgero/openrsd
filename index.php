@@ -6,6 +6,8 @@ $ver = new QuickGit();
 define("OPENRSD", TRUE);
 define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
+//Fix bug with openrsd installed in root dir of web server.
+define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
 if ( basename(dirname(__FILE__)) == 'openrsd' ) { define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/"); };
 
 head();
