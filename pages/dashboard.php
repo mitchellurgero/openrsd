@@ -83,7 +83,7 @@ if (!isset($_SESSION['username'])) {
                                                                 if ($updates_count == 0) {
                                                                     echo "<p>There are currently no packages that need updating.</p>";
                                                                 } else {
-                                                                    echo "<p #273c75>".$updates_count." package(s) are ready to be updated.</p>";
+                                                                    echo '<p style="color:#273c75;">'.$updates_count." package(s) are ready to be updated.</p>";
                                                                 }
                                     shell_exec("git branch --set-upstream-to=origin/master master");
                                     $c = htmlspecialchars(shell_exec("git fetch && git status"));
