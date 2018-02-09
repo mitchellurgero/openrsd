@@ -83,23 +83,23 @@ if (!isset($_SESSION['username'])) {
                                                                 if ($updates_count == 0) {
                                                                     echo "<p>There are currently no packages that need updating.</p>";
                                                                 } else {
-                                                                    echo "<p>".$updates_count." package(s) are ready to be updated.</p>";
+                                                                    echo '<p style="color:#273c75;">'.$updates_count." package(s) are ready to be updated.</p>";
                                                                 }
                                     shell_exec("git branch --set-upstream-to=origin/master master");
                                     $c = htmlspecialchars(shell_exec("git fetch && git status"));
                                     if (strpos($c, 'no changes added to commit') !== false) {
                                         $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
-                                        echo '<p>You modified '.$ccount.' OpenRSD files:</p><ul>';
+                                        echo '<p style="color:#e84118;">You modified '.$ccount.' OpenRSD files:</p><ul>';
                                         foreach ($cmatch as $cfile) {
                                             echo '<li>'.$cfile['c_src'].'</li>';
                                         }
-                                        echo '</ul><p>We cannot update this. Please reinstall!</p>';
+                                        echo '</ul><p style="color:#e84118;">We cannot update this. Please reinstall!</p>';
                                     } elseif (strpos($c, 'behind') !== false) {
-                                        echo '<p>An update for OpenRSD available!</p>';
+                                        echo '<p style="color:#4cd137;">An update for OpenRSD available!</p>';
                                     } elseif (strpos($c, 'up-to-date') !== false) {
                                         echo '<p>OpenRSD is completely up to date!</p>';
                                     } else {
-                                        echo '<p> There was an error checking for OepnRSD updates.<p>';
+                                        echo '<p style="color:#e84118;"> There was an error checking for OepnRSD updates.<p>';
                                     }
                                     echo '<b>Installed Version: '.VERSHORT.'</b>';
                                     ?>
