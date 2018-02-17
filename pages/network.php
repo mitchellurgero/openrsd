@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -25,10 +25,10 @@ if (!isset($_SESSION['username'])) {
     				<th>IP Address</th>
     			</thead>
     			<?php
-                                $adapters = getNetworkInterfaces();
+                                $adapters = OpenRSD::getNetworkInterfaces();
                                 foreach ($adapters['if_array'] as $dev) {
                                     if ($dev['ip_dev'] != "") {
-                                        echo "<tr><td>".$dev['ip_dev']."</td><td>".$dev['ip_addr']."</tr>\n";
+                                        echo "<tr><td>".$dev['ip_dev']."</td><td>".$dev['ip_addr']."</td></tr>\n";
                                     }
                                 }
                 ?>

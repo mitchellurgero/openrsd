@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -24,7 +24,7 @@ if (!isset($_SESSION['username'])) {
             $c = htmlspecialchars(shell_exec("git fetch && git status"));
             $c2 = htmlspecialchars(shell_exec("git fetch && git diff origin/master"));
             if (strpos($c, 'no changes added to commit') !== false) {
-                $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
+                $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/\-\d]+)/', $c, $cmatch, PREG_SET_ORDER);
                 echo '<p>You modified '.$ccount.' OpenRSD files:</p><ul>';
                 foreach ($cmatch as $cfile) {
                     echo '<li>'.$cfile['c_src'].'</li>';

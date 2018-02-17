@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -20,19 +20,19 @@ if (!isset($_SESSION['username'])) {
 			<div class="row">
 				<div class="col-lg-4">
                 	<div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading h3">
                             Pi Stats
                         </div>
                         <div class="panel-body">
-                            <p><text style="font-size=12px" id="uptime"><?php echo getUptime(); ?></text></p>
+                            <p><text style="font-size=12px" id="uptime"><?php echo OpenRSD::getUptime(); ?></text></p>
                             <table class="table table-bordered table-responsive table-hover">
                                 <thead>
                                         <th><b>CPU</b></th>
                                         <th><b>RAM</b></th>
                                 </thead>
                             <tbody><tr>
-                            <td><br />CPU Perf. = <?php echo getCPU(); ?>% <br />CPU Temp = <?php echo getCPUTemp();?><br /></td>
-                            <td><br /><?php echo getRAM(); ?></td>
+                            <td><br />CPU Perf. = <?php echo OpenRSD::getCPU(); ?>% <br />CPU Temp = <?php echo OpenRSD::getCPUTemp();?><br /></td>
+                            <td><br /><?php echo OpenRSD::getRAM(); ?></td>
                             </tr></tbody>
                             </table>
                             <p>
@@ -72,34 +72,31 @@ if (!isset($_SESSION['username'])) {
                 <div class="col-lg-4">
                 	<div class="row">
                 		<div class="panel panel-default">
-	                        <div class="panel-heading">
+                                <div class="panel-heading h3">
 	                            Updates
 	                        </div>
 	                        <div class="panel-body">
 	                            <p>
 	                            	<?php
-                                                                $aptupdates = packageUpdates();
+                                                                $aptupdates = OpenRSD::getPackageUpdates();
                                                                 $updates_count = $aptupdates['count'];
                                                                 if ($updates_count == 0) {
                                                                     echo "<p>There are currently no packages that need updating.</p>";
                                                                 } else {
-                                                                    echo '<p style="color:#273c75;">'.$updates_count." package(s) are ready to be updated.</p>";
+                                                                    echo "<p style=\"color:#273c75;\"><b>".$updates_count." package(s) are ready to be updated.</b><br/><a href=\"#\" onClick=\"pageLoad('packages');\">Go to Packages</a></p>";
                                                                 }
                                     shell_exec("git branch --set-upstream-to=origin/master master");
                                     $c = htmlspecialchars(shell_exec("git fetch && git status"));
                                     if (strpos($c, 'no changes added to commit') !== false) {
                                         $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
-                                        echo '<p style="color:#e84118;">You modified '.$ccount.' OpenRSD files:</p><ul>';
-                                        foreach ($cmatch as $cfile) {
-                                            echo '<li>'.$cfile['c_src'].'</li>';
-                                        }
-                                        echo '</ul><p style="color:#e84118;">We cannot update this. Please reinstall!</p>';
+                                        echo '<p style="color:#e84118;"><b>You modified '.$ccount.' OpenRSD files.</b><br/>';
+                                        echo 'We cannot update this. Please reinstall!<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a></p>';
                                     } elseif (strpos($c, 'behind') !== false) {
                                         echo '<p style="color:#4cd137;">An update for OpenRSD available!</p>';
                                     } elseif (strpos($c, 'up-to-date') !== false) {
                                         echo '<p>OpenRSD is completely up to date!</p>';
                                     } else {
-                                        echo '<p style="color:#e84118;"> There was an error checking for OepnRSD updates.<p>';
+                                        echo '<p style="color:#e84118;">There was an error checking for OpenRSD updates.<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a><p>';
                                     }
                                     echo '<b>Installed Version: '.VERSHORT.'</b>';
                                     ?>
@@ -112,11 +109,12 @@ if (!isset($_SESSION['username'])) {
                 	</div>
                 	<div class="row">
                 		<div class="panel panel-default">
-	                        <div class="panel-heading">
+                                <div class="panel-heading h3">
 	                            Logged in users
 	                        </div>
 	                        <div class="panel-body">
 	                            <p>
+
 	                            	<?php
                                     $result_who = shell_exec("sudo who");
                                     $result_who_new = explode("\n", $result_who);
@@ -133,6 +131,7 @@ if (!isset($_SESSION['username'])) {
                                         echo '</table>';
                                     }
                                     ?>
+
 	                            </p>
 	                        </div>
 	                        <div class="panel-footer">
@@ -143,16 +142,16 @@ if (!isset($_SESSION['username'])) {
                 </div>
                 <div class="col-lg-4">
                 	<div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading h3">
                             Network Adapters
                         </div>
                         <div class="panel-body">
                             <table class="table">
                             	<?php
-                                $adapters = getNetworkInterfaces();
+                                $adapters = OpenRSD::getNetworkInterfaces();
                                 foreach ($adapters['if_array'] as $dev) {
                                     if ($dev['ip_dev'] != "") {
-                                        echo '<tr><td>'.$dev['ip_dev'].'</td><td>'.$dev['ip_addr'].'</tr>';
+                                        echo '<tr><td>'.$dev['ip_dev'].'</td><td>'.$dev['ip_addr'].'</td></tr>';
                                     }
                                 }
                                 ?>
