@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
 };
 if (basename(dirname(__FILE__)) == 'app') {
-    include('functions.php');
+    require_once('functions.php');
 };
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
@@ -43,7 +43,6 @@ function add_vpn_profile($profile)
     unlink($log);
     print "Notification : $output ";
     $output = explode("\n", $output);
-
 
     return $output;
 }

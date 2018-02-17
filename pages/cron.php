@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -54,6 +54,7 @@ if (!isset($_SESSION['username'])) {
                         echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'hourly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
                     }
                 }
+
                 ?>
     		</table>
     		<table class="table">
@@ -69,6 +70,7 @@ if (!isset($_SESSION['username'])) {
                         echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
                     }
                 }
+
                 ?>
     		</table>
     		<table class="table">
@@ -84,6 +86,7 @@ if (!isset($_SESSION['username'])) {
                         echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'weekly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
                     }
                 }
+
                 ?>
     		</table>
 		<div class="modal" id="cronModal">

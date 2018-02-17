@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
     			</thead>
     			<tbody>
     				<?php
-                                $users_list = getUsers();
+                                $users_list = OpenRSD::getUsers();
 //                              echo "<!-- \n" .print_r($users_list,true). "\n -->\n";
                                 if ($users_list['user_count'] != 0) {
                                     foreach ($users_list['users_array'] as $user) {

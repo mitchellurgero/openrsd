@@ -10,9 +10,6 @@ define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
 //Fix bug with openrsd installed in root dir of web server.
 define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
-if (basename(dirname(__FILE__)) == 'openrsd') {
-    define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
-};
 
 head();
 
@@ -70,12 +67,13 @@ function head()
 
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<meta name="description" content="">
     	<meta name="author" content="">
 	    <title><?php echo exec("hostname"); ?> Admin Panel</title>
 	    <!-- Bootstrap Core CSS -->
 	    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
 	    <link href="css/bootstrap-material-design.css" rel="stylesheet">
   		<link href="css/ripples.min.css" rel="stylesheet">
 
@@ -107,10 +105,10 @@ function head()
 
 	<?php
 }
+
 function bodyLogin()
 {
     echo '<body>';
-    echo '';
     //Javascript... ?>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -185,8 +183,6 @@ function body()
     			</div>
     			<div class="collapse navbar-collapse" id="myNavbar">
     			<ul class="nav navbar-nav">
-      				<li>&nbsp;</li>
-      				<li>&nbsp;</li>
       				<li><a href="#" onclick="pageLoad('dashboard');"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
       				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Basic Configuration</a>
@@ -198,8 +194,6 @@ function body()
                         	<li><a href="#" onclick="pageLoad('webproxy');"><i class="fa fa-download fa-fw"></i> Web Proxy</a></li>
         				</ul>
       				</li>
-      				<li>&nbsp;</li>
-      				<li>&nbsp;</li>
       				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Advanced Configuration</a>
         				<ul class="dropdown-menu">
@@ -212,15 +206,11 @@ function body()
           					<li><a href="#" onclick="pageLoad('shellinabox');"><i class="fa fa-keyboard-o fa-fw"></i> Shell in a Box</a></li>
         				</ul>
       				</li>
-                    <li>&nbsp;</li>
-      				<li>&nbsp;</li>
                                 <?php if ($have_pivpn === true) {
         ?>
       				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
                                 <?php
     } ?>
-      				<li>&nbsp;</li>
-      				<li>&nbsp;</li>
                     <li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-power-off fa-fw"></i> Power Options</a>
         				<ul class="dropdown-menu">
@@ -255,9 +245,7 @@ function body()
 		<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <a class="navbar-brand" href="https://github.com/mitchellurgero/openrsd" target="_blank">Powered by OpenRSD</a>
-            </div>
-            <div class="navbar-header">
-                <span class="navbar-brand pull-right"><?php echo VERSHORT; ?> - BASEURI <?php echo BASEURI; ?></span>
+                <span class="navbar-brand pull-right"><?php echo VERSHORT; ?></span>
             </div>
         </nav>
 
@@ -314,22 +302,13 @@ function footer()
     			var altura = $(window).height() - 160; //value corresponding to the modal heading + footer
     			$(".ativa-scroll").css({"height":altura,"overflow-y":"auto"});
   			}
+            $(document).on('click','.navbar-collapse.in',function(e) {
+                if( $(e.target).is('a:not(".dropdown-toggle")') ) {
+                    $(this).collapse('hide');
+                }
+            });
+
 		</script>
 	</html>
 	<?php
 }
-//GitVersionCheckClass
-class QuickGit
-{
-    public static function version()
-    {
-        exec('git describe --always', $version_mini_hash);
-        exec('git rev-list HEAD | wc -l', $version_number);
-        exec('git log -1', $line);
-        $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
-        $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ', '', $line[0]).")";
-        return $version;
-    }
-}
-
-?>

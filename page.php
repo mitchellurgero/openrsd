@@ -1,18 +1,18 @@
 <?php
-$ver = new QuickGit();
 define("OPENRSD", true);
-define("VERSHORT", $ver->version()['short']);
-define("VERLONG", $ver->version()['full']);
-if (basename(dirname(__FILE__)) == 'openrsd') {
     define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
-};
 
+require_once('app/functions.php');
 if (!isset($_SESSION)) {
     session_start();
 };
 if (!isset($_SESSION['username'])) {
     die('You must be logged in to view this page! <a href="'. BASEURI .'index.php">login</a>');
 }
+$ver = new QuickGit();
+define("VERSHORT", $ver->version()['short']);
+define("VERLONG", $ver->version()['full']);
+
 if (isset($_POST['page'])) {
     switch ($_POST['page']) {
         case "dashboard":
@@ -140,17 +140,4 @@ function check()
 function webproxy()
 {
     include('pages/webproxy.php');
-}
-//GitVersionCheckClass
-class QuickGit
-{
-    public static function version()
-    {
-        exec('git describe --always', $version_mini_hash);
-        exec('git rev-list HEAD | wc -l', $version_number);
-        exec('git log -1', $line);
-        $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
-        $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ', '', $line[0]).")";
-        return $version;
-    }
 }

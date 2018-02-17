@@ -1,6 +1,6 @@
 <?php
 if (basename(dirname(__FILE__)) == 'app') {
-    include('functions.php');
+    require_once('functions.php');
 };
 function auth($username, $password)
 {
@@ -18,7 +18,7 @@ function auth($username, $password)
         return false;
     }
     $password = escapeshellarg($password);
-    $users_list = getUsers();
+    $users_list = OpenRSD::getUsers();
     $usernames = array();
     foreach ($users_list['users_array'] as $user) {
         $usernames[] = $user['u_name'];

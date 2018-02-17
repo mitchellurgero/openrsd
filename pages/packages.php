@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
 $max_exec_time = ini_get('max_execution_time');
 $inipath = php_ini_loaded_file();
 
-$aptupdates = packageUpdates();
+$aptupdates = OpenRSD::getPackageUpdates();
 $updates_count = $aptupdates['count'];
 $updates_array = $aptupdates['array'];
 // echo "\n<!-- \n".print_r($aptupdates,true)."\n -->\n"; /* uncomment to debug updates list response */
@@ -41,6 +41,9 @@ $updates_array = $aptupdates['array'];
                             echo "<p>There are currently no packages that need updating.</p>";
                         } else {
                             // Only print the table if updates available, this fixes "Undefined offset:" in the foreach loop
+                            $updates_summary = $aptupdates['updsum_arr'][0];
+                            //echo "\n<!-- \n".print_r($updates_summary,true)."\n -->\n"; /* uncomment to debug updates list response */
+                            echo '<p>'.$updates_summary['cnt_upg'].' upgraded, '.$updates_summary['cnt_new'].' newly installed, '.$updates_summary['cnt_rem'].' to remove and '.$updates_summary['cnt_notup'].' not upgraded.'."</p>\n";
                             echo '<table class="table">'; ?>
     			<thead>
     				<th>Package Name</th>

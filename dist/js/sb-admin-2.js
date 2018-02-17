@@ -26,6 +26,7 @@ $(function() {
         }
     });
 
+/* This caused the addition of active class to all the main menu items
     var url = window.location;
     var element = $('ul.nav a').filter(function() {
         return this.href == url || url.href.indexOf(this.href) == 0;
@@ -33,4 +34,5 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
+*/
 });
