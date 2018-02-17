@@ -6,7 +6,7 @@
 if (!isset($_SESSION)) {
     session_start();
 };
-include('app/functions.php');
+require_once('app/functions.php');
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to view this page!");
 }
@@ -25,11 +25,11 @@ if (!isset($_SESSION['username'])) {
     			</thead>
     			<tbody>
     				<?php
-                    $log_files = getDirContents('/var/log');
+                    $log_files = OpenRSD::getDirContents('/var/log');
                     foreach ($log_files as $log) {
                         echo'<tr><td><a href="#" onClick="displayLog(\''.$log.'\')">'.$log.'</a></td></tr>';
                     }
-                    $log_files = getDirContents('app/auth_log');
+                    $log_files = OpenRSD::getDirContents('app/auth_log');
                     foreach ($log_files as $log) {
                         echo'<tr><td><a href="#" onClick="displayLog(\''.$log.'\')">'.$log.'</a></td></tr>';
                     }

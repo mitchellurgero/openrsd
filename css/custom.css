@@ -1,3 +1,6 @@
+nav.navbar-fixed-bottom > div.navbar-header {
+    width: 100%;
+}
 iframe#shellinaboxframe,
 div#shellinaboxdiv {
   margin-top: 8px;

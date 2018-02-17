@@ -1,5 +1,7 @@
 <?php
-function getRam()
+class OpenRSD
+{
+    public static function getRam()
 {
     $total = exec("grep MemTotal /proc/meminfo | awk '{print $2}'");
     $free = exec("grep MemFree /proc/meminfo | awk '{print $2}'");
@@ -20,13 +22,15 @@ function getRam()
     //	}
     return "Total: $total<br />Used: $used <br />Free: $free";
 }
-function getCPUTemp()
+
+    public static function getCPUTemp()
 {
     $temp = exec("cat /sys/class/thermal/thermal_zone0/temp");
     $temp2 = $temp / 1000;
     echo $temp2."'C";
 }
-function getUptime()
+
+    public static function getUptime()
 {
     $file = @fopen('/proc/uptime', 'r');
     if (!$file) {
@@ -45,11 +49,8 @@ function getUptime()
     );
     return "<b>Uptime</b><br />".$uptime["days"]."D ".$uptime["hours"]."H ".$uptime["minutes"]."M";
 }
-function getCurrentIP($name)
-{
-    return exec("/sbin/ifconfig $name | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'");
-}
-function getCPU()
+
+    public static function getCPU()
 {
     $speed = 1;
     //Sets variable with current CPU information and then turns it into an array seperating each word.
@@ -72,7 +73,8 @@ function getCPU()
     return intval(100 * (($intervalTotal - ($idle - $prevIdle)) / $intervalTotal));
     //return  "CPU Usage:".exec("top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'")."%";
 }
-function generateString($length = 10)
+
+    public static function generateString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -83,16 +85,24 @@ function generateString($length = 10)
     return $randomString;
 }
 
-function packageUpdates()
+    public static function getCurrentIP($name)
+    {
+        return exec("/sbin/ifconfig $name | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'");
+    }
+
+
+    public static function getPackageUpdates()
 {
     $updates_result=array();
     $updates_cmd = shell_exec("sudo LC_ALL=C apt-get --just-print upgrade 2>&1");
-    $updates_filter = '/Inst (?<u_name>[\w\-]+) \[(?<u_installed>[\.\d\w\-\~]+)\] \((?<u_new>[\.\d\w\-\~]+)/';
+    $updates_filter = '/Inst (?<u_name>[\w\-]+) \[(?<u_installed>[\.\d\:\w\-\+\~]+)\] \((?<u_new>[\.\d\:\w\-\+\~]+)/';
     $updates_result['count'] = preg_match_all($updates_filter, $updates_cmd, $updates_result['array'], PREG_SET_ORDER);
+    $updsum_filter = '/(?<cnt_upg>[\d]+) upgraded, (?<cnt_new>[\d]+) newly installed, (?<cnt_rem>[\d]+) to remove and (?<cnt_notup>[\d]+) not upgraded./';
+    $updates_result['sumcount'] = preg_match_all($updsum_filter, $updates_cmd, $updates_result['updsum_arr'], PREG_SET_ORDER);
     return $updates_result;
 }
 
-function getNetworkInterfaces()
+    public static function getNetworkInterfaces()
 {
     $adapters_result=array();
     $adapters_com = shell_exec("ip add show");
@@ -101,7 +111,7 @@ function getNetworkInterfaces()
     return $adapters_result;
 }
 
-function getUsers()
+    public static function getUsers()
 {
     $valid_shells=array();
     $shells_array = file('/etc/shells');
@@ -118,7 +128,7 @@ function getUsers()
     return $users_result;
 }
 
-function writeFileA($file, $content)
+    public static function writeFileA($file, $content)
 {
     $myfile = fopen($file, "a") or die("Unable to open file!");
     fwrite($myfile, $content."\n");
@@ -126,21 +136,26 @@ function writeFileA($file, $content)
     return true;
 }
 
-function writeFileC($file, $content)
+    public static function writeFileC($file, $content)
 {
     $myfile = fopen($file, "w") or die("Unable to open file!");
     fwrite($myfile, $content) or die(false);
     fclose($myfile);
     return true;
 }
-function readFileAll($file)
+
+    public static function readFileAll($file)
 {
     $fileContent = file_get_contents($file);
     return $fileContent;
 }
-function getDirContents($dir, &$results = array())
+
+    public static function getDirContents($dir, &$results = array())
 {
-    $files = scandir($dir);
+    if ( ! ( $files = @scandir($dir) ))
+    {
+        return false;
+    }
 
     foreach ($files as $key => $value) {
         $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
@@ -156,10 +171,25 @@ function getDirContents($dir, &$results = array())
                 $results[] = $path;
             }
         } elseif ($value != "." && $value != "..") {
-            getDirContents($path, $results);
+            OpenRSD::getDirContents($path, $results);
             //$results[] = $path;
         }
     }
 
     return $results;
+}
+}
+
+//GitVersionCheckClass
+class QuickGit
+{
+    public static function version()
+    {
+        exec('git describe --always', $version_mini_hash);
+        exec('git rev-list HEAD | wc -l', $version_number);
+        exec('git log -1', $line);
+        $version['short'] = "v".trim($version_number[0]).".".$version_mini_hash[0];
+        $version['full'] = "v".trim($version_number[0]).".$version_mini_hash[0] (".str_replace('commit ', '', $line[0]).")";
+        return $version;
+    }
 }

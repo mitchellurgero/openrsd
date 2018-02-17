@@ -16,8 +16,10 @@ use Proxy\Event\FilterEvent;
 use Proxy\Config;
 use Proxy\Proxy;
 
+if (!isset($_SESSION)) {
 // start the session
 session_start();
+};
 
 // load config...
 Config::load('./config.php');

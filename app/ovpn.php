@@ -1,5 +1,5 @@
 <?php
-require_once("./functions.php");
+require_once('functions.php');
 /*
 libopenvpn.php - Written by Mitchell Urgero  & released under the MIT license.
 
