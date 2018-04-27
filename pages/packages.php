@@ -39,6 +39,9 @@ $updates_array = $aptupdates['array'];
     		<?php
                         if ($updates_count == 0) {
                             echo "<p>There are currently no packages that need updating.</p>";
+                            $updates_summary = $aptupdates['updsum_arr'][0];
+                            //echo "\n<!-- \n".print_r($updates_summary,true)."\n -->\n"; /* uncomment to debug updates list response */
+                            echo '<p>'.$updates_summary['cnt_upg'].' upgraded, '.$updates_summary['cnt_new'].' newly installed, '.$updates_summary['cnt_rem'].' to remove and '.$updates_summary['cnt_notup'].' not upgraded.'."</p>\n";
                         } else {
                             // Only print the table if updates available, this fixes "Undefined offset:" in the foreach loop
                             $updates_summary = $aptupdates['updsum_arr'][0];

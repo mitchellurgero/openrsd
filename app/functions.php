@@ -95,7 +95,7 @@ class OpenRSD
 {
     $updates_result=array();
     $updates_cmd = shell_exec("sudo LC_ALL=C apt-get --just-print upgrade 2>&1");
-    $updates_filter = '/Inst (?<u_name>[\w\-]+) \[(?<u_installed>[\.\d\:\w\-\+\~]+)\] \((?<u_new>[\.\d\:\w\-\+\~]+)/';
+    $updates_filter = '/Inst (?<u_name>[\w\-\.\:\+]+) \[(?<u_installed>[\.\d\:\w\-\+\~]+)\] \((?<u_new>[\.\d\:\w\-\+\~]+)/';
     $updates_result['count'] = preg_match_all($updates_filter, $updates_cmd, $updates_result['array'], PREG_SET_ORDER);
     $updsum_filter = '/(?<cnt_upg>[\d]+) upgraded, (?<cnt_new>[\d]+) newly installed, (?<cnt_rem>[\d]+) to remove and (?<cnt_notup>[\d]+) not upgraded./';
     $updates_result['sumcount'] = preg_match_all($updsum_filter, $updates_cmd, $updates_result['updsum_arr'], PREG_SET_ORDER);

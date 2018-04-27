@@ -82,6 +82,8 @@ if (!isset($_SESSION['username'])) {
                                                                 $updates_count = $aptupdates['count'];
                                                                 if ($updates_count == 0) {
                                                                     echo "<p>There are currently no packages that need updating.</p>";
+                                                                    $updates_summary = $aptupdates['updsum_arr'][0];
+                                                                    echo '<p>'.$updates_summary['cnt_upg'].' upgr, '.$updates_summary['cnt_new'].' new, '.$updates_summary['cnt_rem'].' rem,  '.$updates_summary['cnt_notup'].' not upgr.'."</p>\n";
                                                                 } else {
                                                                     echo "<p style=\"color:#273c75;\"><b>".$updates_count." package(s) are ready to be updated.</b><br/><a href=\"#\" onClick=\"pageLoad('packages');\">Go to Packages</a></p>";
                                                                 }
@@ -90,7 +92,7 @@ if (!isset($_SESSION['username'])) {
                                     if (strpos($c, 'no changes added to commit') !== false) {
                                         $ccount = preg_match_all('/modified:   (?<c_src>[\w\.\/]+)/', $c, $cmatch, PREG_SET_ORDER);
                                         echo '<p style="color:#e84118;"><b>You modified '.$ccount.' OpenRSD files.</b><br/>';
-                                        echo 'We cannot update this. Please reinstall!<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a></p>';
+                                        echo 'We will not be able to update. Please reinstall!<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a></p>';
                                     } elseif (strpos($c, 'behind') !== false) {
                                         echo '<p style="color:#4cd137;">An update for OpenRSD available!</p>';
                                     } elseif (strpos($c, 'up-to-date') !== false) {
