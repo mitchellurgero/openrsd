@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
     			<?php
                 $files1 = scandir("/etc/cron.daily");
                 foreach ($files1 as $file) {
-                    if ($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd") {
+                    if ($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "lighttpd" && $file != "apt" && $file != "apt-compat" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd") {
                         echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'daily\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
                     }
                 }
@@ -66,7 +66,7 @@ if (!isset($_SESSION['username'])) {
     			<?php
                 $files1 = scandir("/etc/cron.monthly");
                 foreach ($files1 as $file) {
-                    if ($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "apt" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd") {
+                    if ($file != ".." && $file != "." && $file != ".placeholder" && $file != "apache2" && $file != "lighttpd" && $file != "apt" && $file != "apt-compat" && $file != "aptitude" && $file != "bsdmainutils" && $file != "cracklib-runtime" && $file != "dpkg" && $file != "logrotate" && $file != "man-db" && $file != "ntp" && $file != "passwd") {
                         echo '<tr><td style="vertical-align: middle;">'.$file.'</td><td><button onClick="cronEdit(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-info">Edit Script</button>&nbsp;&nbsp;<button onClick="cronDelete(\''.$file.'\',\'monthly\')" class="btn btn-sm btn-raised btn-warning">Delete Script</button></td></tr>';
                     }
                 }
