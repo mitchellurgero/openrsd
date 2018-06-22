@@ -30,7 +30,7 @@ if (!isset($_SESSION['username'])) {
     				<?php
                     //Copied and modified from log.php :) why rewrite the wheel?? :D
                     $iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
-                    $log_files = getDirContents('/home/'.$iuser.'/ovpns');
+                    $log_files = OpenRSD::getDirContents('/home/'.$iuser.'/ovpns');
                     foreach ($log_files as $log) {
                         $f = explode("/", $log);
                         $file = end($f);
