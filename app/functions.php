@@ -107,7 +107,7 @@ class OpenRSD
     $adapters_result=array();
     $adapters_com = shell_exec("ip add show");
     $adapters_filter = '/inet (?<ip_addr>[0-9\.]+)\/[0-9]+ .*scope (host|global) (?<ip_dev>[a-z0-9]+)$/im';
-    $adapters_reslut['if_count'] = preg_match_all($adapters_filter, $adapters_com, $adapters_result['if_array'], PREG_SET_ORDER);
+    $adapters_result['if_count'] = preg_match_all($adapters_filter, $adapters_com, $adapters_result['if_array'], PREG_SET_ORDER);
     return $adapters_result;
 }
 
