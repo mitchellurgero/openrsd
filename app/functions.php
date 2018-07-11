@@ -102,6 +102,21 @@ class OpenRSD
     return $updates_result;
 }
 
+    public static function getPackageDistUpdates()
+{
+    $updates_result=array();
+    $updates_cmd = shell_exec("sudo LC_ALL=C apt-get --just-print dist-upgrade 2>&1");
+    $updates_filter = '/Inst (?<u_name>[\w\-\.\:\+]+) \[(?<u_installed>[\.\d\:\w\-\+\~]+)\] \((?<u_new>[\.\d\:\w\-\+\~]+)/';
+    $updates_result['count'] = preg_match_all($updates_filter, $updates_cmd, $updates_result['array'], PREG_SET_ORDER);
+    $installs_filter = '/Inst (?<i_name>[\w\-\.\:\+]+) \((?<i_new>[\.\d\:\w\-\+\~]+)/';
+    $updates_result['newcount'] = preg_match_all($installs_filter, $updates_cmd, $updates_result['instarray'], PREG_SET_ORDER);
+    $removes_filter = '/Remv (?<r_name>[\w\-\.\:\+]+) \[(?<r_installed>[\.\d\:\w\-\+\~]+)\] /';
+    $updates_result['rmcount'] = preg_match_all($removes_filter, $updates_cmd, $updates_result['rmarray'], PREG_SET_ORDER);
+    $updsum_filter = '/(?<cnt_upg>[\d]+) upgraded, (?<cnt_new>[\d]+) newly installed, (?<cnt_rem>[\d]+) to remove and (?<cnt_notup>[\d]+) not upgraded./';
+    $updates_result['sumcount'] = preg_match_all($updsum_filter, $updates_cmd, $updates_result['updsum_arr'], PREG_SET_ORDER);
+    return $updates_result;
+}
+
     public static function getNetworkInterfaces()
 {
     $adapters_result=array();
@@ -193,3 +208,4 @@ class QuickGit
         return $version;
     }
 }
+
