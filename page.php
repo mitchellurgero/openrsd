@@ -36,6 +36,9 @@ if (isset($_POST['page'])) {
         case "packages":
             packages();
             break;
+        case "packagesdist":
+            packagesdist(); //packages-dist.php
+            break;
         case "rpiconfig":
             rpiconfig();
             break;
@@ -100,6 +103,10 @@ function network()
 function packages()
 {
     include('pages/packages.php');
+}
+function packagesdist()
+{
+    include('pages/packages-dist.php');
 }
 function rpiconfig()
 {
