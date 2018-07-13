@@ -147,41 +147,199 @@ function capitalizeFirstLetter(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 function apt_update(){
-	load(true);
-	document.getElementById("pageContent").innerHTML = "Fetching updates, this may take some time, please wait....";
-	$.ajax({
-		method:'post',
-		url:'./app/packages.php',
-		data:{
-			type:'update'
-		},
-		success:function(result) {
-			document.getElementById("pageContent").innerHTML = result;
-			load(false);
-		}
-		}).fail(function(e) {
-			document.getElementById("pageContent").innerHTML = "Loading the page failed. Please try again.";
-			load(false);
-		});
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-info').removeClass('btn-info').addClass('btn-outline-info disabled');
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-warning').removeClass('btn-warning').addClass('btn-outline-warning disabled');
+    $('#pageContent > div.row > div.col-lg-12 > table.table').hide();
+    var contentrow = document.createElement('div'),
+        contentcol = document.createElement('div'),
+        contentpre = document.createElement('textarea');
+    var winheight = $( window ).height(),
+        navheight = $('nav.navbar.navbar-default').outerHeight(),
+        footnavheight = $('nav.navbar.navbar-inverse.navbar-fixed-bottom').outerHeight(),
+        navheadheight = $('#pageContent > div > div > h1.page-header').outerHeight() + 30,
+        viscontheight = ( winheight - (navheight + footnavheight + navheadheight) - 180 );
+        contentpre.setAttribute('id', 'updatestreamcnt');
+        contentpre.setAttribute('rows', '1');
+        contentpre.setAttribute('cols', '160');
+        contentpre.setAttribute('readonly', true);
+        contentpre.style.maxHeight = viscontheight + 'px';
+        contentpre.style.height = viscontheight + 'px';
+        contentrow.className = 'row';
+        contentcol.className = 'col-lg-12';
+        contentcol.appendChild(contentpre);
+        contentrow.appendChild(contentcol);
+        $('#pageContent').append(contentrow);
+    var pkgbutton = document.createElement('button');
+        pkgbutton.setAttribute('onClick','pageLoad(\'packages\');');
+        pkgbutton.innerHTML = 'reload Package Updates';
+        pkgbutton.className = 'btn btn-raised btn-success';
+    var lastResponseLength = false;
+    var ajaxRequest = $.ajax({
+        type: 'post',
+        url: './app/packages.php',
+        data:{
+            type:'updatestream'
+        },
+        xhrFields: {
+            onprogress: function(e)
+            {
+                var progressResponse;
+                var response = e.currentTarget.response;
+                if(lastResponseLength === false)
+                {
+                    progressResponse = response;
+                    lastResponseLength = response.length;
+                }
+                else
+                {
+                    progressResponse = response.substring(lastResponseLength);
+                    lastResponseLength = response.length;
+                }
+                $('#updatestreamcnt').val( $('#updatestreamcnt').val() + progressResponse);
+                contentpre.scrollTop = contentpre.scrollHeight;
+            }
+        }
+    });
+    ajaxRequest.done(function(data)
+    {
+        $('#updatestreamcnt').after(pkgbutton);
+        console.log('Response Complete');
+    });
+    ajaxRequest.fail(function(error){
+        $('#updatestreamcnt').after(pkgbutton);
+        console.log('Error: ', error);
+    });
+    console.log('Request Sent');
 }
 function apt_upgrade(){
-	load(true);
-	document.getElementById("pageContent").innerHTML = "Installing upgrades... Any errors will be output to the page. This will take some time, please wait...";
-	$.ajax({
-		method:'post',
-		url:'./app/packages.php',
-		data:{
-			type:'upgrade'
-		},
-		success:function(result) {
-			document.getElementById("pageContent").innerHTML = result;
-			load(false);
-		}
-		}).fail(function(e) {
-			document.getElementById("pageContent").innerHTML = "Due to the timeout configured on the server, or your browser, this request timed out. The upgrade is still running on the server though. SSH to check upgrade status is recommended.";
-			genModal("Error", "Due to the timeout configured on the server, or your browser, this request timed out. The upgrade is still running on the server though. SSH to check upgrade status is recommended.");
-			load(false);		
-		});
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-info').removeClass('btn-info').addClass('btn-outline-info disabled');
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-warning').removeClass('btn-warning').addClass('btn-outline-warning disabled');
+    $('#pageContent > div.row > div.col-lg-12 > table.table').hide();
+    var contentrow = document.createElement('div'),
+        contentcol = document.createElement('div'),
+        contentpre = document.createElement('textarea');
+    var winheight = $( window ).height(),
+        navheight = $('nav.navbar.navbar-default').outerHeight(),
+        footnavheight = $('nav.navbar.navbar-inverse.navbar-fixed-bottom').outerHeight(),
+        navheadheight = $('#pageContent > div > div > h1.page-header').outerHeight() + 30,
+        viscontheight = ( winheight - (navheight + footnavheight + navheadheight) - 180 );
+        contentpre.setAttribute('id', 'upgradestreamcnt');
+        contentpre.setAttribute('rows', '1');
+        contentpre.setAttribute('cols', '160');
+        contentpre.setAttribute('readonly', true);
+        contentpre.style.maxHeight = viscontheight + 'px';
+        contentpre.style.height = viscontheight + 'px';
+        contentrow.className = 'row';
+        contentcol.className = 'col-lg-12';
+        contentcol.appendChild(contentpre);
+        contentrow.appendChild(contentcol);
+        $('#pageContent').append(contentrow);
+    var pkgbutton = document.createElement('button');
+        pkgbutton.setAttribute('onClick','pageLoad(\'packages\');');
+        pkgbutton.innerHTML = 'reload Package Updates';
+        pkgbutton.className = 'btn btn-raised btn-success';
+    var lastResponseLength = false;
+    var ajaxRequest = $.ajax({
+        type: 'post',
+        url: './app/packages.php',
+        data:{
+            type:'upgradestream'
+        },
+        xhrFields: {
+            onprogress: function(e)
+            {
+                var progressResponse;
+                var response = e.currentTarget.response;
+                if(lastResponseLength === false)
+                {
+                    progressResponse = response;
+                    lastResponseLength = response.length;
+                }
+                else
+                {
+                    progressResponse = response.substring(lastResponseLength);
+                    lastResponseLength = response.length;
+                }
+                $('#upgradestreamcnt').val( $('#upgradestreamcnt').val() + progressResponse);
+                contentpre.scrollTop = contentpre.scrollHeight;
+            }
+        }
+    });
+    ajaxRequest.done(function(data)
+    {
+        $('#upgradestreamcnt').after(pkgbutton);
+        console.log('Response Complete');
+    });
+    ajaxRequest.fail(function(error){
+        $('#upgradestreamcnt').after(pkgbutton);
+        console.log('Error: ', error);
+    });
+    console.log('Request Sent');
+}
+function apt_distupgrade(){
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-info').removeClass('btn-info').addClass('btn-outline-info disabled');
+    $('#pageContent > div.row > div.col-lg-12 > h1 > small > button.btn.btn-raised.btn-danger').removeClass('btn-danger').addClass('btn-outline-danger disabled');
+    $('#pageContent > div.row > div.col-lg-12 > table.table').hide();
+    var contentrow = document.createElement('div'),
+        contentcol = document.createElement('div'),
+        contentpre = document.createElement('textarea');
+    var winheight = $( window ).height(),
+        navheight = $('nav.navbar.navbar-default').outerHeight(),
+        footnavheight = $('nav.navbar.navbar-inverse.navbar-fixed-bottom').outerHeight(),
+        navheadheight = $('#pageContent > div > div > h1.page-header').outerHeight() + 30,
+        viscontheight = ( winheight - (navheight + footnavheight + navheadheight) - 180 );
+        contentpre.setAttribute('id', 'upgradestreamcnt');
+        contentpre.setAttribute('rows', '1');
+        contentpre.setAttribute('cols', '160');
+        contentpre.setAttribute('readonly', true);
+        contentpre.style.maxHeight = viscontheight + 'px';
+        contentpre.style.height = viscontheight + 'px';
+        contentrow.className = 'row';
+        contentcol.className = 'col-lg-12';
+        contentcol.appendChild(contentpre);
+        contentrow.appendChild(contentcol);
+        $('#pageContent').append(contentrow);
+    var pkgbutton = document.createElement('button');
+        pkgbutton.setAttribute('onClick','pageLoad(\'packagesdist\');');
+        pkgbutton.innerHTML = 'reload Package Updates';
+        pkgbutton.className = 'btn btn-raised btn-success';
+    var lastResponseLength = false;
+    var ajaxRequest = $.ajax({
+        type: 'post',
+        url: './app/packages.php',
+        data:{
+            type:'distupgradestream'
+        },
+        xhrFields: {
+            onprogress: function(e)
+            {
+                var progressResponse;
+                var response = e.currentTarget.response;
+                if(lastResponseLength === false)
+                {
+                    progressResponse = response;
+                    lastResponseLength = response.length;
+                }
+                else
+                {
+                    progressResponse = response.substring(lastResponseLength);
+                    lastResponseLength = response.length;
+                }
+                $('#upgradestreamcnt').val( $('#upgradestreamcnt').val() + progressResponse);
+                contentpre.scrollTop = contentpre.scrollHeight;
+            }
+        }
+    });
+    ajaxRequest.done(function(data)
+    {
+        $('#upgradestreamcnt').after(pkgbutton);
+        console.log('Response Complete');
+    });
+    ajaxRequest.fail(function(error){
+        $('#upgradestreamcnt').after(pkgbutton);
+        console.log('Error: ', error);
+    });
+    console.log('Request Sent');
 }
 function serviceAction(name, type){
 	load(true);
@@ -199,7 +357,7 @@ function serviceAction(name, type){
 		}
 		}).fail(function(e) {
 			genModal("Error", "Due to the timeout configured on the server, or your browser, this request timed out. The command is still running on the server though. SSH to check upgrade status is recommended.");
-			load(false);		
+			load(false);
 		});
 }
 function configSave(){

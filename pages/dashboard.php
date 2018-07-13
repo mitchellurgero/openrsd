@@ -70,7 +70,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
                 <div class="col-lg-4">
-                	<div class="row">
+                	<div class="row col-lg-12">
                 		<div class="panel panel-default">
                                 <div class="panel-heading h3">
 	                            Updates
@@ -84,6 +84,7 @@ if (!isset($_SESSION['username'])) {
                                                                     echo "<p>There are currently no packages that need updating.</p>";
                                                                     $updates_summary = $aptupdates['updsum_arr'][0];
                                                                     echo '<p>'.$updates_summary['cnt_upg'].' upgr, '.$updates_summary['cnt_new'].' new, '.$updates_summary['cnt_rem'].' rem,  '.$updates_summary['cnt_notup'].' not upgr.'."</p>\n";
+                                                                    if ($updates_summary['cnt_notup'] != 0) { echo "<p>See <a href=\"#\" onClick=\"pageLoad('packagesdist');\">Dist-Upgrades</a> for the cause of not upgraded packages</p>\n"; }
                                                                 } else {
                                                                     echo "<p style=\"color:#273c75;\"><b>".$updates_count." package(s) are ready to be updated.</b><br/><a href=\"#\" onClick=\"pageLoad('packages');\">Go to Packages</a></p>";
                                                                 }
@@ -109,7 +110,7 @@ if (!isset($_SESSION['username'])) {
 	                        </div>
 	                    </div>
                 	</div>
-                	<div class="row">
+                	<div class="row col-lg-12">
                 		<div class="panel panel-default">
                                 <div class="panel-heading h3">
 	                            Logged in users
