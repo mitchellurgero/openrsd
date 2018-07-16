@@ -3,6 +3,16 @@ if (!isset($_SESSION)) {
     session_start();
 };
 include("app/auth.php");
+//Include Plugin system
+require_once(__DIR__."/classhelper.php"); //To assist in pulling in plugins
+require_once(__DIR__."/Events.php"); //Event system
+require_once(__DIR__."/Plugin.php"); //Plugin system-ish
+function addPlugin($name, array $attrs=array()){
+	return ClassHelper::addPlugin($name, $attrs);
+}
+if(file_exists(__DIR__."/loadPlugins.php")){
+	require_once(__DIR__."/loadPlugins.php");
+}
 //Always push out header...
 $ver = new QuickGit();
 define("OPENRSD", true);

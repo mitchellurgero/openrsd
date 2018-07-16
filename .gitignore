@@ -2,3 +2,4 @@ app/auth_log
 app/tmp
 null
 app/scr_up
+loadPlugins.php

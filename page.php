@@ -1,8 +1,19 @@
 <?php
 define("OPENRSD", true);
-    define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
+define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
 
 require_once('app/functions.php');
+//Include Plugin system
+require_once(__DIR__."/classhelper.php"); //To assist in pulling in plugins
+require_once(__DIR__."/Events.php"); //Event system
+require_once(__DIR__."/Plugin.php"); //Plugin system-ish
+function addPlugin($name, array $attrs=array()){
+	return ClassHelper::addPlugin($name, $attrs);
+}
+if(file_exists(__DIR__."/loadPlugins.php")){
+	require_once(__DIR__."/loadPlugins.php");
+}
+
 if (!isset($_SESSION)) {
     session_start();
 };
