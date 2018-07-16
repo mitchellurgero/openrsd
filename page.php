@@ -1,4 +1,9 @@
 <?php
+//Basic Dbug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 define("OPENRSD", true);
 define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
 
@@ -25,6 +30,7 @@ define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
 
 if (isset($_POST['page'])) {
+	Event::handle('PageLoad',array($_SESSION,&$_POST));
     switch ($_POST['page']) {
         case "dashboard":
             dashboard();

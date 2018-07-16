@@ -20,11 +20,12 @@ class ClassHelper {
 	            $files = array("{$pluginclass}.php");
 	
 	            foreach ($files as $file) {
-	                $fullpath = __DIR__.'/../plugins/'.$name.'/'.$file;
+	                $fullpath = __DIR__.'/plugins/'.$name.'/'.$file;
 	                if (@file_exists($fullpath)) {
 	                    include_once($fullpath);
 	                    break;
 	                } else{
+	                	//echo "Failed to load ".$file."<br>";
 	                	return false;
 	                }
 	            }
