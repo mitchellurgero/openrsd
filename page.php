@@ -90,6 +90,7 @@ if (isset($_POST['page'])) {
             echo "404 - Page not found!";
             break;
     }
+    Event::handle('PageLoadEnd',array($_SESSION,&$_POST));
 }
 
 //Simple page functions..

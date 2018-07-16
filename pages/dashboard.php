@@ -166,3 +166,4 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
 			</div>
+			<?php Event::handle('DashboardEnd',array($_SESSION)); ?>

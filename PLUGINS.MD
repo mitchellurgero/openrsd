@@ -22,9 +22,33 @@ Using the Plugin class, you can modify many parts of OpenRSD. This part of the d
 
 Below are the currently available function calls available to plugins
 
-#### onPageLoad($_SESSION, &$_POST)
+#### onPageLoad($sess, &$post)
 
 This function is called on *every* page load.
+
+#### onPageLoadEnd($sess, &$post)
+
+This function is called when a page is done loading.
+
+#### onDashboardEnd($sess)
+
+This function is called when the dashboard is done loading, perfect for adding custom panel blocks, or other information to the Dashboard page specifically.
+
+#### onLoginStart($sess, &$post)
+
+This function is called when a user attempts to login.
+
+#### onLoginError($sess, &$post)
+
+This function is called whenever there is an error logging in (Bad password, Error in backend, etc). (Disable accounts for login, ban IP's, etc.)
+
+#### onLoginSuccess($sess, &$post)
+
+This function is called whenever a login is successful.
+
+#### onLoginEnd($sess, &$post)
+
+This function is called when login is finished (Error or success).
 
 ### Example Plugin
 
