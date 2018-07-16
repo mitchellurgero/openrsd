@@ -16,5 +16,18 @@ class ExamplePlugin extends Plugin{
 		
 		return true; //So we continue processing plugins
 	}
+	public function onCustomPageLinks($sess){
+		echo '<li><a href="#" onclick="pageLoad(\'example\');"><i class="fa fa-check"></i> Example Custom Page</a></li>';
+		return true;
+	}
+	
+	public function onCustomPage($sess,&$post){
+		
+		//Be careful not to override system pages.
+		if($post['page'] == "example"){
+			echo "<h3>This is an example custom page!</h3>";
+		}
+		return true;
+	}
 }
 ?>

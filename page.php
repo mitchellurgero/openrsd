@@ -87,7 +87,12 @@ if (isset($_POST['page'])) {
             webproxy();
             break;
         default:
-            echo "404 - Page not found!";
+        	if(Event::handle('CustomPage',array($_SESSION,&$_POST)) == "CUSTOM"){
+        		//Custom [page was actually called here.]
+        	} else {
+        		echo "404 - Page not found!";
+        	}
+            
             break;
     }
     Event::handle('PageLoadEnd',array($_SESSION,&$_POST));

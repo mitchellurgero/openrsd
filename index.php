@@ -121,7 +121,7 @@ function head()
             } ?>
    		<!-- ORSD JS Functions -->
    		<script src="app/functions-orsd.js"></script>
-
+		<?php Event::handle('HeadEnd',array($_SESSION)); ?>
 	</head>
 
 	<?php
@@ -232,6 +232,13 @@ function body()
       				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
                                 <?php
     } ?>
+    
+    				<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Custom Pages</a>
+        				<ul class="dropdown-menu">
+        					<?php Event::handle('CustomPageLinks',array($_SESSION,&$_POST)); ?>
+        				</ul>
+      				</li>
                     <li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-power-off fa-fw"></i> Power Options</a>
         				<ul class="dropdown-menu">
@@ -330,6 +337,7 @@ function footer()
             });
 
 		</script>
+		<?php Event::handle('FootEnd',array($_SESSION)); ?>
 	</html>
 	<?php
 }

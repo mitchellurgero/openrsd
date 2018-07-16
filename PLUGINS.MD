@@ -50,6 +50,22 @@ This function is called whenever a login is successful.
 
 This function is called when login is finished (Error or success).
 
+#### onHeadEnd($sess)
+
+This function is called at the end of the `<head>` tag. Useful for adding custom CSS (Like themes!)
+
+#### onFootEnd($sess)
+
+This function is called at the end of the footer (End of `<body>` tag). Useful for adding custom JavaScript.
+
+#### onCustomPage($sess, &$post)
+
+This function is called when a system page is not being called. Allows for custom pages to be made with plugins instead of being added to the pages folder. This function MUST return `CUSTOM` or it will fail to load and will report a `404`.
+
+#### onCustomPageLinks($sess)
+
+This function can add links to the top menu under the `Custom Pages` drop down.
+
 ### Example Plugin
 
 This example plugin creates an "alert" at the top of each page load.
