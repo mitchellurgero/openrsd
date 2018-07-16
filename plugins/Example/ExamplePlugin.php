@@ -12,7 +12,7 @@ class ExamplePlugin extends Plugin{
 	}
 	public function onPageLoad($s, &$p){
 		
-		echo '<div class="alert alert-success">This shoud be displayed via the Exmaple Plugin!</div>';
+		echo '<div class="alert alert-success">This should be displayed via the Exmaple Plugin!</div>';
 		
 		return true; //So we continue processing plugins
 	}
