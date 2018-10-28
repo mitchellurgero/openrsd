@@ -11,8 +11,15 @@ After months of testing, OpenRSD seems to be stable. Please put issues on GitHub
 <ol>
 <li>This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.</li>
 <li>Once Raspbian (Or Raspbian based OS) is installed, run(Note: The following is just the BARE MINIMUM to get OpenRSD to run properly, PiVPN and Samba must be installed separately!):
+For Raspian Stretch users, you will need to 
+<p><code>sudo nano /etc/apt/sources.list</code></p>
+  and add
+  <p><code> deb http://mirrordirector.raspbian.org/raspbian jessie main contrib non-free rpi</code><p>
+  then
 <p><code>sudo apt-get update &amp;&amp; sudo apt-get install git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin shellinabox</code></p>
-In case you have Raspbian Stretch you could set up <b>lighttpd and php7.0-fpm</b> as the BARE MINIMUM:
+after this re-open sources.list and remove the line you added then <p><code>sudo apt-get update </code><p>
+  
+you need to ALSO set up <b>lighttpd and php7.0-fpm</b> as the BARE MINIMUM:
 <p><code>
 sudo apt-get update && sudo apt-get upgrade -y && 
 sudo apt-get -y install git lighttpd php7.0 php7.0-fpm php7.0-curl php7.0-gd php7.0-intl php7.0-mbstring php7.0-mcrypt php7.0-readline php7.0-xml php7.0-zip php-pear expect geoip-bin shellinabox
