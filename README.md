@@ -22,7 +22,7 @@ sudo apt-get -y install git lighttpd php7.0 php7.0-fpm php7.0-curl php7.0-gd php
 <ol>
 <li>
 <p><b>PLEASE KEEP IN MIND THAT ONCE APACHE IS RUNNING AS A USER WITH SUDO RIGHTS, IT SHOULD NOT BE ACCESSIBLE VIA THE INTERNET TO KEEP SECURITY AS BEST AS POSSIBLE. AND ALTHOUGH NOT AS BIG A DEAL AS BEING INTERNET ACCESSIBLE, PLEASE ALSO NOT THAT THIS CAN STILL CAUSE ISSUES ON LAN. (Say as an example an attacker got on your network, they could try and access the Pi.)</b></p>
-<p>Once that is done, run &quot;sudo nano /etc/apache2/apache2.conf&quot; Edit the User and Group to the user/group pi, it should look like this.</p>
+<p>Once that is done, run &quot;sudo nano /etc/apache2/apache2.conf&quot; Edit the User and Group to the user/group pi, it should look like this. (Changing apache2 config does not need to be done if using Lighttpd or nginx!)</p>
 <pre><code>
 ...Some Config stuff...
 User pi
