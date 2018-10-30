@@ -4,7 +4,8 @@
 OpenRSD or ORSD is a set of PHP scripts, JS, HTML, and BootStrap CSS to create a beautiful, easy to use, responsive Dashboard to manage Raspbian based distros for the RPi2-3.
 
 After months of testing, OpenRSD seems to be stable. Please put issues on GitHub if you find any bugs.
-
+<br><br>
+<p><b>PLEASE KEEP IN MIND THAT ONCE APACHE (or other webserver) IS RUNNING AS A USER WITH SUDO RIGHTS, IT SHOULD NOT BE ACCESSIBLE VIA THE INTERNET TO KEEP SECURITY AS BEST AS POSSIBLE. AND ALTHOUGH NOT AS BIG A DEAL AS BEING INTERNET ACCESSIBLE, PLEASE ALSO NOTE THAT THIS CAN STILL CAUSE ISSUES ON LAN. (Say as an example an attacker got on your network, they could try and access the Pi.)</b></p>
 
 <h3>OpenRSD How to install &amp; Use</h3>
 <p>Installing OpenRSD is pretty simple to do. Just follow the below instructions:</p>
@@ -21,8 +22,7 @@ sudo apt-get -y install git lighttpd php7.0 php7.0-fpm php7.0-curl php7.0-gd php
 </ol>
 <ol>
 <li>
-<p><b>PLEASE KEEP IN MIND THAT ONCE APACHE IS RUNNING AS A USER WITH SUDO RIGHTS, IT SHOULD NOT BE ACCESSIBLE VIA THE INTERNET TO KEEP SECURITY AS BEST AS POSSIBLE. AND ALTHOUGH NOT AS BIG A DEAL AS BEING INTERNET ACCESSIBLE, PLEASE ALSO NOT THAT THIS CAN STILL CAUSE ISSUES ON LAN. (Say as an example an attacker got on your network, they could try and access the Pi.)</b></p>
-<p>Once that is done, run &quot;sudo nano /etc/apache2/apache2.conf&quot; Edit the User and Group to the user/group pi, it should look like this. (Changing apache2 config does not need to be done if using Lighttpd or nginx!)</p>
+<p>Once that is done, run &quot;sudo nano /etc/apache2/apache2.conf&quot; Edit the User and Group to the user/group pi, it should look like this. <b>(Changing apache2 config does not need to be done if using Lighttpd or nginx!)</b></p>
 <pre><code>
 ...Some Config stuff...
 User pi
