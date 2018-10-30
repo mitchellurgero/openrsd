@@ -39,6 +39,7 @@ sudo service lighttpd force-reload
 </li>
 <li>Then run: <code>sudo sed -i -e "s/SHELLINABOX_ARGS=.*/SHELLINABOX_ARGS=\"--no-beep -t\"/g" /etc/default/shellinabox</code></li>
 <li>Then run: <code>sudo service apache2 restart</code> or <code>sudo service lighttpd force-reload</code></li>
+<li>Then run: <code>sudo chown -R pi:pi /var/www/html </code></li>
 <li>Then run: <code>cd /var/www/html</code></li>
 <li>Then run: <code>rm -f index.html</code> *Optional!</li>
 <li>Then run: <code>git clone https://github.com/mitchellurgero/openrsd</code></li>
