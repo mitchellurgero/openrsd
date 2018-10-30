@@ -1,8 +1,23 @@
 <?php
+//Basic Dbug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION)) {
     session_start();
 };
 include("app/auth.php");
+//Include Plugin system
+require_once(__DIR__."/classhelper.php"); //To assist in pulling in plugins
+require_once(__DIR__."/Events.php"); //Event system
+require_once(__DIR__."/Plugin.php"); //Plugin system-ish
+function addPlugin($name, array $attrs=array()){
+	return ClassHelper::addPlugin($name, $attrs);
+}
+if(file_exists(__DIR__."/loadPlugins.php")){
+	require_once(__DIR__."/loadPlugins.php");
+}
 //Always push out header...
 $ver = new QuickGit();
 define("OPENRSD", true);
@@ -16,8 +31,10 @@ head();
 //Check for login or dashboard...
 if (isset($_POST['username']) && isset($_POST['password'])) {
     //Attempt to login...
+    Event::handle('LoginStart',array($_SESSION,&$_POST));
     if (file_exists("app/blocked_ip/".$_SERVER['REMOTE_ADDR'])) {
         $_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
+        Event::handle('LoginError',array($_SESSION,&$_POST));
     } else {
         $u = $_POST['username'];
         $p = $_POST['password'];
@@ -26,6 +43,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             session_regenerate_id(true);
             $_SESSION['username'] = $u;
             $_SESSION['q'] = $p;
+            Event::handle('LoginSuccess',array($_SESSION,&$_POST));
         } else {
             // Always regenerate a session ID (SID) when elevating privileges
             session_regenerate_id(true);
@@ -34,12 +52,15 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             }
             $_SESSION['attempts'] = $_SESSION['attempts']  + 1;
             $_SESSION['loginError'] = "Username or password is incorrect.";
+            Event::handle('LoginError',array($_SESSION,&$_POST));
             if ($_SESSION['attempts'] >= 5) {
                 file_put_contents("app/blocked_ip/".$_SERVER['REMOTE_ADDR'], "");
                 $_SESSION['loginError'] = "Too many login attempts, please contact the system administrator.";
+                Event::handle('LoginError',array($_SESSION,&$_POST));
             }
         }
     }
+    Event::handle('LoginEnd',array($_SESSION,&$_POST));
 }
 
 if (!isset($_SESSION['username'])) {
@@ -100,7 +121,7 @@ function head()
             } ?>
    		<!-- ORSD JS Functions -->
    		<script src="app/functions-orsd.js"></script>
-
+		<?php Event::handle('HeadEnd',array($_SESSION)); ?>
 	</head>
 
 	<?php
@@ -211,6 +232,13 @@ function body()
       				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
                                 <?php
     } ?>
+    
+    				<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Custom Pages</a>
+        				<ul class="dropdown-menu">
+        					<?php Event::handle('CustomPageLinks',array($_SESSION,&$_POST)); ?>
+        				</ul>
+      				</li>
                     <li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-power-off fa-fw"></i> Power Options</a>
         				<ul class="dropdown-menu">
@@ -309,6 +337,7 @@ function footer()
             });
 
 		</script>
+		<?php Event::handle('FootEnd',array($_SESSION)); ?>
 	</html>
 	<?php
 }

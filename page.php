@@ -1,8 +1,24 @@
 <?php
+//Basic Dbug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 define("OPENRSD", true);
-    define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
+define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
 
 require_once('app/functions.php');
+//Include Plugin system
+require_once(__DIR__."/classhelper.php"); //To assist in pulling in plugins
+require_once(__DIR__."/Events.php"); //Event system
+require_once(__DIR__."/Plugin.php"); //Plugin system-ish
+function addPlugin($name, array $attrs=array()){
+	return ClassHelper::addPlugin($name, $attrs);
+}
+if(file_exists(__DIR__."/loadPlugins.php")){
+	require_once(__DIR__."/loadPlugins.php");
+}
+
 if (!isset($_SESSION)) {
     session_start();
 };
@@ -14,6 +30,7 @@ define("VERSHORT", $ver->version()['short']);
 define("VERLONG", $ver->version()['full']);
 
 if (isset($_POST['page'])) {
+	Event::handle('PageLoad',array($_SESSION,&$_POST));
     switch ($_POST['page']) {
         case "dashboard":
             dashboard();
@@ -70,9 +87,15 @@ if (isset($_POST['page'])) {
             webproxy();
             break;
         default:
-            echo "404 - Page not found!";
+        	if(Event::handle('CustomPage',array($_SESSION,&$_POST)) == "CUSTOM"){
+        		//Custom [page was actually called here.]
+        	} else {
+        		echo "404 - Page not found!";
+        	}
+            
             break;
     }
+    Event::handle('PageLoadEnd',array($_SESSION,&$_POST));
 }
 
 //Simple page functions..
