@@ -15,12 +15,12 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
 1.  This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.
 2.  Once Raspbian (Or Raspbian based OS) is installed, run(Note: The following is just the BARE MINIMUM to get OpenRSD to run properly, PiVPN and Samba must be installed separately!):
     ```
-    sudo apt-get update && sudo apt-get install git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin shellinabox
+    sudo apt-get update && sudo apt-get install git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin shellinabox lsof
     ```
 
     In case you have **Raspbian Stretch** you have to set up **lighttpd and php7.0-fpm** as the BARE MINIMUM:
     ```
-    sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get -y install git lighttpd php7.0 php7.0-fpm php7.0-curl php7.0-gd php7.0-intl php7.0-mbstring php7.0-mcrypt php7.0-readline php7.0-xml php7.0-zip php-pear expect geoip-bin shellinabox`
+    sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get -y install git lighttpd php7.0 php7.0-fpm php7.0-curl php7.0-gd php7.0-intl php7.0-mbstring php7.0-mcrypt php7.0-readline php7.0-xml php7.0-zip php-pear expect geoip-bin shellinabox lsof
     ```
 
 3.  Once that is done, run "sudo nano /etc/apache2/apache2.conf" Edit the User and Group to the user/group pi, it should look like this. **(Changing apache2 config does not need to be done if using Lighttpd or nginx!)**
