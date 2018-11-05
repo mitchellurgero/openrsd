@@ -36,7 +36,7 @@ function updatestream()
     );
     $cwd = '/tmp';
     $env = array('PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'SHELL' => '/bin/bash', 'DEBIAN_FRONTEND' => 'noninteractive');
-    $ourcmd = "sudo LC_ALL=C apt-get update";
+    $ourcmd = "sudo LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Options::=--force-confdef update";
     $process = proc_open($ourcmd, $descriptorspec, $pipes, $cwd, $env);
     if (is_resource($process)) {
         $unblockstdin = stream_set_blocking( $pipes[0] , false );
@@ -86,7 +86,7 @@ function upgradestream()
     $cwd = '/tmp';
     $env = array('PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'SHELL' => '/bin/bash', 'DEBIAN_FRONTEND' => 'noninteractive');
 //    $ourcmd = "sudo LC_ALL=C apt-get -s -y upgrade";
-    $ourcmd = "sudo LC_ALL=C apt-get -y upgrade";
+    $ourcmd = "sudo LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Options::=--force-confdef -y upgrade";
     $process = proc_open($ourcmd, $descriptorspec, $pipes, $cwd, $env);
     if (is_resource($process)) {
         $unblockstdin = stream_set_blocking( $pipes[0] , false );
@@ -135,7 +135,7 @@ function distupgradestream()
     $cwd = '/tmp';
     $env = array('PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'SHELL' => '/bin/bash', 'DEBIAN_FRONTEND' => 'noninteractive');
 //    $ourcmd = "sudo LC_ALL=C apt-get -s dist-upgrade";
-    $ourcmd = "sudo LC_ALL=C apt-get -y dist-upgrade";
+    $ourcmd = "sudo LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Options::=--force-confdef -y dist-upgrade";
     $process = proc_open($ourcmd, $descriptorspec, $pipes, $cwd, $env);
     if (is_resource($process)) {
         $unblockstdin = stream_set_blocking( $pipes[0] , false );
