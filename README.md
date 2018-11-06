@@ -41,7 +41,7 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
         EOF
 
         echo "www-data ALL=(ALL) NOPASSWD: ALL" | sudo tee --append /etc/sudoers.d/010_pi-nopasswd
-        sudo lighttpd-disable-mod fastcgi-php
+        sudo lighttpd-enable-mod fastcgi
         sudo lighttpd-enable-mod fpm-php
         sudo service php7.0-fpm force-reload
         sudo service lighttpd force-reload
