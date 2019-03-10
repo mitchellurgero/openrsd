@@ -13,6 +13,7 @@ After months of testing, OpenRSD seems to be stable. Please put issues on GitHub
 Installing OpenRSD is pretty simple to do. Just follow the below instructions:
 
 1.  This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.
+
 2.  Once Raspbian (Or Raspbian based OS) is installed, run(Note: The following is just the BARE MINIMUM to get OpenRSD to run properly, PiVPN and Samba must be installed separately!):
     ```
     sudo apt-get update && sudo apt-get install lsof git apache2 php5 libapache2-mod-php5 php5-mcrypt expect geoip-bin shellinabox needrestart
@@ -46,24 +47,26 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
         sudo service php7.0-fpm force-reload
         sudo service lighttpd force-reload
 
-4.  Then run: `sudo sed -i -e "s/SHELLINABOX_ARGS=.*/SHELLINABOX_ARGS=\"--no-beep -t\"/g" /etc/default/shellinabox`
+4.  Then to **disable the debian default forced SSL** run: `sudo sed -i -e "s/SHELLINABOX_ARGS=.*/SHELLINABOX_ARGS=\"--no-beep -t\"/g" /etc/default/shellinabox`
+
 5.  Then run: `sudo service apache2 restart` or 
     For **Raspbian Stretch** run: `sudo service lighttpd force-reload`
 
 6.  Check that the webserver is listening on port 80 with:
-`lsof -i TCP:80`
+`sudo lsof -i TCP:80`
 > **You should see for apache2 server similar like this:**
->COMMAND   PID     USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
->apache2  PIDNo     root    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
->apache2  PIDNo pi    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
->apache2 PIDNo pi    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> COMMAND   PID     USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+> apache2  PIDNo     root    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> apache2  PIDNo pi    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> apache2 PIDNo pi    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
 >
 > **For Raspbian Stretch with lighttpd server you should see similar like this:**
->COMMAND   PID     USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
->lighttpd  PIDNo     root    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
->lighttpd  PIDNo www-data    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
->lighttpd PIDNo www-data    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> COMMAND   PID     USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+> lighttpd  PIDNo     root    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> lighttpd  PIDNo www-data    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
+> lighttpd PIDNo www-data    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
 >
+
 7.  Then run: `cd /var/www/html`
 8.  **Optionally** run: `sudo rm -f index.html`
 9.  To clone the OpenRSD github repository to **/var/www/html/openrsd** now run:
