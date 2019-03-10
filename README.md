@@ -51,7 +51,7 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
     For **Raspbian Stretch** run: `sudo service lighttpd force-reload`
 
 6.  Check that the webserver is listening on port 80 with:
-`lsof -i TCP:80`
+`sudo lsof -i TCP:80`
 > **You should see for apache2 server similar like this:**
 >COMMAND   PID     USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
 >apache2  PIDNo     root    8u  IPv6 85141890      0t0  TCP \*:http (LISTEN)
