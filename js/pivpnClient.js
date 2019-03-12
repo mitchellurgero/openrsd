@@ -37,6 +37,5 @@ function AddTable(UserName, IP_wan, ip_assign, since)
     Headstd.append(iplanTD);
     Headstd.append(sinceTD);
 
-    console.log(final);
     document.getElementById("tableBody").appendChild(Headstd);
 }
