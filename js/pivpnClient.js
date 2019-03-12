@@ -10,7 +10,7 @@ function CreateClientsTable()
     for(var i = 0;i < shellLines.length;i++)
     {
         console.log(shellLines[i]);
-        if(shellLines[i].contains("CLIENT_LIST"))
+        if(shellLines[i].includes("CLIENT_LIST"))
         {
             AddTable(shellLine[1], shellLine[2], shellLine[3], shellLine[6]);
             console.log(shellLine[1]);
