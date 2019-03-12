@@ -20,10 +20,23 @@ function CreateClientsTable()
 
 function AddTable(UserName, IP_wan, ip_assign, since)
 {
-    var Headstd = "<tr>{line}</tr>";
-    var Linestd = "<td>{user}</td><td>{IPwan}</td><td>{IPlan}</td><td>{since}</td>";
-    Linestd = Linestd.replace("{user}", UserName).replace("{IPwan}", IP_wan).replace("{IPlan}", ip_assign).replace("{since}", since);
-    final = Headstd.replace("{line}", Linestd);
+    var Headstd = document.createElement("tr");
+    var userTD = document.createElement("td");
+    var ipwanTD = document.createElement("td");
+    var iplanTD = document.createElement("td");
+    var sinceTD = document.createElement("td");
+
+    userTD.innerHTML = UserName;
+    ipwanTD.innerHTML = IP_wan;
+    iplanTD.innerHTML = ip_assign;
+    sinceTD.innerHTML = since;
+    //Linestd = Linestd.replace("{user}", UserName).replace("{IPwan}", IP_wan).replace("{IPlan}", ip_assign).replace("{since}", since);
+    //final = Headstd.replace("{line}", Linestd);
+    Headstd.append(userTD);
+    Headstd.append(ipwanTD);
+    Headstd.append(iplanTD);
+    Headstd.append(sinceTD);
+
     console.log(final);
-    document.getElementById("tableBody").InnerHTML += final;
+    document.getElementById("tableBody").appendChild(Headstd);
 }
