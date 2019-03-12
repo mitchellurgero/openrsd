@@ -228,11 +228,17 @@ function body()
         				</ul>
       				</li>
                                 <?php if ($have_pivpn === true) {
-        ?>
-      				<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
+		?>
+					<li class="dropdown">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;PiVPN</a>
+        				<ul class="dropdown-menu">
+							<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
+                        	<li><a href="#" onclick="pageLoad('cron');"><i class="fa fa-repeat fa-fw"></i> PiVPN Clients</a></li>
+        				</ul>
+      				</li>
+      				
                                 <?php
     } ?>
-    
     				<li class="dropdown">
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;Custom Pages</a>
         				<ul class="dropdown-menu">
