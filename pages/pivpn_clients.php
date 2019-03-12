@@ -25,12 +25,14 @@ if (!isset($_SESSION['username'])) {
     				<th>OpenVPN Connected Clients</th>
                 </thead>
                 <div id="resultClients"><?php echo '<!--'.shell_exec("sudo cat /var/log/openvpn-status.log").'-->'; ?></div>
-                <tr>
-                    <th>User</th>
-                    <th>IP WAN</th>
-                    <th>IP Lan</th>
-                    <th>Connect time</th>
-                </tr>
+                <tbody id="tableBody">
+                    <tr>
+                        <th>User</th>
+                        <th>IP WAN</th>
+                        <th>IP Lan</th>
+                        <th>Connect time</th>
+                    </tr>
+                </tbody>
 			</table><br>
 	    </div>
     </div>
