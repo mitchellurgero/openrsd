@@ -11,7 +11,7 @@ function CreateClientsTable()
     for(var i = 0;i < shellLines.length;i++)
     {
         console.log(shellLines[i]);
-        shellTabs = shellLines.split('\t')
+        shellTabs = shellLines[i].split('\t')
         for(var i = 0;i < shellTabs.length;i++)
         {   
             if(shellTabs[i].includes("CLIENT_LIST"))
