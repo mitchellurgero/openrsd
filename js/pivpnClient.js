@@ -1,6 +1,6 @@
 function CreateClientsTable()
 {
-    var shellReturn = Document.getElementById("resultClients");
+    var shellReturn = document.getElementById("resultClients");
     console.log(shellReturn);
     shellText = shellReturn.innerHTML.replace("<div id=\"resultClients\">", "").replace("</div>", "").replace("<!--", "").replace("-->");
     shellText = shellText.substring(str.indexOf("Username	Client ID	Peer ID"));
