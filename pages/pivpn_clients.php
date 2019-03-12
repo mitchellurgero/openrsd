@@ -28,6 +28,7 @@ if (!isset($_SESSION['username'])) {
 			</table><br>
 	    </div>
     </div>
+    <button type="button" onclick="CreateClientsTable()">Testar</button> 
     <div class="row">
 	<div class="col-lg-12">
 
