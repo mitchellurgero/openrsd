@@ -77,6 +77,9 @@ if (isset($_POST['page'])) {
         case "PiVPN":
             openvpn();
             break;
+        case "PiVPNClients":
+            pivpn_clients();
+            break;
         case "Samba":
             samba();
             break;
@@ -158,6 +161,10 @@ function users()
 function openvpn()
 {
     include('pages/openvpn.php');
+}
+function pivpn_clients()
+{
+    include('pages/pivpn_clients.php');
 }
 function samba()
 {
