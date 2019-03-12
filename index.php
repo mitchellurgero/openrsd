@@ -307,7 +307,9 @@ function body()
     	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
     	<!-- Bootstrap Core JavaScript -->
     	<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    	<script src="js/material.js"></script>
+		<script src="js/material.js"></script>
+		<!--PiVPN-->
+		<script src="js/pivpnClient.js"></script>
 	    <script>$.material.init();</script>
 	    <script>
 	    	$(".rotate").click(function(){
