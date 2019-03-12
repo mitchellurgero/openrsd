@@ -3,7 +3,7 @@ function CreateClientsTable()
     var shellReturn = document.getElementById("resultClients");
     console.log(shellReturn);
     shellText = shellReturn.innerHTML.replace("<div id=\"resultClients\">", "").replace("</div>", "").replace("<!--", "").replace("-->");
-    shellText = shellText.substring(str.indexOf("Username	Client ID	Peer ID"));
+    shellText = shellText.substring(shellText.indexOf("Username	Client ID	Peer ID"));
     console.log(shellText);
 
     var shellLines = $('textarea').val().split('\n');
