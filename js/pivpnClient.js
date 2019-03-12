@@ -11,13 +11,17 @@ function CreateClientsTable()
     for(var i = 0;i < shellLines.length;i++)
     {
         console.log(shellLines[i]);
-        if(shellLines[i].includes("CLIENT_LIST"))
-        {
-            AddTable(shellLines[1], shellLines[2], shellLines[3], shellLines[6]);
-            console.log(shellLines[1]);
-            console.log(shellLines[2]);
-            console.log(shellLines[3]);
-            console.log(shellLines[6]);
+        shellTabs = shellLines.split('\t')
+        for(var i = 0;i < shellTabs.length;i++)
+        {   
+            if(shellTabs[i].includes("CLIENT_LIST"))
+            {
+                AddTable(shellTabs[1], shellTabs[2], shellTabs[3], shellTabs[6]);
+                console.log(shellTabs[1]);
+                console.log(shellTabs[2]);
+                console.log(shellTabs[3]);
+                console.log(shellTabs[6]);
+            }
         }
     }
 }
