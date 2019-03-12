@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
 			</table><br>
 	    </div>
     </div>
-    <script type="text/javascript">CreateClientsTable()</script> 
+    <script type="text/javascript">CreateClientsTable(); console.log("funcionou");</script> 
     <div class="row">
 	<div class="col-lg-12">
 
