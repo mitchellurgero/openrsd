@@ -6,7 +6,7 @@ function CreateClientsTable()
     shellText = shellText.substring(shellText.indexOf("Username	Client ID	Peer ID"));
     console.log(shellText);
 
-    var shellLines = $('textarea').val().split('\n');
+    var shellLines = $(shellText).val().split('\n');
     for(var i = 0;i < shellLines.length;i++)
     {
         console.log(shellLines[i]);
