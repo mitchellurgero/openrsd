@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 		<br />
     </div>
     <div class="row">
-    	<div class="col-lg-6">
+    	<div class="col-lg-12">
     		<table class="table" id="ConnClients">
     			<thead>
     				<th>OpenVPN Connected Clients</th>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
 			</table><br>
 	    </div>
     </div>
-    <button type="button" onclick="CreateClientsTable()">Testar</button> 
+    <script type="text/javascript">CreateClientsTable()</script> 
     <div class="row">
 	<div class="col-lg-12">
 
