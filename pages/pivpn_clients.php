@@ -20,30 +20,12 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="row">
     	<div class="col-lg-6">
-    		<table class="table">
+    		<table class="table" id="ConnClients">
     			<thead>
     				<th>OpenVPN Connected Clients</th>
-    			</thead>
-    			<tbody>
-    				<?php
-                    //Copied and modified from log.php :) why rewrite the wheel?? :D
-                    $iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
-                    $log_files = OpenRSD::getDirContents('/home/'.$iuser.'/ovpns');
-                    foreach ($log_files as $log) {
-                        $f = explode("/", $log);
-                        $file = end($f);
-                        echo'<tr><td style="vertical-align: middle;"><a href="#" onClick="displayProfile(\''.$log.'\')">'.$log.'</a></td><td><button class="btn btn-sm btn-raised btn-warning" onclick="rProfile(\''.$log.'\')">Revoke Client</button></td><td><a href="dlnd_profile.php?filename='.$file.'" class="btn btn-sm btn-raised btn-info">Download</a></td></tr>';
-                    }
-                    ?>
-    			</tbody>
-    		</table>
-    		<table class="table">
-    			<thead>
-    				<th>OpenVPN Client List</th>
                 </thead>
-                
+                <div id="resultClients"><?php echo '<!--'.shell_exec("sudo cat /var/log/openvpn-status.log").'-->'; ?></div>
 			</table><br>
-			<pre><?php echo '<!--'.shell_exec("sudo cat /var/log/openvpn-status.log").'-->'; ?></pre>
 	    </div>
     </div>
     <div class="row">
