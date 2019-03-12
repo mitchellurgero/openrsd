@@ -12,11 +12,11 @@ function CreateClientsTable()
         console.log(shellLines[i]);
         if(shellLines[i].includes("CLIENT_LIST"))
         {
-            AddTable(shellLine[1], shellLine[2], shellLine[3], shellLine[6]);
-            console.log(shellLine[1]);
-            console.log(shellLine[2]);
-            console.log(shellLine[3]);
-            console.log(shellLine[6]);
+            AddTable(shellLines[1], shellLines[2], shellLines[3], shellLines[6]);
+            console.log(shellLines[1]);
+            console.log(shellLines[2]);
+            console.log(shellLines[3]);
+            console.log(shellLines[6]);
         }
     }
 }
