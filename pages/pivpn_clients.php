@@ -37,7 +37,6 @@ if (!isset($_SESSION['username'])) {
                         $shll_array = explode("\n", $return);
                         for($i = 0; $i < count($shll_array); $i++)
                         {
-                            echo "<div>".$shll_array[$i]."</div><br>";
                             if(strpos($shll_array[$i], 'CLIENT_LIST') !== false and strpos($shll_array[$i], 'HEADER') == false and strpos($shll_array[$i], 'Common Name') == false)
                             {
                                 $fin_array = explode("\t", $shll_array[$i]);
