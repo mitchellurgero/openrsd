@@ -233,7 +233,7 @@ function body()
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span>&nbsp;PiVPN</a>
         				<ul class="dropdown-menu">
 							<li><a href="#" onclick="pageLoad('PiVPN');"><i class="fa fa-lock fa-fw"></i> PiVPN Profiles</a></li>
-                        	<li><a href="#" onclick="pageLoad('PiVPNClients');"><i class="fa fa-repeat fa-fw"></i> PiVPN Clients</a></li>
+                        	<li><a href="#" onclick="pageLoad('PiVPNClients');"><i class="fa fa-users fa-fw"></i> PiVPN Clients</a></li>
         				</ul>
       				</li>
       				
