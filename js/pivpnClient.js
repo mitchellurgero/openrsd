@@ -7,10 +7,9 @@ function CreateClientsTable()
     var shellLines = shellText.split('\n');
     for(var i = 0;i < shellLines.length;i++)
     {
-        
         if(shellLines[i].includes("CLIENT_LIST"))
         {
-            shellTabs = shellLines[i].split('\t') 
+            shellTabs = shellLines[i].split('\t')
             AddTable(shellTabs[1], shellTabs[2], shellTabs[3], shellTabs[7]);
         }
     }

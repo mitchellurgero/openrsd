@@ -32,11 +32,23 @@ if (!isset($_SESSION['username'])) {
                         <th>IP Lan</th>
                         <th>Connect time</th>
                     </tr>
+                    <?php 
+                        $return = shell_exec("sudo cat /var/log/openvpn-status.log");
+                        $shll_array = preg_split(("\n", $return);
+                        for($i = 0; $i < count($shll_array); $i++)
+                        {
+                            if(strpos($shll_array[$i], 'CLIENT_LIST') !== false)
+                            {
+                                $fin_array = preg_split(("\t", $shll_array[i]);
+                                echo "<tr><td>".$fin_array[1]."</td><td>".$fin_array[2]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
+                            }
+                        }
+                    ?>
                 </tbody>
 			</table><br>
+            <button type="button" onclick="CreateClientsTable">teste</button>
 	    </div>
     </div>
-    <script type="text/javascript">CreateClientsTable(); console.log("funcionou");</script> 
     <div class="row">
 	<div class="col-lg-12">
 
