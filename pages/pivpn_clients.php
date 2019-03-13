@@ -34,7 +34,7 @@ if (!isset($_SESSION['username'])) {
                     </tr>
                     <?php 
                         $return = shell_exec("sudo cat /var/log/openvpn-status.log");
-                        echo "<div>".$return."</div>"
+                        echo "<div>".$return."</div>";
                         $shll_array = preg_split("\n", $return);
                         for($i = 0; $i < count($shll_array); $i++)
                         {
