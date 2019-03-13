@@ -39,7 +39,8 @@ if (!isset($_SESSION['username'])) {
                             if(strpos($shll_array[$i], 'CLIENT_LIST') !== false and strpos($shll_array[$i], 'HEADER') == false and strpos($shll_array[$i], 'Common Name') == false)
                             {
                                 $fin_array = explode("\t", $shll_array[$i]);
-                                echo "<tr><td>".$fin_array[1]."</td><td>".$fin_array[2]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
+                                $ip_noport = explode(":", $fin_array[2]);
+                                echo "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
                             }
                         }
                     ?>
