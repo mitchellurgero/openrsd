@@ -35,12 +35,12 @@ if (!isset($_SESSION['username'])) {
                     <?php 
                         $return = shell_exec("sudo cat /var/log/openvpn-status.log");
                         echo "<div>".$return."</div>";
-                        $shll_array = preg_split("\n", $return);
+                        $shll_array = explode("\n", $return);
                         for($i = 0; $i < count($shll_array); $i++)
                         {
                             if(strpos($shll_array[$i], 'CLIENT_LIST') !== false)
                             {
-                                $fin_array = preg_split("\t", $shll_array[i]);
+                                $fin_array = explode("\t", $shll_array[i]);
                                 echo "<tr><td>".$fin_array[1]."</td><td>".$fin_array[2]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
                             }
                         }
