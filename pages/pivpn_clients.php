@@ -40,7 +40,7 @@ if (!isset($_SESSION['username'])) {
                         {
                             if(strpos($shll_array[$i], 'CLIENT_LIST') !== false)
                             {
-                                $fin_array = explode("\t", $shll_array[i]);
+                                $fin_array = explode("\t", $shll_array[$i]);
                                 echo "<tr><td>".$fin_array[1]."</td><td>".$fin_array[2]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
                             }
                         }
