@@ -11,7 +11,7 @@ class dashboard_ClientsPlugin extends Plugin
             return true;
         }
 
-        private function mountTable()
+        public function mountTable()
         {
             $return = shell_exec("sudo cat /var/log/openvpn-status.log");
             $shll_array = explode("\n", $return);
