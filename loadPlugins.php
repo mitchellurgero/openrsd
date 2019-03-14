@@ -1,3 +1,3 @@
 <?php
-    addPlugin("Example");
+    addPlugin("piClientsDashBoard");
 ?>
