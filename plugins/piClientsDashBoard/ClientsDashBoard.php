@@ -12,10 +12,11 @@ class ClientsDashBoard extends Plugin
         }
         public function onPageLoadEnd($sess, &$post)
         {
-            if($post == "")
+            if($post == "Dashboard")
             {    
                 echo '<div class="alert alert-success">This will be my new dashboard!</div>';
             }
+            echo "<!-- teste --> ";
         }
     }
 ?>
