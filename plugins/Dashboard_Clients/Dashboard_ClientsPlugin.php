@@ -10,15 +10,15 @@ class dashboard_ClientsPlugin extends Plugin
         public function initialize(){
             return true;
         }
-        /*public function onPageLoadEnd($sess, &$post)
+        public function onPageLoadEnd($sess, &$post)
         {
             if($post == "Dashboard")
             {    
                 echo '<div class="alert alert-success">This will be my new dashboard!</div>';
             }
-            echo "<!-- teste --> ";
+            echo "<!-- teste :". $post ."--> ";
             return true;
-        }*/
+        }
 
         public function onPageLoad($s, &$p){
 		
