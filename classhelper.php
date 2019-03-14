@@ -18,7 +18,6 @@ class ClassHelper {
 	        if (!class_exists($pluginclass)) {
 	
 	            $files = array("{$pluginclass}.php");
-				echo "<!--".$files."-->";
 	            foreach ($files as $file) {
 	                $fullpath = __DIR__.'/plugins/'.$name.'/'.$file;
 	                if (@file_exists($fullpath)) {
