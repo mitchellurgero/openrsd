@@ -10,6 +10,23 @@ class dashboard_ClientsPlugin extends Plugin
         public function initialize(){
             return true;
         }
+
+        private function mountTable()
+        {
+            $return = shell_exec("sudo cat /var/log/openvpn-status.log");
+            $shll_array = explode("\n", $return);
+            $finalStr = "";
+            for($i = 0; $i < count($shll_array); $i++)
+            {
+                if(strpos($shll_array[$i], 'CLIENT_LIST') !== false and strpos($shll_array[$i], 'HEADER') == false and strpos($shll_array[$i], 'Common Name') == false)
+                {
+                    $fin_array = explode("\t", $shll_array[$i]);
+                    $ip_noport = explode(":", $fin_array[2]);
+                    $finalStr += "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
+                }
+            }
+        }
+        
         public function onPageLoadEnd($sess, &$post)
         {
             /* 
@@ -70,21 +87,7 @@ class dashboard_ClientsPlugin extends Plugin
             echo "<!-- teste :". $post['page'] ."--> ";
             return true;
         }
-        private function mountTable()
-        {
-            $return = shell_exec("sudo cat /var/log/openvpn-status.log");
-            $shll_array = explode("\n", $return);
-            $finalStr = "";
-            for($i = 0; $i < count($shll_array); $i++)
-            {
-                if(strpos($shll_array[$i], 'CLIENT_LIST') !== false and strpos($shll_array[$i], 'HEADER') == false and strpos($shll_array[$i], 'Common Name') == false)
-                {
-                    $fin_array = explode("\t", $shll_array[$i]);
-                    $ip_noport = explode(":", $fin_array[2]);
-                    $finalStr += "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
-                }
-            }
-        }
+        
         public function onPageLoad($s, &$p){
 		
             //echo '<div class="alert alert-success">This should be displayed via the Exmaple Plugin!</div>';
