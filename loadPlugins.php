@@ -1,3 +1,3 @@
 <?php
-    addPlugin(__DIR__."plugins/Example/ExamplePlugin.php");
+    addPlugin("ExamplePlugin.php");
 ?>
