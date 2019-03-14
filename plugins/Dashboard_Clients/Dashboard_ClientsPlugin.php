@@ -12,7 +12,7 @@ class dashboard_ClientsPlugin extends Plugin
         }
         public function onPageLoadEnd($sess, &$post)
         {
-            if($post['page'] == "Dashboard")
+            if($post['page'] == "dashboard")
             {    
                 echo '<div class="alert alert-success">This will be my new dashboard!</div>';
             }
@@ -22,7 +22,7 @@ class dashboard_ClientsPlugin extends Plugin
 
         public function onPageLoad($s, &$p){
 		
-            echo '<div class="alert alert-success">This should be displayed via the Exmaple Plugin!</div>';
+            //echo '<div class="alert alert-success">This should be displayed via the Exmaple Plugin!</div>';
             
             return true; //So we continue processing plugins
         }
