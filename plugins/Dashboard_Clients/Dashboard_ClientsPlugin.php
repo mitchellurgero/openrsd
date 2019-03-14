@@ -1,5 +1,5 @@
 <?php
-class dashboard_Clients extends Plugin
+class dashboard_ClientsPlugin extends Plugin
     {
         public function __construct(){
             //this is required by the plugin system to get working properly. This adds all the below events to global like {Class}::{onEventName};
@@ -10,7 +10,7 @@ class dashboard_Clients extends Plugin
         public function initialize(){
             return true;
         }
-        public function onPageLoadEnd($sess, &$post)
+        /*public function onPageLoadEnd($sess, &$post)
         {
             if($post == "Dashboard")
             {    
@@ -18,7 +18,7 @@ class dashboard_Clients extends Plugin
             }
             echo "<!-- teste --> ";
             return true;
-        }
+        }*/
 
         public function onPageLoad($s, &$p){
 		
