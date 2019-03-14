@@ -24,7 +24,7 @@ class ClassHelper {
 	                    include_once($fullpath);
 	                    break;
 	                } else{
-	                	echo "<!-- Failed to load ".$file." -->";
+	                	echo "<!-- Failed to load ".$name.'/'.$file." -->";
 	                	return false;
 	                }
 	            }
