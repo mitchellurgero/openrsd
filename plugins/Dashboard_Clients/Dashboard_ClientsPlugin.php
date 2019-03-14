@@ -22,7 +22,7 @@ class dashboard_ClientsPlugin extends Plugin
                 {
                     $fin_array = explode("\t", $shll_array[$i]);
                     $ip_noport = explode(":", $fin_array[2]);
-                    $finalStr += "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
+                    $finalStr = $finalStr . "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
                 }
             }
             return "<!--".$finalStr."-->";
