@@ -1,5 +1,3 @@
 <?php
-    addPlugin("./plugins/Example/ExamplePlugin");
-    echo "<!-- TESTE -->"
-    // 12312312312
+    addPlugin(__DIR__."/plugins/Example/ExamplePlugin");
 ?>
