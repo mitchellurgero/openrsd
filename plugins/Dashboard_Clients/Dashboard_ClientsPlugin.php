@@ -25,6 +25,7 @@ class dashboard_ClientsPlugin extends Plugin
                     $finalStr += "<tr><td>".$fin_array[1]."</td><td>".$ip_noport[0]."</td><td>".$fin_array[3]."</td><td>".$fin_array[7]."</td></tr>";
                 }
             }
+            return $finalStr;
         }
         
         public function onPageLoadEnd($sess, &$post)
