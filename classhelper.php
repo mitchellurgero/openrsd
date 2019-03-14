@@ -18,14 +18,14 @@ class ClassHelper {
 	        if (!class_exists($pluginclass)) {
 	
 	            $files = array("{$pluginclass}.php");
-	
+				echo "<!--".$files."-->";
 	            foreach ($files as $file) {
 	                $fullpath = __DIR__.'/plugins/'.$name.'/'.$file;
 	                if (@file_exists($fullpath)) {
 	                    include_once($fullpath);
 	                    break;
 	                } else{
-	                	//echo "<!-- Failed to load ".$file." -->";
+	                	echo "<!-- Failed to load ".$file." -->";
 	                	return false;
 	                }
 	            }
