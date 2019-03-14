@@ -75,7 +75,7 @@ class dashboard_ClientsPlugin extends Plugin
                             <th>IP WAN</th>
                             <th>IP Lan</th>
                             <th>Connect time</th>
-                        </tr>'.mountTable().'</tbody>
+                        </tr>'.$this->mountTable().'</tbody>
                             </table>
                         <p></p>
                     </div>
