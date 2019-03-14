@@ -21,7 +21,8 @@ class ClassHelper {
 	            foreach ($files as $file) {
 	                $fullpath = __DIR__.'/plugins/'.$name.'/'.$file;
 	                if (@file_exists($fullpath)) {
-	                    include_once($fullpath);
+						include_once($fullpath);
+						echo "<!-- imported -->";
 	                    break;
 	                } else{
 	                	echo "<!-- Failed to load ".$name.'/'.$file." -->";
