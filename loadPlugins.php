@@ -1,3 +1,3 @@
 <?php
-    addPlugin("pluginTeste.php");
+    addPlugin("Example");
 ?>
