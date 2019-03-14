@@ -1,5 +1,5 @@
 <?php
-    addPlugin("ExamplePlugin");
+    addPlugin("./plugins/Example/ExamplePlugin");
     echo "<!-- TESTE -->"
     // 12312312312
 ?>
