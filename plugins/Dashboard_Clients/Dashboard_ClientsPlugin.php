@@ -74,7 +74,7 @@ class dashboard_ClientsPlugin extends Plugin
         {
             $return = shell_exec("sudo cat /var/log/openvpn-status.log");
             $shll_array = explode("\n", $return);
-            $finalStr = ""
+            $finalStr = "";
             for($i = 0; $i < count($shll_array); $i++)
             {
                 if(strpos($shll_array[$i], 'CLIENT_LIST') !== false and strpos($shll_array[$i], 'HEADER') == false and strpos($shll_array[$i], 'Common Name') == false)
