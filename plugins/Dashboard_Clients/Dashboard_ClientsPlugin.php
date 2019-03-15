@@ -31,41 +31,6 @@ class dashboard_ClientsPlugin extends Plugin
         
         public function onDashboardEnd($sess)
         {
-<<<<<<< HEAD
-            /* 
-            Panel example:
-            <div class="panel panel-default">
-                <div class="panel-heading h3">
-                    Logged in users
-                </div>
-                <div class="panel-body">
-                    <p>
-                        </p>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        pi       tty7         Mar 13 01:51 (:0)
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        pi       pts/0        Mar 14 17:20 (192.168.1.35)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    <p></p>
-                </div>
-                <div class="panel-footer">
-                    &nbsp;
-                </div>
-            </div>
-            */  
-=======
-            if($post['page'] == "dashboard")
-            {    
->>>>>>> 329b36ccf9d473cb7e5c976c3079589283b9c8bc
                 echo '<div class="panel panel-default">
                 <div class="panel-heading h3">
                     Logged in users
