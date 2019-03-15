@@ -1,3 +1,3 @@
 <?php
-    addPlugin("PiVPN");
+    addPlugin("PiMasterized");
 ?>
