@@ -29,7 +29,7 @@ class dashboard_ClientsPlugin extends Plugin
             // $finalStr;
         }
         
-        public function onPageLoadEnd($sess, &$post)
+        public function onDashboardEnd($sess)
         {
             /* 
             Panel example:
@@ -60,9 +60,7 @@ class dashboard_ClientsPlugin extends Plugin
                     &nbsp;
                 </div>
             </div>
-            */
-            if($post['page'] == "dashboard")
-            {    
+            */  
                 echo '<div class="panel panel-default">
                 <div class="panel-heading h3">
                     Logged in users
@@ -85,8 +83,6 @@ class dashboard_ClientsPlugin extends Plugin
                         &nbsp;
                     </div>
                 </div>';
-            }
-            echo "<!-- teste :". $post['page'] ."--> ";
             return true;
         }
         
