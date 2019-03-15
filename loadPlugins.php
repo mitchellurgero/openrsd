@@ -1,3 +1,3 @@
 <?php
-    addPlugin("dashboard_Clients");
+    addPlugin("PiVPN");
 ?>
