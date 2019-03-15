@@ -32,9 +32,9 @@ class dashboard_ClientsPlugin extends Plugin
         public function onDashboardEnd($sess)
         {
                 echo '<div class="col-lg-4">
-                <divv class="panel panel-default">
+                <div class="panel panel-default">
                 <div class="panel-heading h3">
-                    Logged in users
+                    Logged in vpn
                 </div>
                 <div class="panel-body">
                     <p>
