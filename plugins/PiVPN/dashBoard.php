@@ -31,7 +31,7 @@ class dashBoard extends Plugin
         
         public function onDashboardEnd($sess)
         {
-                echo '<div class="col-lg-4">
+                echo '<div class="col-lg-6">
                 <div class="panel panel-default">
                 <div class="panel-heading h3">
                     Logged in vpn
