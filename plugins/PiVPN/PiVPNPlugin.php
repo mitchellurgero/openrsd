@@ -15,7 +15,7 @@
         public function onDashboardEnd($sess)
         {
             $myDashBoard = new dashBoard();
-            return $myDashBoard.onDashboardEnd($sess);
+            return $myDashBoard->onDashboardEnd($sess);
         }
     }
 ?>
