@@ -31,6 +31,7 @@ class dashboard_ClientsPlugin extends Plugin
         
         public function onDashboardEnd($sess)
         {
+<<<<<<< HEAD
             /* 
             Panel example:
             <div class="panel panel-default">
@@ -61,6 +62,10 @@ class dashboard_ClientsPlugin extends Plugin
                 </div>
             </div>
             */  
+=======
+            if($post['page'] == "dashboard")
+            {    
+>>>>>>> 329b36ccf9d473cb7e5c976c3079589283b9c8bc
                 echo '<div class="panel panel-default">
                 <div class="panel-heading h3">
                     Logged in users
