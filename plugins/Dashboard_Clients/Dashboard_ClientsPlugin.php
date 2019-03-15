@@ -31,7 +31,8 @@ class dashboard_ClientsPlugin extends Plugin
         
         public function onDashboardEnd($sess)
         {
-                echo '<div class="panel panel-default">
+                echo '<div class="col-lg-4">
+                <divv class="panel panel-default">
                 <div class="panel-heading h3">
                     Logged in users
                 </div>
@@ -52,15 +53,9 @@ class dashboard_ClientsPlugin extends Plugin
                     <div class="panel-footer">
                         &nbsp;
                     </div>
+                    </div>
                 </div>';
             return true;
-        }
-        
-        public function onPageLoad($s, &$p){
-		
-            //echo '<div class="alert alert-success">This should be displayed via the Exmaple Plugin!</div>';
-            
-            return true; //So we continue processing plugins
         }
     }
 ?>
