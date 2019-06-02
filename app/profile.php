@@ -12,6 +12,7 @@ if (!isset($_SESSION['username'])) {
 if (!isset($_POST['profile'])) {
     die("No profile name selected!");
 }
+$iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
 $pro = $_POST['profile'];
 add_vpn_profile($pro);
 //Run selected script, but only if it exists in the scr_up folder.
@@ -31,6 +32,8 @@ function add_vpn_profile($profile)
     $cmd .= "send \"pivpn add nopass\\r\"; ";
     $cmd .= "expect \"Enter a Name for the Client:   \"; ";
     $cmd .= "send \"$profile\\r\"; ";
+    $cmd .= "expect \"How many days should the certificate last?  1080\"; ";
+    $cmd .= "send \"\\r\"; ";
     $cmd .= "expect \"for easy transfer.\"; ";
     // Commit the command to expect & close
     fwrite($p, $cmd);

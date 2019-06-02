@@ -12,8 +12,9 @@ if (!isset($_SESSION['username'])) {
 if (!isset($_POST['profile'])) {
     die("No profile name selected!");
 }
+$iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
 $pro = $_POST['profile'];
-$pro = str_replace("/home/pi/ovpns/", "", $pro);
+$pro = str_replace("/home/$iuser/ovpns/", "", $pro);
 $pro = str_replace(".ovpn", "", $pro);
 revoke_vpn_profile($pro);
 //Run selected script, but only if it exists in the scr_up folder.
