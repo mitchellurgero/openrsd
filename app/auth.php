@@ -8,7 +8,7 @@ function auth($username, $password)
     $date2 = date('m-d-Y', time());
     $dir = getcwd();
     $ip = $_SERVER['REMOTE_ADDR'];
-    $cpu = php_uname("m");
+    $cpu = trim(php_uname("m"));
     $chkpasswd = "chkpasswd";
     if (!file_exists("app/auth_log/$date2.log")) {
         touch("app/auth_log/$date2.log");
@@ -28,11 +28,16 @@ function auth($username, $password)
         file_put_contents("app/auth_log/$date2.log", "$date [AUTH] - Authentication for $username failed!($ip) \n", FILE_APPEND);
         return false;
     }
-    //test if RPi0 / 1 / 2
+    //test if RPi0 / 1 / 2 / 3(3b+ too) / Custom board (chkpasswd compiled for a different CPU!)
     if ($cpu == "armv6l") {
         $chkpasswd = "chkpasswd6";
+    } elseif($cpu == "aarch64"){
+        $chkpasswd = "chkpasswd64";
+    } elseif(file_exists(__DIR__."/bin/chkpasswd-custom")){
+        $chkpasswd = "chkpasswd-custom";
     }
-    $result = exec("sudo ./app/bin/$chkpasswd $username $password");
+
+    $result = exec("sudo ".__DIR__."/bin/$chkpasswd $username $password");
     if ($result == "Not Authenticated") {
         file_put_contents("app/auth_log/$date2.log", "$date [AUTH] - Authentication for $username failed!($ip) \n", FILE_APPEND);
         return false;

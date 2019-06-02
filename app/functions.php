@@ -6,8 +6,8 @@ class OpenRSD
     $total = exec("grep MemTotal /proc/meminfo | awk '{print $2}'");
     $free = exec("grep MemFree /proc/meminfo | awk '{print $2}'");
     $cached = shell_exec("grep Cached /proc/meminfo | awk '{print $2}'");
-    $used = $total - $free - $cached;
-    $free = $free + $cached;
+    $used = intval($total) - intval($free) - intval($cached);
+    $free = intval($free) + intval($cached);
     $total = round($total / 1024, 2)."MB";
     $free = round($free / 1024, 2)."MB";
     $used = round($used / 1024, 2)."MB";
@@ -42,10 +42,10 @@ class OpenRSD
     }
     $upsecs = (int)substr($data, 0, strpos($data, ' '));
     $uptime = array(
-        'days' => floor($data/60/60/24),
-        'hours' => $data/60/60%24,
-        'minutes' => $data/60%60,
-        'seconds' => $data%60
+        'days' => floor(intval($data)/60/60/24),
+        'hours' => intval($data)/60/60%24,
+        'minutes' => intval($data)/60%60,
+        'seconds' => intval($data)%60
     );
     return "<b>Uptime</b><br />".$uptime["days"]."D ".$uptime["hours"]."H ".$uptime["minutes"]."M";
 }
@@ -193,6 +193,10 @@ class OpenRSD
 
     return $results;
 }
+    public static function setini(){
+        ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+        ini_set('max_execution_time',300);
+    }
 }
 
 //GitVersionCheckClass

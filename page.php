@@ -1,8 +1,11 @@
 <?php
 //Basic Dbug
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+
+ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+ini_set('max_execution_time',300);
 
 define("OPENRSD", true);
 define("BASEURI", dirname($_SERVER['SCRIPT_NAME'])."/");
@@ -89,7 +92,6 @@ if (isset($_POST['page'])) {
         	} else {
         		echo "404 - Page not found!";
         	}
-            
             break;
     }
     Event::handle('PageLoadEnd',array($_SESSION,&$_POST));

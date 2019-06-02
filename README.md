@@ -86,6 +86,22 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
 
 As long as you have not modified any of the files, updating is pretty simple: Just run `git pull` in the /var/www/html/openrsd directory. Or through the web interface: Advanced Configuration -> Updates
 
+### Login is not working, help?
+
+If you are on a Raspberry Pi of any model, please open an issue and submit your apache logs (make sure no sensitive data is in there!).
+
+If you are NOT on a raspberry pi, but on a clone board or maybe even a VPS or something, try the following, just make sure you are in OpenRSD's `app/bin` directory.
+
+```bash
+apt install libpam0g-dev
+apt install build-essential
+cd /path/to/openrsd
+cd app/bin
+gcc pam.c -lpam -lpam_misc -o -o ckpasswd-custom
+```
+
+What the above code does is it compiles a custom check password binary specific to your setup. This is what allows the PAM authentication.
+
 ## Screenshots
 
 ![Screenshot - Dashboard](img/screen1.PNG)
