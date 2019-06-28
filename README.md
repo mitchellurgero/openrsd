@@ -12,6 +12,47 @@ After months of testing, OpenRSD seems to be stable. Please put issues on GitHub
 
 Installing OpenRSD is pretty simple to do. Just follow the below instructions:
 
+
+#### Recommended Installation
+
+*This does not install a webserver, but instead uses PHP's built in webserver to serve up OpenRSD.
+
+```bash
+sudo apt install php php-mbstring php-curl php-readline php-xml php-json php-pear lsof git expect geoip-bin shellinabox needrestart
+sudo mkdir /var/www
+sudo cd /var/www
+sudo useradd -r openrsd -d /home/openrsd
+sudo adduser openrsd sudo
+sudo mkdir /home/openrsd
+echo "openrsd ALL=(ALL) NOPASSWD: ALL" | sudo tee --append /etc/sudoers.d/010_openrsd-nopasswd
+sudo git clone https://github.com/mitchellurgero/openrsd
+sudo cp /var/www/Codiad/workspace/openrsd/openrsd.service /etc/systemd/system/openrsd.service
+sudo systemctl daemon-reload
+sudo systemctl enable openrsd
+sudo systemctl start openrsd
+# Verify openrsd service loaded:
+sudo systemctl status openrsd
+```
+
+
+OpenRSD should now be available at *http://pi_ip:8088/*
+
+#### Installing pivpn as the OPENRSD user
+
+You must install pivpn AS openrsd in order for it to work properly in the UI:
+
+```bash
+sudo su - openrsd
+curl -L https://install.pivpn.io | bash
+```
+
+
+
+
+#### ADVANCED INSTALLATION
+
+When using the advanced instructions to install, PiVPN must be installed as the same user that installed OpenRSD (www-data as an example)
+
 1.  This script is only tested on Raspbian, please make sure you are running a distro based on that, or running Raspbian.
 
 2.  Once Raspbian (Or Raspbian based OS) is installed, run(Note: The following is just the BARE MINIMUM to get OpenRSD to run properly, PiVPN and Samba must be installed separately!):
