@@ -39,12 +39,31 @@ if (!isset($_SESSION['username'])) {
                     ?>
     			</tbody>
     		</table>
+    		<h3>PiVPN Client List (OpenVPN)</h3>
     		<table class="table">
     			<thead>
-    				<th>OpenVPN Client List</th>
+    				<th>Client Name</th>
+    				<th>Client IP Address</th>
     			</thead>
+    			<tbody>
+    			<?php
+    			$pivpnClientList = array();
+				exec("sudo cat /var/log/openvpn-status.log", $pivpnClientList);
+				foreach($pivpnClientList as $line){
+					if(substr($line, 0, 11) === "CLIENT_LIST"){
+						$l = explode("\t", $line);
+						echo "<tr><td>".$l[1]."</td><td>".$l[3]."</td></tr>";
+					}
+				}
+    			?>
+    			</tbody>
 			</table><br>
-			<pre><?php echo shell_exec("sudo cat /var/log/openvpn-status.log"); ?></pre>
+			<p>Debug output for troubleshooting (openvpn-status.log, for more logs, go to the Log page.):</p>
+			<?php
+			
+			//Test output
+			echo "<pre>".implode($pivpnClientList, "\r\n")."</pre>";
+			?>
 	    </div>
 	<div class="col-lg-6">
 		<table class="table">
