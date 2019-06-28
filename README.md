@@ -34,6 +34,11 @@ sudo systemctl start openrsd
 sudo systemctl status openrsd
 ```
 
+__Recommendations for PHP CLI__
+
+Not required, but modify /etc/php/version/cli/php.ini so that:
+
+- max_execution_time = 300
 
 OpenRSD should now be available at *http://pi_ip:8088/*
 
