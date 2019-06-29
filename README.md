@@ -26,7 +26,7 @@ sudo adduser openrsd sudo
 sudo mkdir /home/openrsd
 echo "openrsd ALL=(ALL) NOPASSWD: ALL" | sudo tee --append /etc/sudoers.d/010_openrsd-nopasswd
 sudo git clone https://github.com/mitchellurgero/openrsd
-sudo cp /var/www/Codiad/workspace/openrsd/openrsd.service /etc/systemd/system/openrsd.service
+sudo cp openrsd/openrsd.service /etc/systemd/system/openrsd.service
 sudo systemctl daemon-reload
 sudo systemctl enable openrsd
 sudo systemctl start openrsd
