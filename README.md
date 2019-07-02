@@ -20,7 +20,7 @@ Installing OpenRSD is pretty simple to do. Just follow the below instructions:
 ```bash
 sudo apt install php php-mbstring php-curl php-readline php-xml php-json php-pear lsof git expect geoip-bin shellinabox needrestart
 sudo mkdir /var/www
-sudo cd /var/www
+cd /var/www
 sudo useradd -r openrsd -d /home/openrsd
 sudo adduser openrsd sudo
 sudo mkdir /home/openrsd
