@@ -96,7 +96,7 @@ if (!isset($_SESSION['username'])) {
                                         echo 'We will not be able to update. Please reinstall!<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a></p>';
                                     } elseif (strpos($c, 'behind') !== false) {
                                         echo '<p style="color:#4cd137;">An update for OpenRSD available!</p>';
-                                    } elseif (strpos($c, 'up-to-date') !== false) {
+                                    } elseif (strpos($c, 'up to date') !== false) {
                                         echo '<p>OpenRSD is completely up to date!</p>';
                                     } else {
                                         echo '<p style="color:#e84118;">There was an error checking for OpenRSD updates.<br/><a href="#" onClick="pageLoad(\'check\');">Go to Updates</a><p>';
