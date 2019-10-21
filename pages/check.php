@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
                 echo '<a href="./app/updateorsd.php" class="btn btn-sm btn-info btn-raised">Update OpenRSD!</a>';
                 echo '<br><br><h3>Changes:</h3>';
                 echo '<pre style="max-height:300px; overscroll-y:visible">'.$c2.'</pre>';
-            } elseif (strpos($c, 'up-to-date') !== false) {
+            } elseif (strpos($c, 'up to date') !== false) {
                 echo '<p>OpenRSD is completely up to date!</p>';
             } else {
                 echo '<p> There was an error processing the update request:<p>';
