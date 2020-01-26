@@ -1,7 +1,7 @@
 <?php if (!defined("OPENRSD")) {
     die();
 }
-
+die();
 //Check for valid session:
 if (!isset($_SESSION)) {
     session_start();
@@ -24,13 +24,13 @@ if (!isset($_SESSION['username'])) {
     	<div class="col-lg-6">
     		<table class="table">
     			<thead>
-    				<th>OpenVPN Client Profile</th>
+    				<th>Wireguard Client Profile</th>
     			</thead>
     			<tbody>
     				<?php
                     //Copied and modified from log.php :) why rewrite the wheel?? :D
-                    $iuser = exec("sudo cat /etc/pivpn/INSTALL_USER");
-                    $log_files = OpenRSD::getDirContents('/home/'.$iuser.'/ovpns');
+					$iuser = parse_ini_string(shell_exec("sudo cat /etc/pivpn/setupVars.conf"));
+					$log_files = OpenRSD::getDirContents('/home/'.$iuser['install_user'].'/configs');
                     foreach ($log_files as $log) {
                         $f = explode("/", $log);
                         $file = end($f);
@@ -39,8 +39,8 @@ if (!isset($_SESSION['username'])) {
                     ?>
     			</tbody>
     		</table>
-    		<h3>PiVPN Client List (OpenVPN)</h3>
-    		<table class="table">
+    		<h3>PiVPN Client List (Wireguard)</h3>
+    		<!--<table class="table">
     			<thead>
     				<th>Client Name</th>
     				<th>Client IP Address</th>
@@ -48,17 +48,17 @@ if (!isset($_SESSION['username'])) {
     			<tbody>
     			<?php
     			$pivpnClientList = array();
-				exec("sudo cat /var/log/openvpn-status.log", $pivpnClientList);
-				foreach($pivpnClientList as $line){
-					if(substr($line, 0, 11) === "CLIENT_LIST"){
-						$l = explode("\t", $line);
-						echo "<tr><td>".$l[1]."</td><td>".$l[3]."</td></tr>";
-					}
-				}
+				exec("sudo wg", $pivpnClientList);
+				// foreach($pivpnClientList as $line){
+				// 	if(substr($line, 0, 11) === "CLIENT_LIST"){
+				// 		$l = explode("\t", $line);
+				// 		echo "<tr><td>".$l[1]."</td><td>".$l[3]."</td></tr>";
+				// 	}
+				// }
     			?>
     			</tbody>
-			</table><br>
-			<p>Debug output for troubleshooting (openvpn-status.log, for more logs, go to the Log page.):</p>
+			</table>--><br>
+			<p>Debug output for troubleshooting (sudo wg):</p>
 			<?php
 			
 			//Test output
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
 	<div class="col-lg-6">
 		<table class="table">
     			<thead>
-    				<th>OpenVPN Profile Status</th>
+    				<th>Wireguard Profile Status</th>
     			</thead>
 		</table>
 	<?php

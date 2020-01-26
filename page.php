@@ -152,7 +152,7 @@ function users()
 }
 function openvpn()
 {
-    include('pages/openvpn.php');
+    include('pages/vpn.php');
 }
 function samba()
 {

@@ -188,7 +188,7 @@ function body()
 {
     $have_pivpn = false;
     if ((! is_null(shell_exec("sudo which pivpn")) > 0) && (! is_null(shell_exec("sudo which openvpn")) > 0)) {
-        $have_pivpn = true;
+        $have_pivpn = false;
     };
     echo '<body>';
     //Javascript... ?>
