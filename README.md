@@ -1,4 +1,6 @@
-# OpenRSD - Stable - State: Usable
+# This project has been abandoned. Though it still may work, I will likely not be working on this anymore. Sadly.
+
+## OpenRSD - Stable - State: Abandoned.
 
 ### What is OpenRSD
 
